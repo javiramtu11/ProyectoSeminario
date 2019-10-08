@@ -40,6 +40,15 @@ namespace PROYECTO_TURNOS {
         protected global::System.Web.UI.HtmlControls.HtmlSelect clinica;
         
         /// <summary>
+        /// Control codigo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText codigo;
+        
+        /// <summary>
         /// Control nombre.
         /// </summary>
         /// <remarks>
@@ -83,6 +92,33 @@ namespace PROYECTO_TURNOS {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText telefono;
+        
+        /// <summary>
+        /// Control username.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText username;
+        
+        /// <summary>
+        /// Control clave.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword clave;
+        
+        /// <summary>
+        /// Control tipo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect tipo;
         
         /// <summary>
         /// Control InsertarMedico.

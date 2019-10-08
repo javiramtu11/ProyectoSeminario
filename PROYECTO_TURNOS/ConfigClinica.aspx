@@ -84,9 +84,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div id="color" class="navbar-nav">
-                <a id="color" class="nav-item nav-link active" href="ConfUsuarios.aspx">Usuarios <span class="sr-only">(current)</span></a>
-                <a id="color" class="nav-item nav-link active" href="ConfigClinica.aspx">Clinicas</a>
-                <a id="color" class="nav-item nav-link active" href="ConfigMedico.aspx">Medicos</a>
+                
+                <a  class="nav-item nav-link active" href="ConfigMedico.aspx">Medicos </a>
+                <a id="color" class="nav-item nav-link active" href="ConfigClinica.aspx">Clinicas <span class="sr-only">(current)</span></a>
+                
             </div>
         </div>
     </nav>

@@ -30,32 +30,9 @@ namespace PROYECTO_TURNOS
             else
             {
                 string sql = null;
-                sql = "SELECT NOMBRE, APELLIDO, USERNAME FROM USUARIOS WHERE USERNAME = '"+usuario+"' AND CLAVE = '"+password+"' ";
+                sql = "SELECT NOMBRE, APELLIDO, USERNAME FROM MEDICO WHERE USERNAME = '"+usuario+"' AND CLAVE = '"+password+"' ";
                 id = obtenertipo(sql);
-
-                //ESTOS DATOS SIRVEN PARA HACER MATCH CON LA TABLA DOCTORES
-
-                DataTable Datos = RunSQL(sql);
-                int x = 0;
-                foreach (DataRow item in Datos.Rows)
-                {
-                    if (x == 0)
-                    {
-                        Session["NOMBREUSER"] = item[0].ToString();
-                        x++;
-                    }
-                    if (x == 1)
-                    {
-                        Session["APELLIDOUSER"] = item[1].ToString();
-                        x++;
-                    }
-                    if (x == 2)
-                    {
-                        string user = item[2].ToString();
-                    }
-                }
-
-
+                
                 if (string.IsNullOrEmpty(id))
                 {
                     Response.Write("<script>alert('CREDENCIALES INCORRECTAS')</script>");

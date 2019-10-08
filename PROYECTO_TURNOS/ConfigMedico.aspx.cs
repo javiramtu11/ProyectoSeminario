@@ -20,20 +20,29 @@ namespace PROYECTO_TURNOS
             SqlCommand cmd = new SqlCommand();
 
             int IdCline = int.Parse(clinica.Value);
+            string dpi = codigo.Value;
             string name = nombre.Value;
             string lastname = apellido.Value;
             string direction = dire.Value;
             string fechaN = fechanac.Value;
             string tel = telefono.Value;
+            string usuario = username.Value;
+            string pass = clave.Value;
+            string tip = tipo.Value;
 
-            cmd.CommandText = "INSERT INTO MEDICO (ID_CLINICA, NOMBRE, APELLIDO, DIRECCION, FECHA_NACIMIENTO, TELEFONO, ESTADO)" +
-               " VALUES (@ID_CLINICA, @NOMBRE, @APELLIDO, @DIRECCION, @FECHANAC, @TELEFONO, 1)";
+ 
+            cmd.CommandText = "INSERT INTO MEDICO (ID_CLINICA, NOMBRE, APELLIDO, DIRECCION, FECHA_NACIMIENTO, TELEFONO, ESTADO, DPI, TIPO_USUARIO, USERNAME, CLAVE)" +
+               " VALUES (@ID_CLINICA, @NOMBRE, @APELLIDO, @DIRECCION, @FECHANAC, @TELEFONO, 1, @DPI , @TIPO, @USER, @CLAVE)";
             cmd.Parameters.Add("@ID_CLINICA", SqlDbType.Int).Value = IdCline;
             cmd.Parameters.Add("@NOMBRE", SqlDbType.Text).Value = name;
             cmd.Parameters.Add("@APELLIDO", SqlDbType.Text).Value = lastname;
             cmd.Parameters.Add("@DIRECCION", SqlDbType.Text).Value = direction;
             cmd.Parameters.Add("@FECHANAC", SqlDbType.Date).Value = Convert.ToDateTime(fechaN);
             cmd.Parameters.Add("@TELEFONO", SqlDbType.Text).Value = tel;
+            cmd.Parameters.Add("@DPI", SqlDbType.Text).Value = dpi;
+            cmd.Parameters.Add("@TIPO", SqlDbType.Text).Value = tip;
+            cmd.Parameters.Add("@USER", SqlDbType.Text).Value = usuario;
+            cmd.Parameters.Add("@CLAVE", SqlDbType.Text).Value = pass;
 
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conexionSQL;
@@ -74,7 +83,7 @@ namespace PROYECTO_TURNOS
         public void obtenerMedico() {
             SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT ID_MEDICO, c.CLINICA, NOMBRE, DIRECCION, FECHA_NACIMIENTO, TELEFONO  FROM CLINICAS c "+ 
+            cmd.CommandText = "SELECT ID_MEDICO, c.CLINICA, NOMBRE, DIRECCION, FECHA_NACIMIENTO, TELEFONO, TIPO_USUARIO, USERNAME  FROM CLINICAS c "+ 
             "INNER JOIN MEDICO d ON c.ID_CLINICA = d.ID_CLINICA ";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conexionSQL;
@@ -91,7 +100,7 @@ namespace PROYECTO_TURNOS
         public void buscarMedico() {
             SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
             SqlCommand cmd = new SqlCommand();
-
+            //buscar medico
             string buscar = txtbuscar.Value;
             cmd.CommandText = "SELECT ID_MEDICO, c.CLINICA, NOMBRE, DIRECCION, FECHA_NACIMIENTO, TELEFONO  FROM CLINICAS c " +
             "INNER JOIN MEDICO d ON (c.ID_CLINICA = d.ID_CLINICA ) WHERE c.ClINICA LIKE '%" + buscar + "%' OR NOMBRE = '"+buscar+"'";

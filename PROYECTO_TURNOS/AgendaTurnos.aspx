@@ -71,18 +71,25 @@
                 <div class="box-body table-responsive">
                     <div id="tamano" style="color: black;">
                         <asp:GridView 
-                            DataKeyNames ="ID_TURNO"
+                            
                             ID="Grid"                            
-                            AllowPaging="True"
+                            DataKeyNames ="ID_TURNO"
+                            
                             CssClass="table"
                             class="table table-gray text-bold table-bordered table-hover"
-                            method="post" 
-                            runat="server"                            
-                            AutoGenerateColumns="false">
+                            runat="server"     
+                            AutoGenerateColumns="false"
+                            OnPageIndexChanging="Grid_PageIndexChanging"
+                            AllowPaging="True"
+                             
+                            Height="122px" Width="875px">
+                            
+                            
+                            
                             <Columns>
                                 <asp:TemplateField HeaderText="#TURNO">
                                     <ItemTemplate>
-                                        <asp:Label ID="Label1" runat="server" Text='<% # Bind("TURNO_DIARIO") %>'></asp:Label>
+                                        <asp:Label ID="Label1x" runat="server" Text='<% # Bind("TURNO_DIARIO") %>'></asp:Label>
                                     </ItemTemplate>
                                     <EditItemTemplate>
                                         <asp:TextBox ID="TextBox1" runat="server" Text='<% # Bind("TURNO_DIARIO") %>'></asp:TextBox>
@@ -91,7 +98,7 @@
 
                                 <asp:TemplateField HeaderText="PACIENTE">
                                     <ItemTemplate>
-                                        <asp:Label ID="Label1" runat="server" Text='<% # Bind("PERSONA") %>'></asp:Label>
+                                        <asp:Label ID="Label1xx" runat="server" Text='<% # Bind("PERSONA") %>'></asp:Label>
                                     </ItemTemplate>
                                     <EditItemTemplate>
                                         <asp:TextBox ID="TextNombres" runat="server" Text='<% # Bind("PERSONA") %>'></asp:TextBox>
@@ -100,7 +107,7 @@
 
                                 <asp:TemplateField HeaderText="MOTIVO">
                                     <ItemTemplate>
-                                        <asp:Label ID="Label1" runat="server" Text='<% # Bind("MOTIVO") %>'></asp:Label>
+                                        <asp:Label ID="Label1xxx" runat="server" Text='<% # Bind("MOTIVO") %>'></asp:Label>
                                     </ItemTemplate>
                                     <EditItemTemplate>
                                         <asp:TextBox ID="TextDPI" runat="server" Text='<% # Bind("MOTIVO") %>'></asp:TextBox>
@@ -109,7 +116,7 @@
 
                               <asp:TemplateField HeaderText="OPCIONES">
                                     <ItemTemplate>
-                                        <asp:Button ID="btnSelect" runat="server" class="btn btn-info btn-block" Text="LLAMAR"  CommandName='<%# Eval("TURNO_DIARIO") %>' CommandArgument='<%# Eval("PERSONA") %>' />
+                                        <asp:Button ID="btnSelect" OnClick="btnSelect_Click" runat="server" class="btn btn-info btn-block" Text="LLAMAR"  CommandName='<%# Eval("TURNO_DIARIO") %>' CommandArgument='<%# Eval("PERSONA") %>' />
                                          <asp:Button ID="btnAtender" runat="server" class="btn btn-success btn-block" Text="ATENDER"  CommandName='<%# Eval("TURNO_DIARIO") %>' CommandArgument='<%# Eval("PERSONA") %>' />
                                        <asp:Button ID="btnSuspender" runat="server" class="btn btn-warning btn-block" Text="SUSPENDER"  CommandName='<%# Eval("TURNO_DIARIO") %>' CommandArgument='<%# Eval("PERSONA") %>' />
                                          <asp:Button ID="btnCancelar" runat="server" class="btn btn-danger btn-block" Text="CANCELAR"  CommandName='<%# Eval("TURNO_DIARIO") %>' CommandArgument='<%# Eval("PERSONA") %>' />

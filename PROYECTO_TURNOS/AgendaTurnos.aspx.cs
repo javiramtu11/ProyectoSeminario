@@ -22,7 +22,7 @@ namespace PROYECTO_TURNOS
             SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "SELECT ID_MEDICO, NOMBRE, APELLIDO FROM MEDICO WHERE NOMBRE = '"+ Session["NOMBREUSER"] + "' AND APELLIDO = '"+ Session["APELLIDOUSER"] + "'";
+            cmd.CommandText = "SELECT ID_MEDICO, NOMBRE, APELLIDO FROM MEDICO WHERE USERNAME = '"+ Session["USUARIO"] + "'";
 
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conexionSQL;
@@ -56,7 +56,7 @@ namespace PROYECTO_TURNOS
             doctormodal.Value = identificador;
             conexionSQL.Close();
 
-            
+
 
         }
 
@@ -81,8 +81,35 @@ namespace PROYECTO_TURNOS
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            buscarllenarDoc();
-            obtenerTurnos();
+            if (!Page.IsPostBack)
+            {
+                buscarllenarDoc();
+                obtenerTurnos();
+            }
+            
+        }
+
+        protected void btnSelect_Click(object sender, EventArgs e)
+        {
+            Button btnSelect = (sender as Button);
+            string commandName = btnSelect.CommandName;
+            string commandArgument = btnSelect.CommandArgument;
+
+            GridViewRow row = (btnSelect.NamingContainer as GridViewRow);
+
+            int rowIndex = row.RowIndex;
+
+            int CodigoPaciente = Convert.ToInt32(commandName);
+            string NombrePaciente = Convert.ToString(commandArgument);
+
+            Session["Codigodecita"] = CodigoPaciente.ToString();
+         
+            Response.Redirect("AppAtencion.aspx");
+        }
+
+        protected void Grid_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
         }
     }
 }

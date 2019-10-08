@@ -82,9 +82,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div id="color" class="navbar-nav">
-                <a id="color" class="nav-item nav-link active" href="ConfUsuarios.aspx">Usuarios <span class="sr-only">(current)</span></a>
-                <a id="color" class="nav-item nav-link active" href="ConfigClinica.aspx">Clinicas</a>
-                <a id="color" class="nav-item nav-link active" href="ConfigMedico.aspx">Medicos</a>
+                
+                <a id="color" class="nav-item nav-link active" href="ConfigMedico.aspx">Medicos <span class="sr-only">(current)</span></a>
+                <a  class="nav-item nav-link active" href="ConfigClinica.aspx">Clinicas </a>
+                
             </div>
         </div>
     </nav>
@@ -143,6 +144,9 @@
                                            
                                         </select>
 
+                                       <label for="codigo">DPI:</label>
+                                       <input runat="server" type="text" id="codigo" name="codigo">
+
                                         <label for="nombre">Nombre:</label>
                                         <input runat="server" type="text" id="nombre" name="nombre">
 
@@ -157,6 +161,18 @@
 
                                         <label for="telefono">Telefono:</label>
                                         <input runat="server" type="text" id="telefono" name="telefono">
+
+                                        <label for="username">Usuario:</label>
+                                        <input runat="server" type="text" id="username" name="username">
+
+                                        <label for="clave">Contraseña:</label>
+                                        <input runat="server" type="password" id="clave" name="clave">
+
+                                         <label for="tipo">Tipo de usuario:</label>
+                                        <select runat="server" id="tipo" name="tipo">
+                                            <option value="Administrativo">Administrativo</option>
+                                            <option value="Doctor">Doctor</option>
+                                        </select>
 
                                     </fieldset>
                                 </div>
@@ -238,12 +254,30 @@
                                     </EditItemTemplate>
                                 </asp:TemplateField>
 
+
                                 <asp:TemplateField HeaderText="TELEFONO">
                                     <ItemTemplate>
                                         <asp:Label ID="LblTelefono" runat="server" Text='<% # Bind("TELEFONO") %>'></asp:Label>
                                     </ItemTemplate>
                                     <EditItemTemplate>
                                         <asp:TextBox ID="TextTelefono" runat="server" Text='<% # Bind("TELEFONO") %>'></asp:TextBox>
+                                    </EditItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="TIPO">
+                                    <ItemTemplate>
+                                        <asp:Label ID="Lbltipo" runat="server" Text='<% # Bind("TIPO_USUARIO") %>'></asp:Label>
+                                    </ItemTemplate>
+                                    <EditItemTemplate>
+                                        <asp:TextBox ID="TextTipo" runat="server" Text='<% # Bind("TIPO_USUARIO") %>'></asp:TextBox>
+                                    </EditItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="USUARIO">
+                                    <ItemTemplate>
+                                        <asp:Label ID="LblUsuario" runat="server" Text='<% # Bind("USERNAME") %>'></asp:Label>
+                                    </ItemTemplate>
+                                    <EditItemTemplate>
+                                        <asp:TextBox ID="TextUsuario" runat="server" Text='<% # Bind("USERNAME") %>'></asp:TextBox>
                                     </EditItemTemplate>
                                 </asp:TemplateField>
 

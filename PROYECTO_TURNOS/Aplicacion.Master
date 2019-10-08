@@ -88,7 +88,7 @@
                         </li>
 
                         <li class="nav-item ">
-                            <a id="prueba" class="nav-link" href="ConfUsuarios.aspx">
+                            <a id="prueba" class="nav-link" href="ConfigMedico.aspx">
                                 <i class="fa fa-cog" aria-hidden="true"></i>
                                 <p>Configuraciones</p>
                             </a>

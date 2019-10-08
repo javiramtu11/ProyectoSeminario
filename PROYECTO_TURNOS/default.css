@@ -24,7 +24,7 @@ ul, li {
 }
 
 form {
-    margin: 0;
+    margin: 0 140px 0 0;
     padding: 0;
 }
 
@@ -37,7 +37,8 @@ a {
         color: #0078A0;
     }
 
-#container {
+#container {    height: 20px;
+    width: 1607px;
 }
 
 #content {
@@ -209,12 +210,12 @@ ul#toplinks {
     }
 
 ul#promobox {
-    width: 1248px;
+    width: 1578px;
     position: relative;
     float: left;
     margin-bottom: 15px;
     top: 0px;
-    left: 154px;
+    left: -9px;
 }
 
     ul#promobox p {

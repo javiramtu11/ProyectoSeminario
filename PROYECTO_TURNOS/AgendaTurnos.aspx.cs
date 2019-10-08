@@ -54,10 +54,7 @@ namespace PROYECTO_TURNOS
                 }
             }
 
-            if(nombreDoc == "Marjorie")
-            {
-                string nombredra = "Maryori"; 
-            }
+       
             identificador = nombreDoc + " " + apellidoDoc;
 
             Session["NombreDoc"] = identificador;
@@ -110,8 +107,9 @@ namespace PROYECTO_TURNOS
             int rowIndex = row.RowIndex;
 
             int Turno = Convert.ToInt32(commandName);
+            Session["Turno"] = Turno.ToString();
             string NombrePaciente = Convert.ToString(commandArgument);
-
+            Session["NomPaciente"] = NombrePaciente.ToString();
 
             string cadenallamar = "--Paciente. " + NombrePaciente + ". con turno. numero "+ Session["InicNombre"] + ", "+ Session["InicApellido"] + "., 00" + Turno + "., pasar a la clinica del doctor. " + Session["NombreDoc"];
 

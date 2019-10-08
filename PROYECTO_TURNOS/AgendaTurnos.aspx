@@ -49,20 +49,20 @@
     <br />
     <h3 align="center" id="color">AGENDA DE TURNOS </h3>
     <br />
-    <h3 id="color2"><i class="fa fa-bullhorn" aria-hidden="true"></i> Atención de Turnos </h3>
+    <h3 id="color2"><i class="fa fa-bullhorn" aria-hidden="true"></i>Atención de Turnos </h3>
 
     <div style="margin-left: 10px; overflow-x: auto; width: auto;" id="color" class="row">
-    
-        <div style="margin-left: 10px; overflow:auto;" id="color" class="row">
-            <h5><i class="fa fa-user-md" aria-hidden="true"></i> Doctor</h5>
+
+        <div style="margin-left: 10px; overflow: auto;" id="color" class="row">
+            <h5><i class="fa fa-user-md" aria-hidden="true"></i>Doctor</h5>
             <br />
             <br />
             <input disabled runat="server" type="text" id="doctormodal" name="doctormodal">
             <br />
 
         </div>
-      </div>
-    <div style="margin-left: 10px; width:900px; overflow:auto;" id="color" class="row">
+    </div>
+    <div style="margin-left: 10px; width: 900px; overflow: auto;" id="color" class="row">
         <div class="col-xl-auto">
             <div class="box box-primary">
                 <div class="box-header">
@@ -70,23 +70,30 @@
                 </div>
                 <div class="box-body table-responsive">
                     <div id="tamano" style="color: black;">
-                        <asp:GridView 
-                            
-                            ID="Grid"                            
-                            DataKeyNames ="ID_TURNO"
-                            
+                        <asp:GridView
+                            ID="Grid"
+                            DataKeyNames="ID_TURNO"
                             CssClass="table"
                             class="table table-gray text-bold table-bordered table-hover"
-                            runat="server"     
+                            runat="server"
                             AutoGenerateColumns="false"
                             OnPageIndexChanging="Grid_PageIndexChanging"
                             AllowPaging="True"
-                             
                             Height="122px" Width="875px">
-                            
-                            
-                            
+
+
+
                             <Columns>
+                                <asp:TemplateField Visible ="false" HeaderText="#TURNO">
+                                    <ItemTemplate>
+                                        <asp:Label ID="Label1" runat="server" Text='<% # Bind("ID_TURNO") %>'></asp:Label>
+                                    </ItemTemplate>
+                                    <EditItemTemplate>
+                                        <asp:TextBox ID="textid" runat="server" Text='<% # Bind("ID_TURNO") %>'></asp:TextBox>
+                                    </EditItemTemplate>
+                                </asp:TemplateField>
+
+
                                 <asp:TemplateField HeaderText="#TURNO">
                                     <ItemTemplate>
                                         <asp:Label ID="Label1x" runat="server" Text='<% # Bind("TURNO_DIARIO") %>'></asp:Label>
@@ -114,13 +121,13 @@
                                     </EditItemTemplate>
                                 </asp:TemplateField>
 
-                              <asp:TemplateField HeaderText="OPCIONES">
+                                <asp:TemplateField HeaderText="OPCIONES">
                                     <ItemTemplate>
-                                        <asp:Button ID="btnSelect" OnClick="btnSelect_Click" runat="server" class="btn btn-info btn-block" Text="LLAMAR"  CommandName='<%# Eval("TURNO_DIARIO") %>' CommandArgument='<%# Eval("PERSONA") %>' />
-                                         <asp:Button ID="btnAtender" runat="server" class="btn btn-success btn-block" Text="ATENDER"  CommandName='<%# Eval("TURNO_DIARIO") %>' CommandArgument='<%# Eval("PERSONA") %>' />
-                                       <asp:Button ID="btnSuspender" runat="server" class="btn btn-warning btn-block" Text="SUSPENDER"  CommandName='<%# Eval("TURNO_DIARIO") %>' CommandArgument='<%# Eval("PERSONA") %>' />
-                                         <asp:Button ID="btnCancelar" runat="server" class="btn btn-danger btn-block" Text="CANCELAR"  CommandName='<%# Eval("TURNO_DIARIO") %>' CommandArgument='<%# Eval("PERSONA") %>' />
-                                        
+                                        <asp:Button ID="btnSelect" OnClick="btnSelect_Click" runat="server" class="btn btn-info btn-block" Text="LLAMAR" CommandName='<%# Eval("ID_TURNO") %>' CommandArgument='<%# Eval("PERSONA") %>' />
+                                        <asp:Button ID="btnAtender" OnClick="btnAtender_Click" runat="server" class="btn btn-success btn-block" Text="ATENDER" CommandName='<%# Eval("ID_TURNO") %>' CommandArgument='<%# Eval("PERSONA") %>' />
+                                        <asp:Button ID="btnSuspender" OnClick="btnSuspender_Click" runat="server" class="btn btn-warning btn-block" Text="SUSPENDER" CommandName='<%# Eval("ID_TURNO") %>' CommandArgument='<%# Eval("PERSONA") %>' />
+                                        <asp:Button ID="btnCancelar" OnClick="btnCancelar_Click" runat="server" class="btn btn-danger btn-block" Text="CANCELAR" CommandName='<%# Eval("ID_TURNO") %>' CommandArgument='<%# Eval("PERSONA") %>' />
+
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
@@ -134,10 +141,9 @@
         </div>
     </div>
 
-       
-        
+
+
     <div>
-        
     </div>
 
 </asp:Content>

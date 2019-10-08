@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Texto_a_Voz;
 
 namespace PROYECTO_TURNOS
 {
@@ -23,6 +24,7 @@ namespace PROYECTO_TURNOS
             SqlCommand cmd = new SqlCommand();
 
             cmd.CommandText = "SELECT ID_MEDICO, NOMBRE, APELLIDO FROM MEDICO WHERE USERNAME = '"+ Session["USUARIO"] + "'";
+            
 
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conexionSQL;
@@ -52,7 +54,15 @@ namespace PROYECTO_TURNOS
                 }
             }
 
+            if(nombreDoc == "Marjorie")
+            {
+                string nombredra = "Maryori"; 
+            }
             identificador = nombreDoc + " " + apellidoDoc;
+
+            Session["NombreDoc"] = identificador;
+            Session["InicNombre"] = nombreDoc.Substring(0, 1);
+            Session["InicApellido"] = apellidoDoc.Substring(0, 1);
             doctormodal.Value = identificador;
             conexionSQL.Close();
 
@@ -99,17 +109,108 @@ namespace PROYECTO_TURNOS
 
             int rowIndex = row.RowIndex;
 
-            int CodigoPaciente = Convert.ToInt32(commandName);
+            int Turno = Convert.ToInt32(commandName);
             string NombrePaciente = Convert.ToString(commandArgument);
 
-            Session["Codigodecita"] = CodigoPaciente.ToString();
-         
-            Response.Redirect("AppAtencion.aspx");
+
+            string cadenallamar = "--Paciente. " + NombrePaciente + ". con turno. numero "+ Session["InicNombre"] + ", "+ Session["InicApellido"] + "., 00" + Turno + "., pasar a la clinica del doctor. " + Session["NombreDoc"];
+
+   
+
+            //Session["Codigodecita"] = Turno.ToString();
+            TextToVoiceDJ voz = new TextToVoiceDJ();
+            voz.EjecutarTextToVoice(cadenallamar);
+
+            
+            Response.Redirect("AgendaTurnos.aspx");
         }
 
         protected void Grid_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
 
+        }
+
+        protected void btnAtender_Click(object sender, EventArgs e)
+        {
+            Button btnAtender = (sender as Button);
+            string commandName = btnAtender.CommandName;
+            string commandArgument = btnAtender.CommandArgument;
+
+            GridViewRow row = (btnAtender.NamingContainer as GridViewRow);
+
+            int rowIndex = row.RowIndex;
+
+            int Turno = Convert.ToInt32(commandName);
+            string NombrePaciente = Convert.ToString(commandArgument);
+
+            //Session["Codigodecita"] = Turno.ToString();
+            SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandText = "UPDATE TURNOS SET ESTADO = 2 WHERE ID_TURNO = '" + Turno + "' ";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conexionSQL;
+            conexionSQL.Open();
+            cmd.ExecuteNonQuery();
+            conexionSQL.Close();
+
+            Response.Redirect("AgendaTurnos.aspx");
+
+        }
+
+        protected void btnSuspender_Click(object sender, EventArgs e)
+        {
+            Button btnSuspender = (sender as Button);
+            string commandName = btnSuspender.CommandName;
+            string commandArgument = btnSuspender.CommandArgument;
+
+            GridViewRow row = (btnSuspender.NamingContainer as GridViewRow);
+
+            int rowIndex = row.RowIndex;
+
+            int Turno = Convert.ToInt32(commandName);
+            string NombrePaciente = Convert.ToString(commandArgument);
+
+            
+
+            SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandText = "UPDATE TURNOS SET ESTADO = 3 WHERE ID_TURNO = '" + Turno + "' ";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conexionSQL;
+            conexionSQL.Open();
+            cmd.ExecuteNonQuery();
+            conexionSQL.Close();
+
+            Response.Redirect("AgendaTurnos.aspx");
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Button btnCancelar = (sender as Button);
+            string commandName = btnCancelar.CommandName;
+            string commandArgument = btnCancelar.CommandArgument;
+
+            GridViewRow row = (btnCancelar.NamingContainer as GridViewRow);
+
+            int rowIndex = row.RowIndex;
+
+            int Turno = Convert.ToInt32(commandName);
+            string NombrePaciente = Convert.ToString(commandArgument);
+
+      
+
+            SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandText = "UPDATE TURNOS SET ESTADO = 4 WHERE ID_TURNO = '" + Turno + "' ";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conexionSQL;
+            conexionSQL.Open();
+            cmd.ExecuteNonQuery();
+            conexionSQL.Close();
+            Response.Redirect("AgendaTurnos.aspx");
         }
     }
 }

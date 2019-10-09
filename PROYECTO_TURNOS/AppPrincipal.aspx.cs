@@ -7,18 +7,19 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
-
+using PROYECTO_TURNOS;
 
 namespace PG_CitasMedicas
 {
     public partial class AppPrincipal : System.Web.UI.Page
     {
-        string CadenaConexion = "Data Source = DESKTOP-RTIU5G0; Initial Catalog = HospitalAdonai; Integrated Security = True";
+        MostrarDatos md = new MostrarDatos();
+        string con = MostrarDatos.CadenaConexion;
         int idPaciente = 0; //ahora te muestro se llena esta variable
 
         public void AddPaciente()
         {
-            SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
+            SqlConnection conexionSQL = new SqlConnection(con);
             SqlCommand cmd = new SqlCommand();
 
             string DPI = dpi.Value;
@@ -47,7 +48,7 @@ namespace PG_CitasMedicas
 
         public void buscarllenarPaciente() {
 
-            SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
+            SqlConnection conexionSQL = new SqlConnection(con);
             SqlCommand cmd = new SqlCommand();
 
             string buscar = dpimodal.Value;
@@ -96,7 +97,7 @@ namespace PG_CitasMedicas
         public DataSet consultar(string strSQL)
         {
 
-            SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
+            SqlConnection conexionSQL = new SqlConnection(con);
             conexionSQL.Open();
             SqlCommand cmd = new SqlCommand(strSQL, conexionSQL);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -123,7 +124,7 @@ namespace PG_CitasMedicas
 
         public void AddTurno() {
 
-            SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
+            SqlConnection conexionSQL = new SqlConnection(con);
             SqlCommand cmd = new SqlCommand();
             
             int medico = int.Parse(doctor.Value); 

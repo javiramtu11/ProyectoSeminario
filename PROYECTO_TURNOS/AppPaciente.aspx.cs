@@ -1,5 +1,4 @@
 ﻿using System;
-
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,15 +7,17 @@ using System.Web.UI.WebControls;
 using System.Web.Services;
 using System.Data;
 using System.Data.SqlClient;
+using PROYECTO_TURNOS;
 
 namespace PG_CitasMedicas
 {
     public partial class AppPaciente : System.Web.UI.Page
     {
-        string CadenaConexion = "Data Source = DESKTOP-RTIU5G0; Initial Catalog = HospitalAdonai; Integrated Security = True";
+        MostrarDatos md = new MostrarDatos();
+        string con = MostrarDatos.CadenaConexion;
 
         public void AddPaciente() {
-            SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
+            SqlConnection conexionSQL = new SqlConnection(con);
             SqlCommand cmd = new SqlCommand();
 
             string DPI = dpi.Value;
@@ -45,7 +46,7 @@ namespace PG_CitasMedicas
         }
 
         public void obtenerPaciente() {
-            SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
+            SqlConnection conexionSQL = new SqlConnection(con);
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = "SELECT ID_PACIENTE, DPI, NOMBRE, GENERO, DIRECCION, FECHA_NAC  FROM PACIENTES WHERE ESTADO = 1";
             cmd.CommandType = CommandType.Text;
@@ -62,7 +63,7 @@ namespace PG_CitasMedicas
         public void buscarPaciente() {
 
            
-            SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
+            SqlConnection conexionSQL = new SqlConnection(con);
             SqlCommand cmd = new SqlCommand();
 
             string buscar = TxtBuscar.Text;

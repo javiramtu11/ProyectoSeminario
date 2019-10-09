@@ -12,7 +12,9 @@ namespace PROYECTO_TURNOS
 {
     public partial class AgendaTurnos : System.Web.UI.Page
     {
-        string CadenaConexion = "Data Source = DESKTOP-RTIU5G0; Initial Catalog = HospitalAdonai; Integrated Security = True";
+        MostrarDatos md = new MostrarDatos();
+        string con = MostrarDatos.CadenaConexion; 
+
         int idDoctor = 0;
         string nombreDoc = null;
         string apellidoDoc = null;
@@ -21,7 +23,7 @@ namespace PROYECTO_TURNOS
 
         public void buscarllenarDoc()
         {
-            SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
+            SqlConnection conexionSQL = new SqlConnection(con);
             SqlCommand cmd = new SqlCommand();
 
             cmd.CommandText = "SELECT ID_MEDICO, NOMBRE, APELLIDO,  c.CLINICA FROM CLINICAS c INNER JOIN MEDICO d " +
@@ -67,6 +69,7 @@ namespace PROYECTO_TURNOS
             Session["InicNombre"] = nombreDoc.Substring(0, 1);
             Session["InicApellido"] = apellidoDoc.Substring(0, 1);
             Session["Clinica"] = clinicax;
+            Session["IDdoctor"] = idDoctor;
             doctormodal.Value = identificador;
             conexionSQL.Close();
 
@@ -76,7 +79,7 @@ namespace PROYECTO_TURNOS
 
         public void obtenerTurnos()
         {
-            SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
+            SqlConnection conexionSQL = new SqlConnection(con);
             SqlCommand cmd = new SqlCommand();
             //cmd.CommandText = "SELECT TURNO_DIARIO, (p.NOMBRE + ' ' + p.APELLIDO)AS PERSONA, MOTIVO FROM PACIENTES p "+
             //"INNER JOIN TURNOS t ON p.ID_PACIENTE = t.ID_PACIENTE WHERE t.ESTADO = 1 AND t.FECHA_INGRESO = GETDATE() AND ID_MEDICO = 1 ";
@@ -149,7 +152,7 @@ namespace PROYECTO_TURNOS
             string NombrePaciente = Convert.ToString(commandArgument);
 
            
-            SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
+            SqlConnection conexionSQL = new SqlConnection(con);
             SqlCommand cmd = new SqlCommand();
 
             cmd.CommandText = "UPDATE TURNOS SET ESTADO = 2 WHERE ID_TURNO = '" + Turno + "' ";
@@ -178,7 +181,7 @@ namespace PROYECTO_TURNOS
 
             
 
-            SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
+            SqlConnection conexionSQL = new SqlConnection(con);
             SqlCommand cmd = new SqlCommand();
 
             cmd.CommandText = "UPDATE TURNOS SET ESTADO = 3 WHERE ID_TURNO = '" + Turno + "' ";
@@ -206,7 +209,7 @@ namespace PROYECTO_TURNOS
 
       
 
-            SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
+            SqlConnection conexionSQL = new SqlConnection(con);
             SqlCommand cmd = new SqlCommand();
 
             cmd.CommandText = "UPDATE TURNOS SET ESTADO = 4 WHERE ID_TURNO = '" + Turno + "' ";

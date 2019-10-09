@@ -11,11 +11,12 @@ namespace PROYECTO_TURNOS
 {
     public partial class ConfigClinica : System.Web.UI.Page
     {
-        string CadenaConexion = "Data Source = DESKTOP-RTIU5G0; Initial Catalog = HospitalAdonai; Integrated Security = True";
+        MostrarDatos md = new MostrarDatos();
+        string con = MostrarDatos.CadenaConexion;
 
         public void AddCline() {
 
-            SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
+            SqlConnection conexionSQL = new SqlConnection(con);
             SqlCommand cmd = new SqlCommand();
 
             string cline = clinica.Value;
@@ -35,7 +36,7 @@ namespace PROYECTO_TURNOS
         }
 
         public void obtenerClinica() {
-            SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
+            SqlConnection conexionSQL = new SqlConnection(con);
             SqlCommand cmd = new SqlCommand();
 
             cmd.CommandText = "SELECT ID_CLINICA, CLINICA, DESCRIPCION FROM CLINICAS WHERE ESTADO = 1";
@@ -51,7 +52,7 @@ namespace PROYECTO_TURNOS
         }
 
         public void buscarClinica() {
-            SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
+            SqlConnection conexionSQL = new SqlConnection(con);
             SqlCommand cmd = new SqlCommand();
 
             string buscar = txtbuscar.Value;

@@ -11,11 +11,12 @@ namespace PROYECTO_TURNOS
 {
     public partial class Login : System.Web.UI.Page
     {
-        string CadenaConexion = "Data Source = DESKTOP-RTIU5G0; Initial Catalog = HospitalAdonai; Integrated Security = True";
+        MostrarDatos md = new MostrarDatos();
+        string con = MostrarDatos.CadenaConexion;
 
         public void buscarUsuario() {
 
-            SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
+            SqlConnection conexionSQL = new SqlConnection(con);
             SqlCommand cmd = new SqlCommand();
 
             DataTable tabla;
@@ -44,14 +45,6 @@ namespace PROYECTO_TURNOS
                     Response.Redirect("AppPrincipal.aspx");
                 }
 
-
-               
-
-               
-
-
-
-
             }
 
 
@@ -59,7 +52,7 @@ namespace PROYECTO_TURNOS
 
         public DataTable RunSQL(String sql)
         {
-            SqlConnection cnn = new SqlConnection(CadenaConexion);
+            SqlConnection cnn = new SqlConnection(con);
             SqlCommand command = new SqlCommand(sql, cnn);
             cnn.Open();
             command.CommandTimeout = 0;
@@ -74,7 +67,7 @@ namespace PROYECTO_TURNOS
         public string obtenertipo(string sql)
         {
             string Resul = "";
-            SqlConnection cnn = new SqlConnection(CadenaConexion);
+            SqlConnection cnn = new SqlConnection(con);
             SqlCommand command = new SqlCommand(sql, cnn);
             cnn.Open();
             command.CommandTimeout = 0;

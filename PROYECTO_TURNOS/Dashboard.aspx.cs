@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
 
 
 namespace PROYECTO_TURNOS
@@ -14,41 +16,27 @@ namespace PROYECTO_TURNOS
         {
             MostrarDatos md = new MostrarDatos();
 
-            //md.clinica1(lbldocclinica1.Text, lblpaclinica1.Text, Lblcontclinica1.Text);
+            if (Session["Clinica"].ToString() == "Pediatría")
+            {
+                md.clinica1();
+
+                lbldocclinica1.Text = md.doc;
+                lblpaclinica1.Text = md.paciente;
+                Lblcontclinica1.Text = md.turno;
+            }
+            if (Session["Clinica"].ToString() == "Medicina General")
+            {
+                md.clinica2();
+
+                lbldocclinica2.Text = md.doc2;
+                lblpaclinica2.Text = md.paciente2;
+                lblcontclinica2.Text = md.turno2;
+            }
+
             //md.clinica2(lbldocclinica2.Text, lblpaclinica2.Text, lblcontclinica2.Text);
             //md.clinica3(lbldocclinica3.Text, lblpaclinica3.Text, lblcontclinica3.Text);
 
-            if (string.IsNullOrEmpty(Session["NombreDoc"].ToString()) || string.IsNullOrEmpty(Session["Turno"].ToString()) || string.IsNullOrEmpty(Session["NomPaciente"].ToString()))
-            {
 
-            }
-            else
-            {
-                if ((Session["Clinica"].ToString() == "Pediatría"))
-                {
-                    lbldocclinica1.Text = Session["NombreDoc"].ToString();
-                    Lblcontclinica1.Text = Session["Turno"].ToString();
-                    lblpaclinica1.Text = Session["NomPaciente"].ToString();
-                }
-                else
-                {
-                    if ((Session["Clinica"].ToString() == "Medicina General"))
-                    {
-                        lbldocclinica2.Text = Session["NombreDoc"].ToString();
-                        lblcontclinica2.Text = Session["Turno"].ToString();
-                        lblpaclinica2.Text = Session["NomPaciente"].ToString();
-                    }
-                    else
-                    {
-                        if ((Session["Clinica"].ToString() == "Ginecología"))
-                        {
-                            lbldocclinica3.Text = Session["NombreDoc"].ToString();
-                            lblcontclinica3.Text = Session["Turno"].ToString();
-                            lblpaclinica3.Text = Session["NomPaciente"].ToString();
-                        }
-                    }
-                }
-            }
 
         }
     }

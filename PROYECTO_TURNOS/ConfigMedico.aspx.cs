@@ -12,11 +12,12 @@ namespace PROYECTO_TURNOS
     public partial class ConfigMedico : System.Web.UI.Page
     {
 
-        string CadenaConexion = "Data Source = DESKTOP-RTIU5G0; Initial Catalog = HospitalAdonai; Integrated Security = True";
+        MostrarDatos md = new MostrarDatos();
+        string con = MostrarDatos.CadenaConexion;
 
         public void AddMedico() {
 
-            SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
+            SqlConnection conexionSQL = new SqlConnection(con);
             SqlCommand cmd = new SqlCommand();
 
             int IdCline = int.Parse(clinica.Value);
@@ -66,7 +67,7 @@ namespace PROYECTO_TURNOS
 
         public DataSet consultar(string strSQL) {
 
-            SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
+            SqlConnection conexionSQL = new SqlConnection(con);
             conexionSQL.Open();
             SqlCommand cmd = new SqlCommand(strSQL, conexionSQL);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -81,7 +82,7 @@ namespace PROYECTO_TURNOS
         }
 
         public void obtenerMedico() {
-            SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
+            SqlConnection conexionSQL = new SqlConnection(con);
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = "SELECT ID_MEDICO, c.CLINICA, NOMBRE, DIRECCION, FECHA_NACIMIENTO, TELEFONO, TIPO_USUARIO, USERNAME  FROM CLINICAS c "+ 
             "INNER JOIN MEDICO d ON c.ID_CLINICA = d.ID_CLINICA ";
@@ -98,7 +99,7 @@ namespace PROYECTO_TURNOS
         }
 
         public void buscarMedico() {
-            SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
+            SqlConnection conexionSQL = new SqlConnection(con);
             SqlCommand cmd = new SqlCommand();
             //buscar medico
             string buscar = txtbuscar.Value;

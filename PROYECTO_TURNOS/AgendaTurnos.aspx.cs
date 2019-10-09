@@ -16,6 +16,7 @@ namespace PROYECTO_TURNOS
         int idDoctor = 0;
         string nombreDoc = null;
         string apellidoDoc = null;
+        string clinicax = null;
         string identificador = null;
 
         public void buscarllenarDoc()
@@ -23,7 +24,8 @@ namespace PROYECTO_TURNOS
             SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "SELECT ID_MEDICO, NOMBRE, APELLIDO FROM MEDICO WHERE USERNAME = '"+ Session["USUARIO"] + "'";
+            cmd.CommandText = "SELECT ID_MEDICO, NOMBRE, APELLIDO,  c.CLINICA FROM CLINICAS c INNER JOIN MEDICO d " +
+                              " ON (c.ID_CLINICA = d.ID_CLINICA) WHERE USERNAME = '"+ Session["USUARIO"] + "'";
             
 
             cmd.CommandType = CommandType.Text;
@@ -52,6 +54,10 @@ namespace PROYECTO_TURNOS
                     apellidoDoc = item[2].ToString();
                     y++;
                 }
+                if (y == 3)
+                {
+                    clinicax = item[3].ToString();
+                }
             }
 
        
@@ -60,6 +66,7 @@ namespace PROYECTO_TURNOS
             Session["NombreDoc"] = identificador;
             Session["InicNombre"] = nombreDoc.Substring(0, 1);
             Session["InicApellido"] = apellidoDoc.Substring(0, 1);
+            Session["Clinica"] = clinicax;
             doctormodal.Value = identificador;
             conexionSQL.Close();
 
@@ -141,7 +148,7 @@ namespace PROYECTO_TURNOS
             int Turno = Convert.ToInt32(commandName);
             string NombrePaciente = Convert.ToString(commandArgument);
 
-            //Session["Codigodecita"] = Turno.ToString();
+           
             SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
             SqlCommand cmd = new SqlCommand();
 

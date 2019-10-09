@@ -58,13 +58,13 @@ namespace PROYECTO_TURNOS {
         protected global::System.Web.UI.WebControls.Label LblNombreT1;
         
         /// <summary>
-        /// Control Label1.
+        /// Control lbldocclinica1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lbldocclinica1;
         
         /// <summary>
         /// Control Label2.
@@ -76,31 +76,31 @@ namespace PROYECTO_TURNOS {
         protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// Control Label3.
+        /// Control Lblcontclinica1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.Label Lblcontclinica1;
         
         /// <summary>
-        /// Control Label4.
+        /// Control lblpaclinica1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::System.Web.UI.WebControls.Label lblpaclinica1;
         
         /// <summary>
-        /// Control Label5.
+        /// Control lbldocclinica2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
+        protected global::System.Web.UI.WebControls.Label lbldocclinica2;
         
         /// <summary>
         /// Control Label6.
@@ -112,31 +112,31 @@ namespace PROYECTO_TURNOS {
         protected global::System.Web.UI.WebControls.Label Label6;
         
         /// <summary>
-        /// Control Label7.
+        /// Control lblcontclinica2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label7;
+        protected global::System.Web.UI.WebControls.Label lblcontclinica2;
         
         /// <summary>
-        /// Control Label8.
+        /// Control lblpaclinica2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label8;
+        protected global::System.Web.UI.WebControls.Label lblpaclinica2;
         
         /// <summary>
-        /// Control Label9.
+        /// Control lbldocclinica3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label9;
+        protected global::System.Web.UI.WebControls.Label lbldocclinica3;
         
         /// <summary>
         /// Control Label10.
@@ -148,22 +148,22 @@ namespace PROYECTO_TURNOS {
         protected global::System.Web.UI.WebControls.Label Label10;
         
         /// <summary>
-        /// Control Label11.
+        /// Control lblcontclinica3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label11;
+        protected global::System.Web.UI.WebControls.Label lblcontclinica3;
         
         /// <summary>
-        /// Control Label12.
+        /// Control lblpaclinica3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label12;
+        protected global::System.Web.UI.WebControls.Label lblpaclinica3;
         
         /// <summary>
         /// Control Label13.

@@ -210,11 +210,11 @@ ul#toplinks {
     }
 
 ul#promobox {
-    width: 1578px;
+    width: 1674px;
     position: relative;
     float: left;
     margin-bottom: 15px;
-    top: 0px;
+    top: -15px;
     left: -9px;
 }
 
@@ -224,10 +224,10 @@ ul#promobox {
     }
 
     ul#promobox li {
-        width: 270px;
+        width: 291px;
         padding: 20px 10px 20px 20px;
         float: left;
-        background: #008DBC url('images/bg_promo1.png') repeat-x 50% bottom;
+        background: #000000 url('images/bg_promo1.png') repeat-x 50% bottom;
         margin: 15px 15px 0 0;
         -moz-border-radius: 10px;
         color: #fff;
@@ -288,7 +288,7 @@ ul#promobox {
         }
 
     ul#promobox li.two {
-        background: #00ACE6 url(images/bg_promo2.png) repeat-x bottom;
+        background: #fff url(images/bg_promo2.png) repeat-x bottom;
     }
 
     ul#promobox li.three {

@@ -82,9 +82,9 @@ namespace PROYECTO_TURNOS
             SqlConnection conexionSQL = new SqlConnection(con);
             SqlCommand cmd = new SqlCommand();
             //cmd.CommandText = "SELECT TURNO_DIARIO, (p.NOMBRE + ' ' + p.APELLIDO)AS PERSONA, MOTIVO FROM PACIENTES p "+
-            //"INNER JOIN TURNOS t ON p.ID_PACIENTE = t.ID_PACIENTE WHERE t.ESTADO = 1 AND t.FECHA_INGRESO = GETDATE() AND ID_MEDICO = 1 ";
+            //"INNER JOIN TURNOS t ON p.ID_PACIENTE = t.ID_PACIENTE WHERE (t.ESTADO = 1 or t.ESTADO = 0 ) AND t.FECHA_INGRESO = GETDATE() AND ID_MEDICO = 1 ";
             cmd.CommandText = "SELECT ID_TURNO, TURNO_DIARIO, (p.NOMBRE + ' ' + p.APELLIDO)AS PERSONA, MOTIVO FROM PACIENTES p " +
-           "INNER JOIN TURNOS t ON p.ID_PACIENTE = t.ID_PACIENTE WHERE t.ESTADO = 1 AND t.FECHA_INGRESO = '2019-10-1' AND ID_MEDICO = '"+idDoctor+"' ";
+           "INNER JOIN TURNOS t ON p.ID_PACIENTE = t.ID_PACIENTE WHERE (t.ESTADO = 1 or t.ESTADO = 0 ) AND t.FECHA_INGRESO = '2019-10-1' AND ID_MEDICO = '" + idDoctor+"' ";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conexionSQL;
             conexionSQL.Open();
@@ -123,13 +123,22 @@ namespace PROYECTO_TURNOS
 
             string cadenallamar = "--Paciente. " + NombrePaciente + ". con turno. numero "+ Session["InicNombre"] + ", "+ Session["InicApellido"] + "., 00" + Turno + "., pasar a la clinica del doctor. " + Session["NombreDoc"];
 
-   
+             
 
             //Session["Codigodecita"] = Turno.ToString();
             TextToVoiceDJ voz = new TextToVoiceDJ();
             voz.EjecutarTextToVoice(cadenallamar);
 
-            
+            SqlConnection conexionSQL = new SqlConnection(con);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandText = "UPDATE TURNOS SET ESTADO = 0 WHERE ID_TURNO = '" + Turno + "' ";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conexionSQL;
+            conexionSQL.Open();
+            cmd.ExecuteNonQuery();
+            conexionSQL.Close();
+
             Response.Redirect("AgendaTurnos.aspx");
         }
 

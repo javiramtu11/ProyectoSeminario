@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data;
 using System.Data.SqlClient;
+using PG_CitasMedicas;
 
 namespace PROYECTO_TURNOS
 {
@@ -22,11 +23,13 @@ namespace PROYECTO_TURNOS
 
             SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
             SqlCommand cmd = new SqlCommand();
+            Aplicacion ap = new Aplicacion();
 
-            cmd.CommandText = "SELECT TURNO_DIARIO, (p.NOMBRE + ' ' + p.APELLIDO)AS PERSONA, (d.NOMBRE + ' ' + d.APELLIDO)AS DOCTOR FROM PACIENTES p  " +
+            cmd.CommandText = "SELECT TURNO_DIARIO, (p.NOMBRE + ' ' + p.APELLIDO)AS PERSONA, (d.NOMBRE + ' ' + d.APELLIDO)AS DOCTOR FROM PACIENTES p " +
                 "INNER JOIN TURNOS t ON p.ID_PACIENTE = t.ID_PACIENTE " +
                 "INNER JOIN MEDICO d ON d.ID_MEDICO = t.ID_MEDICO " +
-                "WHERE t.ID_MEDICO = '"+ Session["IDdoctor"] + "' AND ID_TURNO = '"+ Session["Turno"] + "' ";
+                "INNER JOIN CLINICAS c ON c.ID_CLINICA = d.ID_CLINICA " +
+                "WHERE c.ID_CLINICA = '1' AND t.ESTADO = 0 AND t.FECHA_INGRESO = '2019-10-1'";
 
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conexionSQL;
@@ -57,9 +60,11 @@ namespace PROYECTO_TURNOS
                
             }
             
-            if (string.IsNullOrEmpty(Session["NombreDoc"].ToString()) || string.IsNullOrEmpty(Session["Turno"].ToString()) || string.IsNullOrEmpty(Session["NomPaciente"].ToString()))
+            if (dt == null || Convert.ToString(Noturno) == null || persona == null)
             {
-
+                doc = " Doctor";
+                turno = "Turno";
+                paciente = "Paciente";
             }
             else
             
@@ -80,11 +85,13 @@ namespace PROYECTO_TURNOS
 
             SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
             SqlCommand cmd = new SqlCommand();
+            Aplicacion ap = new Aplicacion();
 
-            cmd.CommandText = "SELECT TURNO_DIARIO, (p.NOMBRE + ' ' + p.APELLIDO)AS PERSONA, (d.NOMBRE + ' ' + d.APELLIDO)AS DOCTOR FROM PACIENTES p  " +
+            cmd.CommandText = "SELECT TURNO_DIARIO, (p.NOMBRE + ' ' + p.APELLIDO)AS PERSONA, (d.NOMBRE + ' ' + d.APELLIDO)AS DOCTOR FROM PACIENTES p " +
                 "INNER JOIN TURNOS t ON p.ID_PACIENTE = t.ID_PACIENTE " +
                 "INNER JOIN MEDICO d ON d.ID_MEDICO = t.ID_MEDICO " +
-                "WHERE t.ID_MEDICO = '" + Session["IDdoctor"] + "' AND ID_TURNO = '" + Session["Turno"] + "' ";
+                "INNER JOIN CLINICAS c ON c.ID_CLINICA = d.ID_CLINICA " +
+                "WHERE c.ID_CLINICA = '2' AND t.ESTADO = 0 AND t.FECHA_INGRESO = '2019-10-1'";
 
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conexionSQL;
@@ -115,9 +122,11 @@ namespace PROYECTO_TURNOS
 
             }
 
-            if (string.IsNullOrEmpty(Session["NombreDoc"].ToString()) || string.IsNullOrEmpty(Session["Turno"].ToString()) || string.IsNullOrEmpty(Session["NomPaciente"].ToString()))
+            if (dt == null || Convert.ToString(Noturno) == null || persona == null)
             {
-
+                doc2 = " Doctor";
+                turno2 = "Turno";
+                paciente2 = "Paciente";
             }
             else
 
@@ -138,10 +147,11 @@ namespace PROYECTO_TURNOS
             SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "SELECT TURNO_DIARIO, (p.NOMBRE + ' ' + p.APELLIDO)AS PERSONA, (d.NOMBRE + ' ' + d.APELLIDO)AS DOCTOR FROM PACIENTES p  " +
-                "INNER JOIN TURNOS t ON p.ID_PACIENTE = t.ID_PACIENTE " +
-                "INNER JOIN MEDICO d ON d.ID_MEDICO = t.ID_MEDICO " +
-                "WHERE t.ID_MEDICO = '" + Session["IDdoctor"] + "' AND ID_TURNO = '" + Session["Turno"] + "' ";
+            cmd.CommandText = "SELECT TURNO_DIARIO, (p.NOMBRE + ' ' + p.APELLIDO)AS PERSONA, (d.NOMBRE + ' ' + d.APELLIDO)AS DOCTOR FROM PACIENTES p " +
+               "INNER JOIN TURNOS t ON p.ID_PACIENTE = t.ID_PACIENTE " +
+               "INNER JOIN MEDICO d ON d.ID_MEDICO = t.ID_MEDICO " +
+               "INNER JOIN CLINICAS c ON c.ID_CLINICA = d.ID_CLINICA " +
+               "WHERE c.ID_CLINICA = '3' AND t.ESTADO = 0 AND t.FECHA_INGRESO = '2019-10-1'";
 
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conexionSQL;
@@ -172,9 +182,11 @@ namespace PROYECTO_TURNOS
 
             }
 
-            if (string.IsNullOrEmpty(Session["NombreDoc"].ToString()) || string.IsNullOrEmpty(Session["Turno"].ToString()) || string.IsNullOrEmpty(Session["NomPaciente"].ToString()))
+            if (dt == null || Convert.ToString(Noturno) == null || persona == null)
             {
-
+                doc3 = " Doctor";
+                turno3 = "Turno";
+                paciente3 = "Paciente";
             }
             else
 

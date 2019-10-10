@@ -9,6 +9,8 @@ namespace PG_CitasMedicas
 {
     public partial class Aplicacion : System.Web.UI.MasterPage
     {
+        public string userLog = null;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             string var = Convert.ToString(Session["USUARIO"]);
@@ -19,6 +21,7 @@ namespace PG_CitasMedicas
             //}
 
             Label1.Text = var.ToUpper();
+            userLog = var;
 
 
         }

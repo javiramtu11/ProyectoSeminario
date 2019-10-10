@@ -106,7 +106,7 @@
                     <asp:Label align="center" Font-Size="25px" ID="lblpaclinica3" runat="server" Text="Nombre del Paciente" Font-Bold="True" Font-Names="Calibri" ForeColor="Black"></asp:Label>
                     </div>
                 </li>
-                <li style="margin-left:18px" class="promobox">
+                <li style="margin-left:.1px" class="promobox">
                     <div align="center">
                         <asp:Label align="center" Font-Size="25px" ID="Label13" runat="server" Text="Nombre Doctor" Font-Bold="True" Font-Names="Calibri" ForeColor="White"></asp:Label>
                     </div>
@@ -131,7 +131,7 @@
             </ul>
             <br />
 
-            <div style="margin-left:18px width: 1398px; margin-left: 200px">
+            <div style="margin-left:18px width: 1398px; margin-left: 200px; width: 1536px;">
                 <iframe  height="480" src="https://www.youtube.com/embed/4S_L23d7KxQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width: 1167px"></iframe>
             </div>
         </div>

@@ -540,7 +540,9 @@
     <Content Include="js\waypoints.min.js" />
     <Content Include="Login.aspx" />
     <Content Include="Turnos.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AgendaTurnos.aspx.cs">
@@ -831,6 +833,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Configuracion.master" />
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

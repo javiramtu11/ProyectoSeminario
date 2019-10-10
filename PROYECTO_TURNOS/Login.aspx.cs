@@ -13,14 +13,15 @@ namespace PROYECTO_TURNOS
     {
         MostrarDatos md = new MostrarDatos();
         string con = MostrarDatos.CadenaConexion;
+        string CadenaConexion = "Data Source = DESKTOP-RTIU5G0; Initial Catalog = HospitalAdonai; Integrated Security = True";
 
         public void buscarUsuario() {
 
-            SqlConnection conexionSQL = new SqlConnection(con);
+            SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
             SqlCommand cmd = new SqlCommand();
 
             DataTable tabla;
-            string id;
+            string id = null;
             string usuario = txtUsuario.Text;
             string password = txtPassword.Text;
 
@@ -29,11 +30,21 @@ namespace PROYECTO_TURNOS
                 Response.Write("<script>alert('SIMBOLOS NO ADMITIDOS, VERIFIQUE PARA CONTINUAR')</script>");
             }
             else
-            {
-                string sql = null;
-                sql = "SELECT NOMBRE, APELLIDO, USERNAME FROM MEDICO WHERE USERNAME = '"+usuario+"' AND CLAVE = '"+password+"' ";
-                id = obtenertipo(sql);
-                
+                {
+                //    string sql = null;
+                //    sql = "SELECT NOMBRE, APELLIDO, USERNAME FROM MEDICO WHERE USERNAME = '"+usuario+"' AND CLAVE = '"+password+"' ";
+                //    id = obtenertipo(sql);
+                       cmd.CommandText = "SELECT NOMBRE, APELLIDO, USERNAME FROM MEDICO WHERE USERNAME = '" + usuario + "' AND CLAVE = '" + password + "'";
+                       cmd.CommandType = CommandType.Text;
+                       cmd.Connection = conexionSQL;
+                       conexionSQL.Open();
+                        SqlDataReader reader = cmd.ExecuteReader();
+                            if (reader.Read())
+                            {
+                                id = (Convert.ToString(reader[0]));
+                            }
+                           
+
                 if (string.IsNullOrEmpty(id))
                 {
                     Response.Write("<script>alert('CREDENCIALES INCORRECTAS')</script>");
@@ -52,7 +63,7 @@ namespace PROYECTO_TURNOS
 
         public DataTable RunSQL(String sql)
         {
-            SqlConnection cnn = new SqlConnection(con);
+            SqlConnection cnn = new SqlConnection(CadenaConexion);
             SqlCommand command = new SqlCommand(sql, cnn);
             cnn.Open();
             command.CommandTimeout = 0;
@@ -67,7 +78,7 @@ namespace PROYECTO_TURNOS
         public string obtenertipo(string sql)
         {
             string Resul = "";
-            SqlConnection cnn = new SqlConnection(con);
+            SqlConnection cnn = new SqlConnection(CadenaConexion);
             SqlCommand command = new SqlCommand(sql, cnn);
             cnn.Open();
             command.CommandTimeout = 0;

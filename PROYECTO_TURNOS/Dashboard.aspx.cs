@@ -30,6 +30,16 @@ namespace PROYECTO_TURNOS
             lbldocclinica3.Text = md.doc3;
             lblpaclinica3.Text = md.paciente3;
             lblcontclinica3.Text = md.turno3;
+
+            md.clinica4();
+            Lbldocclinica4.Text = md.doc4;
+            Lblpaclinica4.Text = md.paciente4;
+            Lblcontclinica4.Text = md.turno4;
+
+            md.clinica5();
+            Lbldocclinica5.Text = md.doc5;
+            Lblpaclinica5.Text = md.paciente5;
+            Lblcontclinica5.Text = md.turno5;
         }
 
         protected void Page_Load(object sender, EventArgs e)

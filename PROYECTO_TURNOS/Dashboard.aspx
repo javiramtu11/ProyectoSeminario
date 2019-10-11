@@ -27,24 +27,24 @@
                 <ul style="margin: 18px" id="promobox">
                     <li>
                         <div align="center">
-                            <asp:Label align="center" Font-Size="25px" ID="LblDocNameT1" runat="server" Text="Nombre Doctor" Font-Bold="True" Font-Names="Calibri" ForeColor="White"></asp:Label>
+                            <asp:Label align="center" Font-Size="25px" ID="Lbldocclinica4" runat="server" Text="Nombre Doctor" Font-Bold="True" Font-Names="Calibri" ForeColor="White"></asp:Label>
                         </div>
                         <hr style="margin-top: 3px; margin-bottom: 3px; color: deepskyblue" />
                         <br />
                         <div style="margin-left: auto; margin-right: auto; text-align: center;">
 
-                            <asp:Label align="center" Font-Size="25px" ID="LblTurnoActualT1" runat="server" Text="TURNO ACTUAL" Font-Bold="True" ForeColor="#3399ff"></asp:Label>
+                            <asp:Label align="center" Font-Size="25px" ID="Lblt22" runat="server" Text="TURNO ACTUAL" Font-Bold="True" ForeColor="#3399ff"></asp:Label>
 
                         </div>
                         <br />
                         <div align="center">
-                            <asp:Label align="center" Font-Size="60px" ID="LblT1" runat="server" Text="22" ForeColor="#3399ff"></asp:Label>
+                            <asp:Label align="center" Font-Size="60px" ID="Lblcontclinica4" runat="server" Text="22" ForeColor="#3399ff"></asp:Label>
                             <br />
                             <br />
                         </div>
                         <hr style="margin-top: 3px; margin-bottom: 3px; color: deepskyblue" />
                         <div style="margin-left: auto; margin-right: auto; text-align: center;">
-                            <asp:Label align="center" Font-Size="25px" ID="LblNombreT1" runat="server" Text="Nombre del Paciente" Font-Bold="True" Font-Names="Calibri" ForeColor="White"></asp:Label>
+                            <asp:Label align="center" Font-Size="25px" ID="Lblpaclinica4" runat="server" Text="Nombre del Paciente" Font-Bold="True" Font-Names="Calibri" ForeColor="White"></asp:Label>
                         </div>
                     </li>
                     <li class="two">
@@ -114,24 +114,24 @@
                     </li>
                     <li style="margin-left: .1px" class="promobox">
                         <div align="center">
-                            <asp:Label align="center" Font-Size="25px" ID="Label13" runat="server" Text="Nombre Doctor" Font-Bold="True" Font-Names="Calibri" ForeColor="White"></asp:Label>
+                            <asp:Label align="center" Font-Size="25px" ID="Lbldocclinica5" runat="server" Text="Nombre Doctor" Font-Bold="True" Font-Names="Calibri" ForeColor="White"></asp:Label>
                         </div>
                         <hr style="margin-top: 3px; margin-bottom: 3px; color: deepskyblue" />
                         <br />
                         <div style="margin-left: auto; margin-right: auto; text-align: center;">
 
-                            <asp:Label align="center" Font-Size="25px" ID="Label14" runat="server" Text="TURNO ACTUAL" Font-Bold="True" ForeColor="#3399ff"></asp:Label>
+                            <asp:Label align="center" Font-Size="25px" ID="lbltext22" runat="server" Text="TURNO ACTUAL" Font-Bold="True" ForeColor="#3399ff"></asp:Label>
 
                         </div>
                         <br />
                         <div align="center">
-                            <asp:Label align="center" Font-Size="60px" ID="Label15" runat="server" Text="22" ForeColor="#3399ff"></asp:Label>
+                            <asp:Label align="center" Font-Size="60px" ID="Lblcontclinica5" runat="server" Text="22" ForeColor="#3399ff"></asp:Label>
                             <br />
                             <br />
                         </div>
                         <hr style="margin-top: 3px; margin-bottom: 3px; color: deepskyblue" />
                         <div style="margin-left: auto; margin-right: auto; text-align: center;">
-                            <asp:Label Style="text-align: center" Font-Size="25px" ID="Label16" runat="server" Text="Nombre del Paciente" Font-Bold="True" Font-Names="Calibri" ForeColor="White"></asp:Label>
+                            <asp:Label Style="text-align: center" Font-Size="25px" ID="Lblpaclinica5" runat="server" Text="Nombre del Paciente" Font-Bold="True" Font-Names="Calibri" ForeColor="White"></asp:Label>
                         </div>
                     </li>
                 </ul>

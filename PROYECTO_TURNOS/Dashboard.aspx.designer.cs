@@ -22,40 +22,40 @@ namespace PROYECTO_TURNOS {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Control LblDocNameT1.
+        /// Control Lbldocclinica4.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblDocNameT1;
+        protected global::System.Web.UI.WebControls.Label Lbldocclinica4;
         
         /// <summary>
-        /// Control LblTurnoActualT1.
+        /// Control Lblt22.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblTurnoActualT1;
+        protected global::System.Web.UI.WebControls.Label Lblt22;
         
         /// <summary>
-        /// Control LblT1.
+        /// Control Lblcontclinica4.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblT1;
+        protected global::System.Web.UI.WebControls.Label Lblcontclinica4;
         
         /// <summary>
-        /// Control LblNombreT1.
+        /// Control Lblpaclinica4.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblNombreT1;
+        protected global::System.Web.UI.WebControls.Label Lblpaclinica4;
         
         /// <summary>
         /// Control lbldocclinica1.
@@ -166,39 +166,39 @@ namespace PROYECTO_TURNOS {
         protected global::System.Web.UI.WebControls.Label lblpaclinica3;
         
         /// <summary>
-        /// Control Label13.
+        /// Control Lbldocclinica5.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label13;
+        protected global::System.Web.UI.WebControls.Label Lbldocclinica5;
         
         /// <summary>
-        /// Control Label14.
+        /// Control lbltext22.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label14;
+        protected global::System.Web.UI.WebControls.Label lbltext22;
         
         /// <summary>
-        /// Control Label15.
+        /// Control Lblcontclinica5.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label15;
+        protected global::System.Web.UI.WebControls.Label Lblcontclinica5;
         
         /// <summary>
-        /// Control Label16.
+        /// Control Lblpaclinica5.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label16;
+        protected global::System.Web.UI.WebControls.Label Lblpaclinica5;
     }
 }

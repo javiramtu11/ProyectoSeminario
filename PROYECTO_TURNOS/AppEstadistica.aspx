@@ -49,7 +49,7 @@
 
                 function drawChart() {
 
-                    
+                    var data = google.visualization.arrayToDataTable(<%=ObtnerDatosPieGenero()%>);
 
                     var options = {
                         title: 'Personas atendidas según su genero',
@@ -65,6 +65,39 @@
             <div id="piechart" style="width: auto; height: 450px;"></div>
         </div>
     </div>
+
+
+    <hr id="hr" />
+    <div style="margin-left: 10px; overflow-x: auto; width: auto;" id="color" class="row">
+        <div class="container">
+            <script type="text/javascript">
+                google.charts.load('current', { 'packages': ['corechart'] });
+                google.charts.setOnLoadCallback(drawVisualization);
+
+                function drawVisualization() {
+
+                    var data = google.visualization.arrayToDataTable(<%=ObtnerDatosGeneroConRango()%>);
+
+                    //var view = new google.visualization.DataView(data);
+                    var options = {
+                        title: 'Personas atendidas según su genero y rango de edad',
+                        vAxis: { title: 'Rangos de Edad' },
+                        hAxis: { title: 'Genero' },
+                        seriesType: 'bars',
+                        series: { 5: { type: 'line' } }
+                    };
+
+                    var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+                    chart.draw(data, options);
+
+                    //var chart = new google.visualization.BarChart(document.getElementById("barchart_val"));
+                    //chart.draw(view, options);
+                }
+            </script>
+            <div id="chart_div" style="width: 900px; height: 500px;"></div>
+        </div>
+    </div>
+
     <hr id="hr" />
     <div style="margin-left: 10px; overflow-x: auto; width: auto;" id="color" class="row">
         <div class="container">
@@ -72,7 +105,7 @@
                 google.charts.load("current", { packages: ["corechart"] });
                 google.charts.setOnLoadCallback(drawChart);
                 function drawChart() {
-                    
+                    var data = google.visualization.arrayToDataTable(<%=ObtnerDatosNiñoAdulto() %>);
                     var view = new google.visualization.DataView(data);
 
                     var options = {
@@ -98,145 +131,57 @@
     </div>
 
     <hr id="hr" />
-    <h2 align="center" id="color">ESTADÍSTICA DE SERVICIO</h2>
 
     <div style="margin-left: 10px; overflow-x: auto; width: auto;" id="color" class="row">
-        <div class="card card-chart">
-            <div class="card-header card-text">
-                <div class="container">
-                    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-                    <script type="text/javascript">
-                        google.charts.load('current', { 'packages': ['corechart'] });
-                        google.charts.setOnLoadCallback(drawChart);
+        <div class="container">
+            <script type="text/javascript">
+                google.charts.load('current', { 'packages': ['corechart'] });
+                google.charts.setOnLoadCallback(drawChart);
 
-                        function drawChart() {
-                            
+                function drawChart() {
 
-                            var options = {
-                                //title: 'Company Performance',                                            
-                                curveType: 'function',
-                                legend: { position: 'top' }
+                    var data = google.visualization.arrayToDataTable(<%=ObtnerDatosMunicipio()%>);
 
+                    var options = {
+                        title: 'Personas atendidas según su genero',
+                        legend: { position: 'labeled', textStyle: { color: 'blue', fontSize: 16 } },
+                        colors: ['#D10F21', '#D1B90F','#0FD169','#0FA4D1','#B40FD1','#F8FF01','#01F9FF','#3801FF']
+                    }
 
-                            };
+                    var chart = new google.visualization.PieChart(document.getElementById('piechart1'));
 
-                            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-                            chart.draw(data, options);
-                        }
-                    </script>
-                    <div id="curve_chart" style="width: auto; height: 500px"></div>
-                </div>
-            </div>
-            <div class="card-footer">
-                <div class="stats">
-                    <asp:Label Font-Size="15px" ForeColor="midnightblue" ID="LblPreguntaUno" runat="server" Text="Pregunta 1"></asp:Label>
-                </div>
-            </div>
+                    chart.draw(data, options);
+                }
+            </script>
+            <div id="piechart1" style="width: auto; height: 450px;"></div>
         </div>
     </div>
-    <div style="margin-left: 10px; overflow-x: auto; width: auto;" id="color" class="row">
-        <div class="card card-chart">
-            <div class="card-header card-text">
-                <div class="container">
-                    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-                    <script type="text/javascript">
-                        google.charts.load('current', { 'packages': ['corechart'] });
-                        google.charts.setOnLoadCallback(drawChart);
 
-                        function drawChart() {
-
-
-                            var options = {
-                                //title: 'Company Performance',
-                                legend: { position: 'top', maxLines: 6, textStyle: { color: 'blue', fontSize: 12 } },
-                                curveType: 'function',
-                                legend: { position: 'top' }
-                            };
-
-                            var chart = new google.visualization.LineChart(document.getElementById('piechasrt'));
-
-                            chart.draw(data, options);
-                        }
-                    </script>
-                    <div id="piechasrt" style="width: auto; height: 500px"></div>
-                </div>
-            </div>
-            <div class="card-footer">
-                <div class="stats">
-                    <asp:Label Font-Size="15px" ForeColor="midnightblue" ID="LblPreguntaDos" runat="server" Text="Pregunta 2"></asp:Label>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div style="margin-left: 10px; overflow-x: auto; width: auto;" id="color" class="row">
-        <div class="card card-chart">
-            <div class="card-header card-text">
-                <div class="container">
-                    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-                    <script type="text/javascript">
-                        google.charts.load('current', { 'packages': ['corechart'] });
-                        google.charts.setOnLoadCallback(drawChart);
-
-                        function drawChart() {
-                            
-
-                            var options = {
-                                //title: 'Company Performance',
-                                curveType: 'function',
-                                legend: { position: 'top' }
-                            };
-
-                            var chart = new google.visualization.LineChart(document.getElementById('piechasrts'));
-
-                            chart.draw(data, options);
-                        }
-                    </script>
-                    <div id="piechasrts" style="width: auto; height: 500px"></div>
-                </div>
-            </div>
-            <div class="card-footer">
-                <div class="stats">
-                    <asp:Label Font-Size="15px" ForeColor="midnightblue" ID="LblPreguntaTres" runat="server" Text="Pregunta 3"></asp:Label>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div style="margin-left: 10px; overflow-x: auto; width: auto;" id="color" class="row">
-        <div class="card card-chart">
-            <div class="card-header card-text">
-                <div class="container">
-                    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-                    <script type="text/javascript">
-                        google.charts.load('current', { 'packages': ['corechart'] });
-                        google.charts.setOnLoadCallback(drawChart);
-
-                        function drawChart() {
-                            
-
-                            var options = {
-                                //title: 'Company Performance',
-                                curveType: 'function',
-                                legend: { position: 'top' }
-
-                            };
-
-                            var chart = new google.visualization.LineChart(document.getElementById('piechasrtsss'));
-
-                            chart.draw(data, options);
-                        }
-                    </script>
-                    <div id="piechasrtsss" style="width: auto; height: 500px"></div>
-                </div>
-            </div>
-            <div class="card-footer">
-                <div class="stats">
-                    <asp:Label Font-Size="15px" ForeColor="midnightblue" ID="LblPreguntaCuatro" runat="server" Text="Pregunta 4"></asp:Label>
-                </div>
-            </div>
-        </div>
-    </div>
     <hr id="hr" />
+    <div style="margin-left: 10px; overflow-x: auto; width: auto;" id="color" class="row">
+        <div class="container">
+            <script type="text/javascript">
+                google.charts.load("current", { packages: ["corechart"] });
+                google.charts.setOnLoadCallback(drawChart);
+                function drawChart() {
+                    var data = google.visualization.arrayToDataTable(<%=ObtnerDatosTurnosMedicos() %>);
+                    var view = new google.visualization.DataView(data);
+
+                    var options = {
+                        title: "Personas Atendidas, Suspendidas y Canceladas",
+                        vAxis: { title: 'Turnos' },
+                        hAxis: { title: 'Medicos' },
+                        seriesType: 'bars'
+                    };
+
+                    var chart = new google.visualization.ComboChart(document.getElementById('chart_div1'));
+                    chart.draw(data, options);
+                }
+            </script>
+            <div id="chart_div1" style="width: 900px; height: 500px;"></div>
+        </div>
+    </div>
+
 </asp:Content>
 
 

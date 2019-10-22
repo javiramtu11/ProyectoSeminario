@@ -121,7 +121,7 @@
 
                     <div class="modal-content">
                         <div class="modal-body">
-                            <h3>REGISTRO DE NUEVO PACIENTE</h3>
+                            <h3 id="color">REGISTRO DE NUEVO PACIENTE</h3>
 
                             <div id="colorx">
                                 <div>
@@ -144,6 +144,12 @@
                                         <label for="dirección">Direccion:</label>
                                         <input runat="server" type="text" id="direccionx" name="direccionx">
                                     
+                                         <label for="municipio">Municipio:</label>
+                                        <input runat="server" type="text" id="municipiox" name="municipiox">
+
+                                        <label for="depto">Departamento:</label>
+                                        <input runat="server" type="text" id="deptox" name="deptox">
+
                                          <label for="fechanac">Fecha Nacimiento:</label>
                                          <input runat="server" id="fechanac" type="date">
                                     </fieldset>

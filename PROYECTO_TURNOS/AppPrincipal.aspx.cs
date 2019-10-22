@@ -28,22 +28,42 @@ namespace PG_CitasMedicas
             string Sexo = genero.Value;
             string dire = direccionx.Value;
             string fechaN = fechanac.Value;
+            string muni = municipiox.Value;
+            string depto = deptox.Value;
 
-            cmd.CommandText = "INSERT INTO PACIENTES (DPI, NOMBRE, APELLIDO, GENERO, DIRECCION, FECHA_NAC, FECHA_INGRESO, ESTADO)" +
-                " VALUES (@DPI, @NOMBRE, @APELLIDO, @GENERO, @DIRECCION, @FECHA_NAC, GETDATE(), 1)";
-            cmd.Parameters.Add("@DPI", SqlDbType.Text).Value = DPI;
-            cmd.Parameters.Add("@NOMBRE", SqlDbType.Text).Value = name;
-            cmd.Parameters.Add("@APELLIDO", SqlDbType.Text).Value = lastname;
-            cmd.Parameters.Add("@GENERO", SqlDbType.Text).Value = Convert.ToString(Sexo);
-            cmd.Parameters.Add("@DIRECCION", SqlDbType.Text).Value = dire;
-            cmd.Parameters.Add("@FECHA_NAC", SqlDbType.Date).Value = Convert.ToDateTime(fechaN);
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(lastname) || string.IsNullOrEmpty(Sexo) ||
+               string.IsNullOrEmpty(dire) || string.IsNullOrEmpty(fechaN) || string.IsNullOrEmpty(muni) ||
+               string.IsNullOrEmpty(depto))
+            {
+                Response.Write("<script>alert('EXISTEN CAMPOS IMPORTANTES QUE ESTAN VACÍOS, VERIFIQUE PARA CONTINUAR')</script>");
 
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = conexionSQL;
-            conexionSQL.Open();
-            cmd.ExecuteNonQuery();
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(DPI))
+                {
+                    DPI = "N/A";
+                }
+                cmd.CommandText = "INSERT INTO PACIENTES (DPI, NOMBRE, APELLIDO, GENERO, DIRECCION, FECHA_NAC, FECHA_INGRESO, ESTADO, DEPARTAMENTO, MUNICIPIO)" +
+                " VALUES (@DPI, @NOMBRE, @APELLIDO, @GENERO, @DIRECCION, @FECHA_NAC, GETDATE(), 1, @DEPTO, @MUNI )";
+                cmd.Parameters.Add("@DPI", SqlDbType.Text).Value = DPI;
+                cmd.Parameters.Add("@NOMBRE", SqlDbType.Text).Value = name;
+                cmd.Parameters.Add("@APELLIDO", SqlDbType.Text).Value = lastname;
+                cmd.Parameters.Add("@GENERO", SqlDbType.Text).Value = Convert.ToString(Sexo);
+                cmd.Parameters.Add("@DIRECCION", SqlDbType.Text).Value = dire;
+                cmd.Parameters.Add("@FECHA_NAC", SqlDbType.Date).Value = Convert.ToDateTime(fechaN);
+                cmd.Parameters.Add("@DEPTO", SqlDbType.Text).Value = depto;
+                cmd.Parameters.Add("@MUNI", SqlDbType.Text).Value = muni;
 
-            limpiarText();
+                cmd.CommandType = CommandType.Text;
+                cmd.Connection = conexionSQL;
+                conexionSQL.Open();
+                cmd.ExecuteNonQuery();
+
+                Response.Write("<script>alert('Paciente Ingresado con Exito')</script>");
+                limpiarText();
+            }
+            
         }
 
         public void buscarllenarPaciente() {
@@ -51,47 +71,57 @@ namespace PG_CitasMedicas
             SqlConnection conexionSQL = new SqlConnection(con);
             SqlCommand cmd = new SqlCommand();
 
+            
+
             string buscar = dpimodal.Value;
-            cmd.CommandText = "SELECT ID_PACIENTE, NOMBRE, APELLIDO, DIRECCION, CAST(FECHA_NAC AS VARCHAR(12)) AS Fecha   FROM PACIENTES WHERE DPI LIKE '%" + buscar + "%' OR NOMBRE = '" + buscar + "' AND ESTADO = 1 ";
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = conexionSQL;
-            conexionSQL.Open();
 
-            DataTable Datos = new DataTable();
-            Datos.Load(cmd.ExecuteReader());
-            int x = 0;
-            foreach (DataRow item in Datos.Rows)
+            if (string.IsNullOrEmpty(buscar))
             {
-                if (x == 0)
-                {
-                    idPaciente = int.Parse(item[0].ToString());
-                    Session["PACIENTE"] = idPaciente; 
-                    x++;
-                }
-                if (x == 1)
-                {
-                    nombremodal.Value = item[1].ToString();
-                    x++;
-                }
-                if (x == 2)
-                {
-                    apellidomodal.Value = item[2].ToString();
-                    x++;
-                }
-                if (x == 3)
-                {
-                    direccionmodal.Value = item[3].ToString();
-                    x++;
-                }
-                if (x == 4)
-                {
-                    fechamodal.Value = Convert.ToString(item[4]).ToString();
-                    x++;
-                }
+                Response.Write("<script>alert('EL CAMPO PARA BUSCAR SE ENCUENTRA VACÍO, VERIFIQUE PARA CONTINUAR')</script>");
 
-            } 
-            conexionSQL.Close();
+            }
+            else
+            {
+                cmd.CommandText = "SELECT ID_PACIENTE, NOMBRE, APELLIDO, DIRECCION, CAST(FECHA_NAC AS VARCHAR(12)) AS Fecha   FROM PACIENTES WHERE DPI LIKE '%" + buscar + "%' OR NOMBRE = '" + buscar + "' OR APELLIDO = '" + buscar + "' AND ESTADO = 1 ";
+                cmd.CommandType = CommandType.Text;
+                cmd.Connection = conexionSQL;
+                conexionSQL.Open();
 
+                DataTable Datos = new DataTable();
+                Datos.Load(cmd.ExecuteReader());
+                int x = 0;
+                foreach (DataRow item in Datos.Rows)
+                {
+                    if (x == 0)
+                    {
+                        idPaciente = int.Parse(item[0].ToString());
+                        Session["PACIENTE"] = idPaciente;
+                        x++;
+                    }
+                    if (x == 1)
+                    {
+                        nombremodal.Value = item[1].ToString();
+                        x++;
+                    }
+                    if (x == 2)
+                    {
+                        apellidomodal.Value = item[2].ToString();
+                        x++;
+                    }
+                    if (x == 3)
+                    {
+                        direccionmodal.Value = item[3].ToString();
+                        x++;
+                    }
+                    if (x == 4)
+                    {
+                        fechamodal.Value = Convert.ToString(item[4]).ToString();
+                        x++;
+                    }
+
+                }
+                conexionSQL.Close();
+            }
         }
 
         public DataSet consultar(string strSQL)
@@ -114,8 +144,8 @@ namespace PG_CitasMedicas
         private void llenarSelect()
         {
 
-            doctor.DataSource = consultar("SELECT * FROM MEDICO");
-            doctor.DataTextField = "NOMBRE";
+            doctor.DataSource = consultar("SELECT ID_MEDICO, (NOMBRE + ' ' + APELLIDO) AS DOCTOR FROM MEDICO");
+            doctor.DataTextField = "DOCTOR";
             doctor.DataValueField = "ID_MEDICO";
             doctor.DataBind();
 
@@ -137,12 +167,6 @@ namespace PG_CitasMedicas
             int insertarNum = 0;
             DateTime thisDay = DateTime.Today;
             string fechaactual = Convert.ToString(thisDay.ToString("d"));
-
-            //sabes el id? me imagino que es el 1 porque es el unico va
-            // hay que hacer una validación que cuando no seleccione médico le mande un alert ok probemoslo
-
-            //fecha actual + id médico, para que nos jale el ultimo turno para ese médico específico
-            //lo probaremos hasta allí para no hacer el insert dale// hay que llamar la funcion perame
             
                 
             cmd.CommandText = "SELECT TOP 1 TURNO_DIARIO FROM TURNOS WHERE FECHA_INGRESO = '" + fecha + "' AND ID_MEDICO = '" + medico + "' ORDER BY TURNO_DIARIO DESC";
@@ -169,20 +193,23 @@ namespace PG_CitasMedicas
 
             int var = Convert.ToInt32(Session["PACIENTE"]);
 
-            cmd.CommandText = "INSERT INTO TURNOS (TURNO_DIARIO, ID_MEDICO, ID_PACIENTE, FECHA_INGRESO, MOTIVO, ESTADO)" +
-              " VALUES (@TURNO_DIARIO, @ID_MEDICO, @ID_PACIENTE, @FECHAIN, @MOTIVO, 1)";
-            cmd.Parameters.Add("@TURNO_DIARIO", SqlDbType.Int).Value = int.Parse(insertarNum.ToString());
-            cmd.Parameters.Add("@ID_MEDICO", SqlDbType.Int).Value = medico;
-            cmd.Parameters.Add("@ID_PACIENTE", SqlDbType.Int).Value = var;
-            cmd.Parameters.Add("@FECHAIN", SqlDbType.Date).Value = Convert.ToDateTime(fecha);
-            cmd.Parameters.Add("@MOTIVO", SqlDbType.Text).Value = motivo;
-            //probemos ok
-           
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = conexionSQL;
-            conexionSQL.Open();
-            cmd.ExecuteNonQuery();
-            Response.Write("<script>alert('Turno Ingresado con Exito')</script>");
+            
+
+                cmd.CommandText = "INSERT INTO TURNOS (TURNO_DIARIO, ID_MEDICO, ID_PACIENTE, FECHA_INGRESO, MOTIVO, ESTADO)" +
+                  " VALUES (@TURNO_DIARIO, @ID_MEDICO, @ID_PACIENTE, @FECHAIN, @MOTIVO, 1)";
+                cmd.Parameters.Add("@TURNO_DIARIO", SqlDbType.Int).Value = int.Parse(insertarNum.ToString());
+                cmd.Parameters.Add("@ID_MEDICO", SqlDbType.Int).Value = medico;
+                cmd.Parameters.Add("@ID_PACIENTE", SqlDbType.Int).Value = var;
+                cmd.Parameters.Add("@FECHAIN", SqlDbType.Date).Value = Convert.ToDateTime(fecha);
+                cmd.Parameters.Add("@MOTIVO", SqlDbType.Text).Value = motivo;
+                //probemos ok
+
+                cmd.CommandType = CommandType.Text;
+                cmd.Connection = conexionSQL;
+                conexionSQL.Open();
+                cmd.ExecuteNonQuery();
+                Response.Write("<script>alert('Turno Ingresado con Exito')</script>");
+            
         }
 
         public void limpiarText() {

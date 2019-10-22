@@ -148,6 +148,24 @@ namespace PG_CitasMedicas {
         protected global::System.Web.UI.HtmlControls.HtmlInputText direccionx;
         
         /// <summary>
+        /// Control municipiox.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText municipiox;
+        
+        /// <summary>
+        /// Control deptox.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText deptox;
+        
+        /// <summary>
         /// Control fechanac.
         /// </summary>
         /// <remarks>

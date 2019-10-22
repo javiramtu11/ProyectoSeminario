@@ -207,7 +207,13 @@
                                         <label for="dirección">Direccion:</label>
                                         <input runat="server" type="text" id="direccionx" name="direccionx">
 
-                                         <label for="fechanac">Fecha de Nacimiento:</label>
+                                        <label for="municipio">Municipio:</label>
+                                        <input runat="server" type="text" id="municipiox" name="municipiox">
+
+                                        <label for="depto">Departamento:</label>
+                                        <input runat="server" type="text" id="deptox" name="deptox">
+                                        
+                                        <label for="fechanac">Fecha de Nacimiento:</label>
                                         <input runat="server" id="fechanac" type="date">
 
                                     </fieldset>

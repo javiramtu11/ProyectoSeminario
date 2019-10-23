@@ -196,7 +196,7 @@ namespace PG_CitasMedicas
 
             if (String.IsNullOrEmpty(var))
             {
-                Response.Redirect("AppPrincipal.aspx");
+                Response.Redirect("Login.aspx");
             }
 
             if (!Page.IsPostBack)

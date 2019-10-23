@@ -71,7 +71,19 @@ namespace PROYECTO_TURNOS
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            obtenerClinica();
+            string var = Convert.ToString(Session["USUARIO"]);
+
+            if (String.IsNullOrEmpty(var))
+            {
+                Response.Redirect("Login.aspx");
+            }
+
+            if (!IsPostBack)
+            {
+                obtenerClinica();
+            }
+
+            
         }
 
         protected void InsertarClinica_Click(object sender, EventArgs e)

@@ -1,8 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Configuracion.master" AutoEventWireup="true" CodeBehind="ConfigClinica.aspx.cs" Inherits="PROYECTO_TURNOS.ConfigClinica" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <h3 style="color: midnightblue" align="center"><i class="fa fa-cog" aria-hidden="true"></i>CONFIGURACIONES</h3>
+    <h3 style="color: midnightblue" align="center"><i class="fa fa-cog" aria-hidden="true"></i>CONFIGURACIONES</h3>
     <link href="assets/css/estiloh.css" rel="stylesheet" />
-    
+    <script src="js/Confirmacion.js"></script>
 
     <style>
         #menu {
@@ -84,17 +85,17 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div id="color" class="navbar-nav">
-                
-                <a  class="nav-item nav-link active" href="ConfigMedico.aspx">Medicos </a>
+
+                <a class="nav-item nav-link active" href="ConfigMedico.aspx">Usuarios </a>
                 <a id="color" class="nav-item nav-link active" href="ConfigClinica.aspx">Clinicas <span class="sr-only">(current)</span></a>
-                
+
             </div>
         </div>
     </nav>
     <!-- END MENU -->
 
     <h4 style="margin-left: 25px">
-        <a id="color" data-toggle="modal" data-target="#exampleModal" href="#exampleModal"><i class="fa fa-hospital-o" aria-hidden="true"></i> AGREGAR Clinica</a>
+        <a id="color" data-toggle="modal" data-target="#exampleModal" href="#exampleModal"><i class="fa fa-hospital-o" aria-hidden="true"></i>AGREGAR Clinica</a>
     </h4>
 
     <script>
@@ -103,14 +104,25 @@
         });
     </script>
 
+    <script type="text/javascript" language="javascript">
+        function ValidarCampos() {
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Error de campos vacios!</strong> Por Favor verifique los campos antes de continuar...
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        }
+    </script>
+
     <br />
     <div class="col-lg-10">
         <div class="input-group">
             <div class="input-group no-border col-xl-12">
-                <input runat="server" data-toggle="tooltip" title=" Nombre de la clinica" id="txtbuscar" type="text" class="form-control" placeholder="Buscar...">
+                <input required runat="server" data-toggle="tooltip" title=" Nombre de la clinica" id="txtbuscar" type="text" class="form-control" placeholder="Buscar...">
             </div>
             <span class="input-group-btn align-items-center">
-                <asp:LinkButton Font-Size="X-Large" method="post"  ID="BtnBuscarClinica" runat="server" OnClick="BtnBuscarClinica_Click"><i class="fa fa-search" aria-hidden="true"></i> Buscar Clinica</asp:LinkButton>
+                <asp:LinkButton Font-Size="X-Large" method="post" ID="BtnBuscarClinica" runat="server" OnClick="BtnBuscarClinica_Click"><i class="fa fa-search" aria-hidden="true"></i> Buscar Clinica</asp:LinkButton>
                 <%--<button id="colorback" class="btn btn-default" type="button"><i class="fa fa-search" aria-hidden="true"></i>Buscar</button>--%>
             </span>
         </div>
@@ -136,26 +148,32 @@
 
                     <div class="modal-content">
                         <div class="modal-body">
-                            <h3 id="color" align="center">REGISTRO DE NUEVA CLINICA</h3>
 
-                            <div id="colorx" method="post">
-                                <div>
-                                    <fieldset>
-                                        <label for="clinica">Clinica:</label>
-                                        <input runat="server" type="text" id="clinica" name="clinica">
-                                        <label for="descripcion">Descripción:</label>
-                                        <input runat="server" type="text" id="Descripcion" name="descripcion">
-                                        
-                                    </fieldset>
-                                </div>
+                            <form id="ClinicaNew" method="post" class="form-horizontal">
 
-                                <div class="modal-footer">
-                                    <asp:LinkButton Font-Size="X-Large" method="post" ID="InsertarClinica"  runat="server" OnClick="InsertarClinica_Click"><i class="fa fa-save" aria-hidden="true"  ></i> Guardar Clinica</asp:LinkButton>
-                                    <asp:LinkButton Font-Size="X-Large" data-dismiss="modal" aria-label="Close" ID="Cancelar" runat="server"><i class="fa fa-times" aria-hidden="true"></i> Cancelar</asp:LinkButton>
+                                <h3 id="color" align="center">REGISTRO DE NUEVA CLINICA</h3>
+
+                                <div id="colorx" method="post">
+                                    <div>
+                                        <fieldset>
+                                            <label for="clinica">Clinica:</label>
+                                            <input required runat="server" type="text" id="clinica" name="clinica">
+                                            <label for="descripcion">Descripción:</label>
+                                            <input required runat="server" type="text" id="Descripcion" name="descripcion">
+                                        </fieldset>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <asp:LinkButton Font-Size="X-Large" method="post" ID="InsertarClinica" runat="server" OnClick="InsertarClinica_Click"><i class="fa fa-save" aria-hidden="true"  ></i> Guardar Clinica</asp:LinkButton>
+                                        <asp:LinkButton Font-Size="X-Large" data-dismiss="modal" aria-label="Close" ID="Cancelar" runat="server"><i class="fa fa-times" aria-hidden="true"></i> Cancelar</asp:LinkButton>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
+
+
+
                 </div>
             </div>
         </div>
@@ -172,14 +190,13 @@
                 <div class="box-body table-responsive">
                     <div id="tamano" style="color: black;">
                         <asp:GridView
-                            DataKeyNames ="ID_CLINICA"
+                            DataKeyNames="ID_CLINICA"
                             ID="Grid"
                             AllowPaging="True"
                             CssClass="table"
                             class="table table-gray text-bold table-bordered table-hover"
                             runat="server"
-                            AutoGenerateColumns="false"
-               >
+                            AutoGenerateColumns="false">
                             <Columns>
                                 <asp:TemplateField HeaderText="#">
                                     <ItemTemplate>

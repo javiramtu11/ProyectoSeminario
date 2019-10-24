@@ -100,6 +100,23 @@ namespace PROYECTO_TURNOS
         {
             string var = Convert.ToString(Session["USUARIO"]);
 
+            string var2 = Convert.ToString(Session["TIPO"]);
+
+            if (var2 != "Doctor")
+            {
+                Response.Write("<script>alert('EL USUARIO NO TIENE PERMISOS PARA USAR ESTE FORMULARIO')</script>");
+
+                if (var2 == "Secretaria")
+                {
+                    Response.Redirect("AppPrincipal.aspx");
+                }
+                if (var2 == "Administrador")
+                {
+                    Response.Redirect("ConfigMedico.aspx");
+                }
+
+            }
+
             if (String.IsNullOrEmpty(var))
             {
                 Response.Redirect("Login.aspx");

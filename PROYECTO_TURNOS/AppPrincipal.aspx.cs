@@ -156,8 +156,9 @@ namespace PG_CitasMedicas
 
             SqlConnection conexionSQL = new SqlConnection(con);
             SqlCommand cmd = new SqlCommand();
+            int medico = 0;
             
-            int medico = int.Parse(doctor.Value); 
+             medico = int.Parse(doctor.Value); 
             int paciente = idPaciente;
             string fecha = datecita.Value;
             string motivo = motivomodal.Value;
@@ -193,10 +194,24 @@ namespace PG_CitasMedicas
 
             int var = Convert.ToInt32(Session["PACIENTE"]);
 
-            
+            if (medico == 0)
+            {
+                Response.Write("<script>alert('ERROR... Por Favor Seleccione un Medico')</script>");
+            }
+            else
+            {
+
+                if (string.IsNullOrEmpty(fecha))
+                {
+                    fecha = Convert.ToString(DateTime.Today);
+                }
+                if (string.IsNullOrEmpty(motivo))
+                {
+                    motivo = "N/A";
+                }
 
                 cmd.CommandText = "INSERT INTO TURNOS (TURNO_DIARIO, ID_MEDICO, ID_PACIENTE, FECHA_INGRESO, MOTIVO, ESTADO)" +
-                  " VALUES (@TURNO_DIARIO, @ID_MEDICO, @ID_PACIENTE, @FECHAIN, @MOTIVO, 1)";
+                      " VALUES (@TURNO_DIARIO, @ID_MEDICO, @ID_PACIENTE, @FECHAIN, @MOTIVO, 1)";
                 cmd.Parameters.Add("@TURNO_DIARIO", SqlDbType.Int).Value = int.Parse(insertarNum.ToString());
                 cmd.Parameters.Add("@ID_MEDICO", SqlDbType.Int).Value = medico;
                 cmd.Parameters.Add("@ID_PACIENTE", SqlDbType.Int).Value = var;
@@ -209,7 +224,7 @@ namespace PG_CitasMedicas
                 conexionSQL.Open();
                 cmd.ExecuteNonQuery();
                 Response.Write("<script>alert('Turno Ingresado con Exito')</script>");
-            
+            }
         }
 
         public void limpiarText() {
@@ -225,15 +240,29 @@ namespace PG_CitasMedicas
         protected void Page_Load(object sender, EventArgs e)
         {
             string var = Convert.ToString(Session["USUARIO"]);
+            string var2 = Convert.ToString(Session["TIPO"]);
 
-            if (String.IsNullOrEmpty(var))
+            if (var2 != "Administrador" && var2 != "Secretaria")
             {
-                Response.Redirect("Login.aspx");
+                Response.Write("<script>alert('EL USUARIO NO TIENE PERMISOS PARA USAR ESTE FORMULARIO')</script>");
+                
+                if (var2 == "Doctor")
+                {
+                    Response.Redirect("AgendaTurnos.aspx");
+                }
+
             }
+            else {
 
-            if (!IsPostBack)
-            {
-                llenarSelect();
+                if (String.IsNullOrEmpty(var))
+                {
+                    Response.Redirect("Login.aspx");
+                }
+
+                if (!IsPostBack)
+                {
+                    llenarSelect();
+                }
             }
         }
 

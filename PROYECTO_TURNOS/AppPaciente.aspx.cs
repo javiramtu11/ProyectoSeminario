@@ -66,7 +66,7 @@ namespace PG_CitasMedicas
         public void obtenerPaciente() {
             SqlConnection conexionSQL = new SqlConnection(con);
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT ID_PACIENTE, DPI, NOMBRE, GENERO, DIRECCION, FECHA_NAC  FROM PACIENTES WHERE ESTADO = 1";
+            cmd.CommandText = "SELECT ID_PACIENTE, DPI, NOMBRE, GENERO, DIRECCION, CAST(FECHA_NAC AS VARCHAR(12)) AS FECHA  FROM PACIENTES WHERE ESTADO = 1";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conexionSQL;
             conexionSQL.Open();
@@ -85,7 +85,7 @@ namespace PG_CitasMedicas
             SqlCommand cmd = new SqlCommand();
 
             string buscar = TxtBuscar.Text;
-            cmd.CommandText = "SELECT ID_PACIENTE, DPI, NOMBRE, GENERO, DIRECCION, FECHA_NAC  FROM PACIENTES WHERE DPI LIKE '%"+buscar+"%' OR NOMBRE = '"+buscar+"' AND ESTADO = 1 ";
+            cmd.CommandText = "SELECT ID_PACIENTE, DPI, NOMBRE, GENERO, DIRECCION, CAST(FECHA_NAC AS VARCHAR(12)) AS FECHA  FROM PACIENTES WHERE DPI LIKE '%" + buscar+"%' OR NOMBRE = '"+buscar+"' AND ESTADO = 1 ";
             //cmd.Parameters.Add("@buscar", SqlDbType.Text).Value = buscar;
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conexionSQL;
@@ -103,12 +103,29 @@ namespace PG_CitasMedicas
         {
             string var = Convert.ToString(Session["USUARIO"]);
 
-            if (String.IsNullOrEmpty(var))
+            string var2 = Convert.ToString(Session["TIPO"]);
+
+            if (var2 != "Secretaria" && var2 != "Administrador")
             {
-                Response.Redirect("Login.aspx");
+                Response.Write("<script>alert('EL USUARIO NO TIENE PERMISOS PARA USAR ESTE FORMULARIO')</script>");
+
+                if (var2 == "Doctor")
+                {
+                    Response.Redirect("AgendaTurnos.aspx");
+                }
+
             }
 
-            obtenerPaciente();
+            else
+            {
+
+                if (String.IsNullOrEmpty(var))
+                {
+                    Response.Redirect("Login.aspx");
+                }
+
+                obtenerPaciente();
+            }
         }
 
         protected void InsertarPaciente_Click(object sender, EventArgs e)

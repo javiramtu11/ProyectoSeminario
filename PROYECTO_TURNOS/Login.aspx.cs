@@ -22,6 +22,7 @@ namespace PROYECTO_TURNOS
 
             DataTable tabla;
             string id = null;
+            string tipo = null;
             string usuario = txtUsuario.Text;
             string password = txtPassword.Text;
 
@@ -31,10 +32,7 @@ namespace PROYECTO_TURNOS
             }
             else
                 {
-                //    string sql = null;
-                //    sql = "SELECT NOMBRE, APELLIDO, USERNAME FROM MEDICO WHERE USERNAME = '"+usuario+"' AND CLAVE = '"+password+"' ";
-                //    id = obtenertipo(sql);
-                       cmd.CommandText = "SELECT NOMBRE, APELLIDO, USERNAME FROM MEDICO WHERE USERNAME = '" + usuario + "' AND CLAVE = '" + password + "'";
+                       cmd.CommandText = "SELECT NOMBRE, APELLIDO, USERNAME, TIPO_USUARIO FROM MEDICO WHERE USERNAME = '" + usuario + "' AND CLAVE = '" + password + "'";
                        cmd.CommandType = CommandType.Text;
                        cmd.Connection = conexionSQL;
                        conexionSQL.Open();
@@ -42,6 +40,8 @@ namespace PROYECTO_TURNOS
                             if (reader.Read())
                             {
                                 id = (Convert.ToString(reader[0]));
+                                tipo = (Convert.ToString(reader[3]));
+                                 Console.WriteLine(tipo);
                             }
                            
 
@@ -52,8 +52,28 @@ namespace PROYECTO_TURNOS
                 else
                 {
                     Session["USUARIO"] = txtUsuario.Text;
+                    Session["TIPO"] = tipo;
                     string var = Convert.ToString(Session["USUARIO"]);
-                    Response.Redirect("AppPrincipal.aspx");
+
+                    if (tipo == "Doctor")
+                    {
+                        Response.Redirect("AgendaTurnos.aspx");
+                    }
+                    else if (tipo == "Secretaria")
+                    {
+                        Response.Redirect("AppPrincipal.aspx");
+                    }
+                    else if (tipo == "Administrador")
+                    {
+                        Response.Redirect("AppEstadistica.aspx");
+                    }
+                    else {
+                        Response.Write("<script>alert('TIPO DE USUARIO NO EXISTENTE')</script>");
+                    }
+
+
+
+
                 }
 
             }

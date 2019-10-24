@@ -83,7 +83,7 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div id="color" class="navbar-nav">
                 
-                <a id="color" class="nav-item nav-link active" href="ConfigMedico.aspx">Medicos <span class="sr-only">(current)</span></a>
+                <a id="color" class="nav-item nav-link active" href="ConfigMedico.aspx">Usuarios <span class="sr-only">(current)</span></a>
                 <a  class="nav-item nav-link active" href="ConfigClinica.aspx">Clinicas </a>
                 
             </div>
@@ -105,7 +105,7 @@
     <div class="col-lg-10">
         <div class="input-group">
             <div class="input-group no-border col-xl-12">
-                <input runat="server" data-toggle="tooltip" title="Ingrese el Nombre del Medico" id="txtbuscar" type="text" class="form-control" placeholder="Buscar...">
+                <input required  runat="server" data-toggle="tooltip" title="Ingrese el Nombre del Medico" id="txtbuscar" type="text" class="form-control" placeholder="Buscar...">
             </div>
             <span class="input-group-btn align-items-center">
                 <asp:LinkButton Font-Size="X-Large" method="post"  ID="BtnBuscarMedico" runat="server" OnClick="BtnBuscarMedico_Click"><i class="fa fa-search" aria-hidden="true"></i> Buscar Medico</asp:LinkButton>
@@ -170,8 +170,9 @@
 
                                          <label for="tipo">Tipo de usuario:</label>
                                         <select runat="server" id="tipo" name="tipo">
-                                            <option value="Administrativo">Administrativo</option>
+                                            <option value="Administrador">Administrador</option>
                                             <option value="Doctor">Doctor</option>
+                                            <option value="Secretaria">Secretaria</option>
                                         </select>
 
                                     </fieldset>
@@ -247,10 +248,10 @@
 
                                 <asp:TemplateField HeaderText="FECHA">
                                     <ItemTemplate>
-                                        <asp:Label ID="LblFecha" runat="server" Text='<% # Bind("FECHA_NACIMIENTO") %>'></asp:Label>
+                                        <asp:Label ID="LblFecha" runat="server" Text='<% # Bind("FECHA") %>'></asp:Label>
                                     </ItemTemplate>
                                     <EditItemTemplate>
-                                        <asp:TextBox ID="TextFecha" runat="server" Text='<% # Bind("FECHA_NACIMIENTO") %>'></asp:TextBox>
+                                        <asp:TextBox ID="TextFecha" runat="server" Text='<% # Bind("FECHA") %>'></asp:TextBox>
                                     </EditItemTemplate>
                                 </asp:TemplateField>
 
@@ -278,6 +279,14 @@
                                     </ItemTemplate>
                                     <EditItemTemplate>
                                         <asp:TextBox ID="TextUsuario" runat="server" Text='<% # Bind("USERNAME") %>'></asp:TextBox>
+                                    </EditItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="CLAVE">
+                                    <ItemTemplate>
+                                        <asp:Label ID="Lblclave" runat="server" Text='<% # Bind("CLAVE") %>'></asp:Label>
+                                    </ItemTemplate>
+                                    <EditItemTemplate>
+                                        <asp:TextBox ID="TextClave" runat="server" Text='<% # Bind("CLAVE") %>'></asp:TextBox>
                                     </EditItemTemplate>
                                 </asp:TemplateField>
 

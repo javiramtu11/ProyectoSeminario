@@ -14,7 +14,8 @@ namespace PROYECTO_TURNOS
         MostrarDatos md = new MostrarDatos();
         string con = MostrarDatos.CadenaConexion;
 
-        public void AddCline() {
+        public void AddCline()
+        {
 
             SqlConnection conexionSQL = new SqlConnection(con);
             SqlCommand cmd = new SqlCommand();
@@ -22,20 +23,28 @@ namespace PROYECTO_TURNOS
             string cline = clinica.Value;
             string desc = Descripcion.Value;
 
-            cmd.CommandText = "INSERT INTO CLINICAS (CLINICA, DESCRIPCION, ESTADO)" +
-                " VALUES (@CLINICA, @DESCRIPCION, 1)";
-            cmd.Parameters.Add("@CLINICA", SqlDbType.Text).Value = cline;
-            cmd.Parameters.Add("@DESCRIPCION", SqlDbType.Text).Value = desc;
+            if (string.IsNullOrEmpty(cline) || string.IsNullOrEmpty(desc))
+            {
+                
+            }
+            else
+            {
+                cmd.CommandText = "INSERT INTO CLINICAS (CLINICA, DESCRIPCION, ESTADO)" +
+                    " VALUES (@CLINICA, @DESCRIPCION, 1)";
+                cmd.Parameters.Add("@CLINICA", SqlDbType.Text).Value = cline;
+                cmd.Parameters.Add("@DESCRIPCION", SqlDbType.Text).Value = desc;
 
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = conexionSQL;
-            conexionSQL.Open();
-            cmd.ExecuteNonQuery();
+                cmd.CommandType = CommandType.Text;
+                cmd.Connection = conexionSQL;
+                conexionSQL.Open();
+                cmd.ExecuteNonQuery();
 
-            Response.Write("<script>alert('Clinica Ingresada con Exito')</script>");
+                Response.Write("<script>alert('Clinica Ingresada con Exito')</script>");
+            }
         }
 
-        public void obtenerClinica() {
+        public void obtenerClinica()
+        {
             SqlConnection conexionSQL = new SqlConnection(con);
             SqlCommand cmd = new SqlCommand();
 
@@ -51,7 +60,8 @@ namespace PROYECTO_TURNOS
             conexionSQL.Close();
         }
 
-        public void buscarClinica() {
+        public void buscarClinica()
+        {
             SqlConnection conexionSQL = new SqlConnection(con);
             SqlCommand cmd = new SqlCommand();
 
@@ -69,32 +79,55 @@ namespace PROYECTO_TURNOS
             conexionSQL.Close();
         }
 
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             string var = Convert.ToString(Session["USUARIO"]);
+            string var2 = Convert.ToString(Session["TIPO"]);
 
-            if (String.IsNullOrEmpty(var))
+            if (var2 != "Administrador")
             {
-                Response.Redirect("Login.aspx");
-            }
+                Response.Write("<script>alert('EL USUARIO NO TIENE PERMISOS PARA USAR ESTE FORMULARIO')</script>");
 
-            if (!IsPostBack)
+                if (var2 == "Secretaria")
+                {
+                    Response.Redirect("AppPrincipal.aspx");
+                }
+                if (var2 == "Doctor")
+                {
+                    Response.Redirect("AgendaTurnos.aspx");
+                }
+
+            }
+            else
             {
-                obtenerClinica();
-            }
+                if (String.IsNullOrEmpty(var))
+                {
+                    Response.Redirect("Login.aspx");
+                }
 
-            
+                if (!IsPostBack)
+                {
+                    obtenerClinica();
+                }
+
+            }
         }
 
         protected void InsertarClinica_Click(object sender, EventArgs e)
         {
+
+            
             AddCline();
             Response.Redirect("ConfigClinica.aspx");
         }
 
         protected void BtnBuscarClinica_Click(object sender, EventArgs e)
         {
+           
             buscarClinica();
+            
         }
     }
 }

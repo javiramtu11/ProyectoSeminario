@@ -124,10 +124,10 @@
                                 </asp:TemplateField>
                                  <asp:TemplateField HeaderText="NACIMIENTO">
                                     <ItemTemplate>
-                                        <asp:Label ID="Label1" runat="server" Text='<% # Bind("FECHA_NAC") %>'></asp:Label>
+                                        <asp:Label ID="Label1" runat="server" Text='<% # Bind("FECHA") %>'></asp:Label>
                                     </ItemTemplate>
                                     <EditItemTemplate>
-                                        <asp:TextBox ID="Textfechanac" runat="server" Text='<% # Bind("FECHA_NAC") %>'></asp:TextBox>
+                                        <asp:TextBox ID="Textfechanac" runat="server" Text='<% # Bind("FECHA") %>'></asp:TextBox>
                                     </EditItemTemplate>
                                 </asp:TemplateField>
 

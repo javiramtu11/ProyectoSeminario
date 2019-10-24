@@ -19,8 +19,9 @@ namespace PROYECTO_TURNOS
 
             SqlConnection conexionSQL = new SqlConnection(con);
             SqlCommand cmd = new SqlCommand();
+            int IdCline = 0;
 
-            int IdCline = int.Parse(clinica.Value);
+            IdCline = int.Parse(clinica.Value);
             string dpi = codigo.Value;
             string name = nombre.Value;
             string lastname = apellido.Value;
@@ -31,26 +32,53 @@ namespace PROYECTO_TURNOS
             string pass = clave.Value;
             string tip = tipo.Value;
 
- 
-            cmd.CommandText = "INSERT INTO MEDICO (ID_CLINICA, NOMBRE, APELLIDO, DIRECCION, FECHA_NACIMIENTO, TELEFONO, ESTADO, DPI, TIPO_USUARIO, USERNAME, CLAVE)" +
-               " VALUES (@ID_CLINICA, @NOMBRE, @APELLIDO, @DIRECCION, @FECHANAC, @TELEFONO, 1, @DPI , @TIPO, @USER, @CLAVE)";
-            cmd.Parameters.Add("@ID_CLINICA", SqlDbType.Int).Value = IdCline;
-            cmd.Parameters.Add("@NOMBRE", SqlDbType.Text).Value = name;
-            cmd.Parameters.Add("@APELLIDO", SqlDbType.Text).Value = lastname;
-            cmd.Parameters.Add("@DIRECCION", SqlDbType.Text).Value = direction;
-            cmd.Parameters.Add("@FECHANAC", SqlDbType.Date).Value = Convert.ToDateTime(fechaN);
-            cmd.Parameters.Add("@TELEFONO", SqlDbType.Text).Value = tel;
-            cmd.Parameters.Add("@DPI", SqlDbType.Text).Value = dpi;
-            cmd.Parameters.Add("@TIPO", SqlDbType.Text).Value = tip;
-            cmd.Parameters.Add("@USER", SqlDbType.Text).Value = usuario;
-            cmd.Parameters.Add("@CLAVE", SqlDbType.Text).Value = pass;
+            if (IdCline == 0 || string.IsNullOrEmpty(fechaN) || string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(pass) || string.IsNullOrEmpty(tip))
+            {
+                Response.Write("<script>alert('EXISTEN CAMPOS IMPORTANTES QUE ESTAN VACÍOS, VERIFIQUE PARA CONTINUAR')</script>");
 
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = conexionSQL;
-            conexionSQL.Open();
-            cmd.ExecuteNonQuery();
-            Response.Write("<script>alert('Doctor Ingresado con Exito')</script>");
+            }
 
+            else
+            {
+                if (string.IsNullOrEmpty(dpi))
+                {
+                    dpi = "N/A";
+                }
+                if (string.IsNullOrEmpty(name))
+                {
+                    name = "N/A";
+                }
+                if (string.IsNullOrEmpty(lastname))
+                {
+                    lastname = "N/A";
+                }
+                if (string.IsNullOrEmpty(direction))
+                {
+                    direction = "N/A";
+                }
+                if (string.IsNullOrEmpty(tel))
+                {
+                    tel = "N/A";
+                }
+                cmd.CommandText = "INSERT INTO MEDICO (ID_CLINICA, NOMBRE, APELLIDO, DIRECCION, FECHA_NACIMIENTO, TELEFONO, ESTADO, DPI, TIPO_USUARIO, USERNAME, CLAVE)" +
+                   " VALUES (@ID_CLINICA, @NOMBRE, @APELLIDO, @DIRECCION, @FECHANAC, @TELEFONO, 1, @DPI , @TIPO, @USER, @CLAVE)";
+                cmd.Parameters.Add("@ID_CLINICA", SqlDbType.Int).Value = IdCline;
+                cmd.Parameters.Add("@NOMBRE", SqlDbType.Text).Value = name;
+                cmd.Parameters.Add("@APELLIDO", SqlDbType.Text).Value = lastname;
+                cmd.Parameters.Add("@DIRECCION", SqlDbType.Text).Value = direction;
+                cmd.Parameters.Add("@FECHANAC", SqlDbType.Date).Value = Convert.ToDateTime(fechaN);
+                cmd.Parameters.Add("@TELEFONO", SqlDbType.Text).Value = tel;
+                cmd.Parameters.Add("@DPI", SqlDbType.Text).Value = dpi;
+                cmd.Parameters.Add("@TIPO", SqlDbType.Text).Value = tip;
+                cmd.Parameters.Add("@USER", SqlDbType.Text).Value = usuario;
+                cmd.Parameters.Add("@CLAVE", SqlDbType.Text).Value = pass;
+
+                cmd.CommandType = CommandType.Text;
+                cmd.Connection = conexionSQL;
+                conexionSQL.Open();
+                cmd.ExecuteNonQuery();
+                Response.Write("<script>alert('Doctor Ingresado con Exito')</script>");
+            }
         }
 
         private void llenarSelect() {
@@ -84,7 +112,7 @@ namespace PROYECTO_TURNOS
         public void obtenerMedico() {
             SqlConnection conexionSQL = new SqlConnection(con);
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT ID_MEDICO, c.CLINICA, NOMBRE, DIRECCION, FECHA_NACIMIENTO, TELEFONO, TIPO_USUARIO, USERNAME  FROM CLINICAS c "+ 
+            cmd.CommandText = "SELECT ID_MEDICO, c.CLINICA, NOMBRE, DIRECCION, CAST(FECHA_NACIMIENTO AS VARCHAR(12)) AS FECHA, TELEFONO, TIPO_USUARIO, USERNAME, CLAVE FROM CLINICAS c " + 
             "INNER JOIN MEDICO d ON c.ID_CLINICA = d.ID_CLINICA ";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conexionSQL;
@@ -103,7 +131,7 @@ namespace PROYECTO_TURNOS
             SqlCommand cmd = new SqlCommand();
             //buscar medico
             string buscar = txtbuscar.Value;
-            cmd.CommandText = "SELECT ID_MEDICO, c.CLINICA, NOMBRE, DIRECCION, FECHA_NACIMIENTO, TELEFONO  FROM CLINICAS c " +
+            cmd.CommandText = "SELECT ID_MEDICO, c.CLINICA, NOMBRE, DIRECCION, CAST(FECHA_NACIMIENTO AS VARCHAR(12)) AS FECHA, TELEFONO, TIPO_USUARIO, USERNAME, CLAVE FROM CLINICAS c " +
             "INNER JOIN MEDICO d ON (c.ID_CLINICA = d.ID_CLINICA ) WHERE c.ClINICA LIKE '%" + buscar + "%' OR NOMBRE = '"+buscar+"'";
 
             cmd.CommandType = CommandType.Text;
@@ -120,17 +148,35 @@ namespace PROYECTO_TURNOS
         protected void Page_Load(object sender, EventArgs e)
         {
             string var = Convert.ToString(Session["USUARIO"]);
+            string var2 = Convert.ToString(Session["TIPO"]);
 
-            if (String.IsNullOrEmpty(var))
+            if (var2 != "Administrador")
             {
-                Response.Redirect("Login.aspx");
-            }
+                Response.Write("<script>alert('EL USUARIO NO TIENE PERMISOS PARA USAR ESTE FORMULARIO')</script>");
 
-            if (!IsPostBack)
-            {
-                llenarSelect();
+                if (var2 == "Secretaria")
+                {
+                    Response.Redirect("AppPrincipal.aspx");
+                }
+                if (var2 == "Doctor")
+                {
+                    Response.Redirect("AgendaTurnos.aspx");
+                }
+
             }
-            obtenerMedico();
+            else
+            {
+                if (String.IsNullOrEmpty(var))
+                {
+                    Response.Redirect("Login.aspx");
+                }
+
+                if (!IsPostBack)
+                {
+                    llenarSelect();
+                }
+                obtenerMedico();
+            }
         }
 
         protected void InsertarMedico_Click(object sender, EventArgs e)

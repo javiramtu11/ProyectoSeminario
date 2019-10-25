@@ -196,8 +196,10 @@
                             CssClass="table"
                             class="table table-gray text-bold table-bordered table-hover"
                             runat="server"
-                            AutoGenerateColumns="false">
-                            <Columns>
+                            AutoGenerateColumns="false"
+                            AutoGenerateEditButton="True"
+                            DataSourceID="SqlDataSource2">
+                            <%--<Columns>
                                 <asp:TemplateField HeaderText="#">
                                     <ItemTemplate>
                                         <asp:Label ID="LblCodigo" runat="server" Text='<% # Bind("ID_CLINICA") %>'></asp:Label>
@@ -226,11 +228,41 @@
                                 </asp:TemplateField>
 
                                 <asp:CommandField ShowDeleteButton="True" ShowEditButton="true" />
-                            </Columns>
+                            </Columns>--%>
+                            <Columns>
+                            <asp:BoundField HeaderText="CLINICA" DataField="CLINICA" />
+                            <asp:BoundField HeaderText="DESCRIPCION" DataField="DESCRIPCION" />
+                        </Columns>
                             <HeaderStyle CssClass="thead-dark" />
                             <RowStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="350px" />
+
                         </asp:GridView>
+                        
                     </div>
+                    <asp:SqlDataSource
+                        ID="SqlDataSource2"
+                        runat="server"
+                        DataSourceMode="DataSet"
+                        ConnectionString="<%$ ConnectionStrings:HospitalAdonaiConnectionString %>"
+                        SelectCommand="SELECT [ID_CLINICA], [CLINICA], [DESCRIPCION], [ESTADO] FROM [CLINICAS] WHERE ([ESTADO] = @ESTADO)"
+                        UpdateCommand="UPDATE CLINICAS SET CLINICA = @CLINICA, DESCRIPCION = @DESCRIPCION WHERE ID_CLINICA = @ID_CLINICA">
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="true" Name="estado" Type="Boolean" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <%--<asp:GridView
+                        ID="GridView1"
+                        runat="server"
+                        AutoGenerateColumns="False"
+                        DataKeyNames="ID_CLINICA"
+                        AutoGenerateEditButton="True"
+                        DataSourceID="SqlDataSource2">
+                        <Columns>
+                            <asp:BoundField HeaderText="Clinica" DataField="CLINICA" />
+                            <asp:BoundField HeaderText="Descripcion" DataField="DESCRIPCION" />
+                        </Columns>
+
+                    </asp:GridView>--%>
                 </div>
             </div>
         </div>

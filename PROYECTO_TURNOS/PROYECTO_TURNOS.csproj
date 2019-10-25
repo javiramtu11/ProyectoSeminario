@@ -528,6 +528,7 @@
     <Content Include="ImgGallery\P1.jpeg" />
     <Content Include="ImprimirDiagnostico.aspx" />
     <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\clinica.js" />
     <Content Include="js\Confirmacion.js" />
     <Content Include="js\custom.js" />
     <Content Include="js\hovers.js" />

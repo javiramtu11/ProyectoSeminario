@@ -109,7 +109,7 @@ namespace PROYECTO_TURNOS
 
                 if (!IsPostBack)
                 {
-                    obtenerClinica();
+                    //obtenerClinica();
                 }
 
             }

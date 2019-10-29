@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AgendaTurnos.aspx" />
+    <Content Include="AgendaTurnosSuspendidos.aspx" />
     <Content Include="AppEstadistica.aspx" />
     <Content Include="AppPaciente.aspx" />
     <Content Include="AppPrincipal.aspx" />
@@ -550,12 +551,26 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Agenda.master.cs">
+      <DependentUpon>Agenda.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Agenda.master.designer.cs">
+      <DependentUpon>Agenda.master</DependentUpon>
+    </Compile>
     <Compile Include="AgendaTurnos.aspx.cs">
       <DependentUpon>AgendaTurnos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AgendaTurnos.aspx.designer.cs">
       <DependentUpon>AgendaTurnos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AgendaTurnosSuspendidos.aspx.cs">
+      <DependentUpon>AgendaTurnosSuspendidos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgendaTurnosSuspendidos.aspx.designer.cs">
+      <DependentUpon>AgendaTurnosSuspendidos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Aplicacion.Master.cs">
       <DependentUpon>Aplicacion.Master</DependentUpon>
@@ -843,6 +858,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Configuracion.master" />
+    <Content Include="Agenda.master" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">

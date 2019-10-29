@@ -1,8 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Agenda.master" AutoEventWireup="true" CodeBehind="AgendaTurnos.aspx.cs" Inherits="PROYECTO_TURNOS.AgendaTurnos" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Agenda.master" AutoEventWireup="true" CodeBehind="AgendaTurnosSuspendidos.aspx.cs" Inherits="PROYECTO_TURNOS.AgendaTurnosSuspendidos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <h3 style="color: midnightblue" align="center"><i class="fa fa-cog" aria-hidden="true"></i>CONFIGURACION DE TURNOS</h3>
+    <h3 style="color: midnightblue" align="center"><i class="fa fa-cog" aria-hidden="true"></i>CONFIGURACION DE TURNOS</h3>
     <link href="assets/css/estiloh.css" rel="stylesheet" />
     <script src="js/Confirmacion.js"></script>
 
@@ -56,22 +55,22 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div id="color" class="navbar-nav">
 
-                <a id="color" class="nav-item nav-link active" href="AgendaTurnos.aspx">Turnos Diarios <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link active" href="AgendaTurnosSuspendidos.aspx">Turnos Suspendidos </a>
+                <a id="color" class="nav-item nav-link active" href="AgendaTurnos.aspx">Turnos Diarios </a>
+                <a class="nav-item nav-link active" href="AgendaTurnosSuspendidos.aspx">Turnos Suspendidos <span class="sr-only">(current)</span> </a> 
 
             </div>
         </div>
     </nav>
     <!-- END MENU -->
  
-    <h3 align="center" id="color">AGENDA DE TURNOS </h3>
+    <h3 align="center" id="color">AGENDA DE TURNOS SUSPENDIDOS </h3>
     <br />
-    <h3 id="color2"><i class="fa fa-bullhorn" aria-hidden="true"></i> Atención de Turnos </h3>
+    <h3 id="color2"><i class="fa fa-bullhorn" aria-hidden="true"></i>Atención de Turnos Suspendidos </h3>
 
     <div style="margin-left: 10px; overflow-x: auto; width: auto;" id="color" class="row">
 
         <div style="margin-left: 10px; overflow: auto;" id="color" class="row">
-            <h5><i class="fa fa-user-md" aria-hidden="true"></i> Doctor</h5>
+            <h5><i class="fa fa-user-md" aria-hidden="true"></i>Doctor</h5>
             <br />
             <br />
             <input disabled runat="server" type="text" id="doctormodal" name="doctormodal">
@@ -97,7 +96,6 @@
                             OnPageIndexChanging="Grid_PageIndexChanging"
                             AllowPaging="True"
                             Height="122px" Width="875px">
-
 
 
                             <Columns>
@@ -142,7 +140,6 @@
                                     <ItemTemplate>
                                         <asp:Button ID="btnSelect" OnClick="btnSelect_Click" runat="server" class="btn btn-info btn-block" Text="LLAMAR" CommandName='<%# Eval("ID_TURNO") %>' CommandArgument='<%# Eval("PERSONA") %>' />
                                         <asp:Button ID="btnAtender" OnClick="btnAtender_Click" runat="server" class="btn btn-success btn-block" Text="ATENDER" CommandName='<%# Eval("ID_TURNO") %>' CommandArgument='<%# Eval("PERSONA") %>' />
-                                        <asp:Button ID="btnSuspender" OnClick="btnSuspender_Click" runat="server" class="btn btn-warning btn-block" Text="SUSPENDER" CommandName='<%# Eval("ID_TURNO") %>' CommandArgument='<%# Eval("PERSONA") %>' />
                                         <asp:Button ID="btnCancelar" OnClick="btnCancelar_Click" runat="server" class="btn btn-danger btn-block" Text="CANCELAR" CommandName='<%# Eval("ID_TURNO") %>' CommandArgument='<%# Eval("PERSONA") %>' />
 
                                     </ItemTemplate>
@@ -164,6 +161,7 @@
     </div>
 
 </asp:Content>
+
 
 
 

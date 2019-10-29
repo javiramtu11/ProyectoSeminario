@@ -10,16 +10,17 @@ using Texto_a_Voz;
 
 namespace PROYECTO_TURNOS
 {
-    public partial class AgendaTurnos : System.Web.UI.Page
+    public partial class AgendaTurnosSuspendidos : System.Web.UI.Page
     {
         MostrarDatos md = new MostrarDatos();
-        string con = MostrarDatos.CadenaConexion; 
+        string con = MostrarDatos.CadenaConexion;
 
         int idDoctor = 0;
         string nombreDoc = null;
         string apellidoDoc = null;
         string clinicax = null;
         string identificador = null;
+        
 
         public void buscarllenarDoc()
         {
@@ -27,8 +28,8 @@ namespace PROYECTO_TURNOS
             SqlCommand cmd = new SqlCommand();
 
             cmd.CommandText = "SELECT ID_MEDICO, NOMBRE, APELLIDO,  c.CLINICA FROM CLINICAS c INNER JOIN MEDICO d " +
-                              " ON (c.ID_CLINICA = d.ID_CLINICA) WHERE USERNAME = '"+ Session["USUARIO"] + "'";
-            
+                              " ON (c.ID_CLINICA = d.ID_CLINICA) WHERE USERNAME = '" + Session["USUARIO"] + "'";
+
 
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conexionSQL;
@@ -62,7 +63,7 @@ namespace PROYECTO_TURNOS
                 }
             }
 
-       
+
             identificador = nombreDoc + " " + apellidoDoc;
 
             Session["NombreDoc"] = identificador;
@@ -84,10 +85,9 @@ namespace PROYECTO_TURNOS
 
             SqlConnection conexionSQL = new SqlConnection(con);
             SqlCommand cmd = new SqlCommand();
-            //cmd.CommandText = "SELECT TURNO_DIARIO, (p.NOMBRE + ' ' + p.APELLIDO)AS PERSONA, MOTIVO FROM PACIENTES p " +
-            //"INNER JOIN TURNOS t ON p.ID_PACIENTE = t.ID_PACIENTE WHERE (t.ESTADO = 1 or t.ESTADO = 0 ) AND t.FECHA_INGRESO = GETDATE() AND ID_MEDICO = '" + idDoctor + "' ";
             cmd.CommandText = "SELECT ID_TURNO, TURNO_DIARIO, (p.NOMBRE + ' ' + p.APELLIDO)AS PERSONA, MOTIVO FROM PACIENTES p " +
-           "INNER JOIN TURNOS t ON p.ID_PACIENTE = t.ID_PACIENTE WHERE (t.ESTADO = 1 or t.ESTADO = 0 ) AND t.FECHA_INGRESO = '" + fechaactual + "' AND ID_MEDICO = '" + idDoctor + "' ";
+            "INNER JOIN TURNOS t ON p.ID_PACIENTE = t.ID_PACIENTE WHERE (t.ESTADO = 3 ) AND t.FECHA_INGRESO = '" + fechaactual + "' AND ID_MEDICO = '" + idDoctor + "' ";
+
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conexionSQL;
             conexionSQL.Open();
@@ -130,7 +130,7 @@ namespace PROYECTO_TURNOS
                 buscarllenarDoc();
                 obtenerTurnos();
             }
-            
+
         }
 
         protected void btnSelect_Click(object sender, EventArgs e)
@@ -148,9 +148,9 @@ namespace PROYECTO_TURNOS
             string NombrePaciente = Convert.ToString(commandArgument);
             Session["NomPaciente"] = NombrePaciente.ToString();
 
-            string cadenallamar = "--Paciente. " + NombrePaciente + ". con turno. numero "+ Session["InicNombre"] + ", "+ Session["InicApellido"] + "., 00" + Turno + "., pasar a la clinica del doctor. " + Session["NombreDoc"];
+            string cadenallamar = "--Paciente. " + NombrePaciente + ". con turno. numero " + Session["InicNombre"] + ", " + Session["InicApellido"] + "., 00" + Turno + "., pasar a la clinica del doctor. " + Session["NombreDoc"];
 
-             
+
 
             //Session["Codigodecita"] = Turno.ToString();
             TextToVoiceDJ voz = new TextToVoiceDJ();
@@ -187,7 +187,7 @@ namespace PROYECTO_TURNOS
             int Turno = Convert.ToInt32(commandName);
             string NombrePaciente = Convert.ToString(commandArgument);
 
-           
+
             SqlConnection conexionSQL = new SqlConnection(con);
             SqlCommand cmd = new SqlCommand();
 
@@ -201,35 +201,7 @@ namespace PROYECTO_TURNOS
             Response.Redirect("AgendaTurnos.aspx");
 
         }
-
-        protected void btnSuspender_Click(object sender, EventArgs e)
-        {
-            Button btnSuspender = (sender as Button);
-            string commandName = btnSuspender.CommandName;
-            string commandArgument = btnSuspender.CommandArgument;
-
-            GridViewRow row = (btnSuspender.NamingContainer as GridViewRow);
-
-            int rowIndex = row.RowIndex;
-
-            int Turno = Convert.ToInt32(commandName);
-            string NombrePaciente = Convert.ToString(commandArgument);
-
-            
-
-            SqlConnection conexionSQL = new SqlConnection(con);
-            SqlCommand cmd = new SqlCommand();
-
-            cmd.CommandText = "UPDATE TURNOS SET ESTADO = 3 WHERE ID_TURNO = '" + Turno + "' ";
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = conexionSQL;
-            conexionSQL.Open();
-            cmd.ExecuteNonQuery();
-            conexionSQL.Close();
-
-            Response.Redirect("AgendaTurnos.aspx");
-        }
-
+        
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             Button btnCancelar = (sender as Button);
@@ -243,7 +215,7 @@ namespace PROYECTO_TURNOS
             int Turno = Convert.ToInt32(commandName);
             string NombrePaciente = Convert.ToString(commandArgument);
 
-      
+
 
             SqlConnection conexionSQL = new SqlConnection(con);
             SqlCommand cmd = new SqlCommand();

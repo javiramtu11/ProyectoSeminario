@@ -15,7 +15,8 @@ namespace PROYECTO_TURNOS
         MostrarDatos md = new MostrarDatos();
         string con = MostrarDatos.CadenaConexion;
 
-        public void AddMedico() {
+        public void AddMedico()
+        {
 
             SqlConnection conexionSQL = new SqlConnection(con);
             SqlCommand cmd = new SqlCommand();
@@ -81,7 +82,8 @@ namespace PROYECTO_TURNOS
             }
         }
 
-        private void llenarSelect() {
+        private void llenarSelect()
+        {
 
             clinica.DataSource = consultar("SELECT * FROM CLINICAS");
             clinica.DataTextField = "CLINICA";
@@ -90,10 +92,11 @@ namespace PROYECTO_TURNOS
 
             clinica.Items.Insert(0, new ListItem("[Seleccionar]", "0"));
         }
-  
-       
 
-        public DataSet consultar(string strSQL) {
+
+
+        public DataSet consultar(string strSQL)
+        {
 
             SqlConnection conexionSQL = new SqlConnection(con);
             conexionSQL.Open();
@@ -109,40 +112,53 @@ namespace PROYECTO_TURNOS
 
         }
 
-        public void obtenerMedico() {
-            SqlConnection conexionSQL = new SqlConnection(con);
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT ID_MEDICO, c.CLINICA, NOMBRE, DIRECCION, CAST(FECHA_NACIMIENTO AS VARCHAR(12)) AS FECHA, TELEFONO, TIPO_USUARIO, USERNAME, CLAVE FROM CLINICAS c " + 
-            "INNER JOIN MEDICO d ON c.ID_CLINICA = d.ID_CLINICA ";
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = conexionSQL;
-            conexionSQL.Open();
+        //public void obtenerMedico()
+        //{
+        //    SqlConnection conexionSQL = new SqlConnection(con);
+        //    SqlCommand cmd = new SqlCommand();
+        //    cmd.CommandText = "SELECT ID_MEDICO, c.CLINICA, NOMBRE, DIRECCION, CAST(FECHA_NACIMIENTO AS VARCHAR(12)) AS FECHA, TELEFONO, TIPO_USUARIO, USERNAME, CLAVE FROM CLINICAS c " + 
+        //    "INNER JOIN MEDICO d ON c.ID_CLINICA = d.ID_CLINICA ";
+        //    cmd.CommandType = CommandType.Text;
+        //    cmd.Connection = conexionSQL;
+        //    conexionSQL.Open();
 
-            DataTable Datos = new DataTable();
-            Datos.Load(cmd.ExecuteReader());
-            Grid.DataSource = Datos;
-            Grid.DataBind();
-            conexionSQL.Close();
+        //    DataTable Datos = new DataTable();
+        //    Datos.Load(cmd.ExecuteReader());
+        //    Grid.DataSource = Datos;
+        //    Grid.DataBind();
+        //    conexionSQL.Close();
 
-        }
+        //}
 
-        public void buscarMedico() {
-            SqlConnection conexionSQL = new SqlConnection(con);
-            SqlCommand cmd = new SqlCommand();
-            //buscar medico
+        public void buscarMedico()
+        {
+            //SqlConnection conexionSQL = new SqlConnection(con);
+            //SqlCommand cmd = new SqlCommand();
+            ////buscar medico
             string buscar = txtbuscar.Value;
-            cmd.CommandText = "SELECT ID_MEDICO, c.CLINICA, NOMBRE, DIRECCION, CAST(FECHA_NACIMIENTO AS VARCHAR(12)) AS FECHA, TELEFONO, TIPO_USUARIO, USERNAME, CLAVE FROM CLINICAS c " +
-            "INNER JOIN MEDICO d ON (c.ID_CLINICA = d.ID_CLINICA ) WHERE c.ClINICA LIKE '%" + buscar + "%' OR NOMBRE = '"+buscar+"'";
+            //cmd.CommandText = "SELECT d.ID_MEDICO, c.CLINICA, d.DPI, d.NOMBRE, d.APELLIDO, d.DIRECCION,  d.TELEFONO, d.TIPO_USUARIO, d.USERNAME, d.CLAVE FROM CLINICAS AS c " +
+            //"INNER JOIN MEDICO AS d ON (c.ID_CLINICA = d.ID_CLINICA ) WHERE c.ClINICA LIKE '%" + buscar + "%' OR d.NOMBRE = '"+buscar+ "'OR d.APELLIDO = '" + buscar + "'";
 
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = conexionSQL;
-            conexionSQL.Open();//mira este? ahh ya vi algo perame.........perame ya encontre algo
+            //cmd.CommandType = CommandType.Text;
+            //cmd.Connection = conexionSQL;
+            //conexionSQL.Open();//mira este? ahh ya vi algo perame.........perame ya encontre algo
 
-            DataTable Datos = new DataTable();
-            Datos.Load(cmd.ExecuteReader());
-            Grid.DataSource = Datos;
-            Grid.DataBind();
-            conexionSQL.Close();
+            //DataTable Datos = new DataTable();
+            //Datos.Load(cmd.ExecuteReader());
+            //Grid.DataSource = Datos;
+            //Grid.DataBind();
+            //conexionSQL.Close();
+
+
+            SqlDataSource2.SelectCommand = "SELECT d.ID_MEDICO, c.CLINICA, d.DPI, d.NOMBRE, d.APELLIDO, d.DIRECCION,  d.TELEFONO, d.TIPO_USUARIO, d.USERNAME, d.CLAVE FROM CLINICAS AS c " +
+            "INNER JOIN MEDICO AS d ON (c.ID_CLINICA = d.ID_CLINICA ) WHERE d.NOMBRE LIKE '" + buscar + "'OR d.APELLIDO LIKE '" + buscar + "'";
+            SqlDataSource2.UpdateCommand = "UPDATE MEDICO SET  DPI = @DPI, NOMBRE = @NOMBRE, APELLIDO = @APELLIDO, DIRECCION = @DIRECCION, TELEFONO = @TELEFONO,  TIPO_USUARIO = @TIPO_USUARIO, USERNAME = @USERNAME, CLAVE = @CLAVE WHERE NOMBRE LIKE '" + buscar + "'OR APELLIDO LIKE '" + buscar + "'";
+
+
+
+
+
+
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -175,7 +191,7 @@ namespace PROYECTO_TURNOS
                 {
                     llenarSelect();
                 }
-                obtenerMedico();
+                //obtenerMedico();
             }
         }
 

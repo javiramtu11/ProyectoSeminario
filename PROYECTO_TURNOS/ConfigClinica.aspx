@@ -95,7 +95,7 @@
     <!-- END MENU -->
 
     <h4 style="margin-left: 25px">
-        <a id="color" data-toggle="modal" data-target="#exampleModal" href="#exampleModal"><i class="fa fa-hospital-o" aria-hidden="true"></i>AGREGAR Clinica</a>
+        <a id="color" data-toggle="modal" data-target="#exampleModal" href="#exampleModal"><i class="fa fa-hospital-o" aria-hidden="true"></i> AGREGAR CLINICA</a>
     </h4>
 
     <script>

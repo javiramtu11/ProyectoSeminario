@@ -47,9 +47,12 @@
         <div class="input-group">
             <div>
                 <h3>
+                    <div class="input-group no-border col-xl-12">
+                        <input required runat="server" data-toggle="tooltip" title="Ingrese el Nombre del Medico" id="Text1" type="text" class="form-control" placeholder="Buscar...">
+                    </div>
                     <span>
                         <asp:TextBox Font-Size="X-Large" placeholder="Buscar..." ID="TxtBuscar" runat="server"></asp:TextBox>
-                        <asp:LinkButton ToolTip="Ingrese DPI o Nombre del paciente" ID="Lbtn_Buscar" runat="server" Width="500px" OnClick="Lbtn_Buscar_Click" ><i class="fa fa-search" aria-hidden="true"></i>  Buscar Paciente</asp:LinkButton>
+                        <asp:LinkButton ToolTip="Ingrese DPI o Nombre del paciente" ID="Lbtn_Buscar" runat="server" Width="500px" OnClick="Lbtn_Buscar_Click"><i class="fa fa-search" aria-hidden="true"></i>  Buscar Paciente</asp:LinkButton>
                     </span>
                 </h3>
             </div>
@@ -61,7 +64,7 @@
 
 
 
-    <div style="margin-left: 10px; width:900px; overflow:auto;" id="color" class="row">
+    <div style="margin-left: 10px; width: 900px; overflow: auto;" id="color" class="row">
         <div class="col-xl-auto">
             <div class="box box-primary">
                 <div class="box-header">
@@ -69,13 +72,13 @@
                 </div>
                 <div class="box-body table-responsive">
                     <div id="tamano" style="color: black;">
-                        <asp:GridView 
-                            ID="Grid"                            
+                        <asp:GridView
+                            ID="Grid"
                             AllowPaging="True"
                             CssClass="table"
                             class="table table-gray text-bold table-bordered table-hover"
-                            method="post" 
-                            runat="server"                            
+                            method="post"
+                            runat="server"
                             AutoGenerateColumns="false">
                             <Columns>
                                 <asp:TemplateField HeaderText="#">
@@ -114,7 +117,7 @@
                                     </EditItemTemplate>
                                 </asp:TemplateField>
 
-                                 <asp:TemplateField HeaderText="DIRECCION">
+                                <asp:TemplateField HeaderText="DIRECCION">
                                     <ItemTemplate>
                                         <asp:Label ID="Label1" runat="server" Text='<% # Bind("DIRECCION") %>'></asp:Label>
                                     </ItemTemplate>
@@ -122,7 +125,7 @@
                                         <asp:TextBox ID="TextDireccion" runat="server" Text='<% # Bind("DIRECCION") %>'></asp:TextBox>
                                     </EditItemTemplate>
                                 </asp:TemplateField>
-                                 <asp:TemplateField HeaderText="NACIMIENTO">
+                                <asp:TemplateField HeaderText="NACIMIENTO">
                                     <ItemTemplate>
                                         <asp:Label ID="Label1" runat="server" Text='<% # Bind("FECHA") %>'></asp:Label>
                                     </ItemTemplate>
@@ -132,7 +135,7 @@
                                 </asp:TemplateField>
 
 
-                                
+
 
                                 <asp:CommandField ShowDeleteButton="True" ShowEditButton="true" />
                             </Columns>
@@ -212,17 +215,16 @@
 
                                         <label for="depto">Departamento:</label>
                                         <input runat="server" type="text" id="deptox" name="deptox">
-                                        
+
                                         <label for="fechanac">Fecha de Nacimiento:</label>
                                         <input runat="server" id="fechanac" type="date">
-
                                     </fieldset>
                                 </div>
 
                                 <div class="modal-footer">
-                                    <asp:LinkButton method="post" ID="InsertarPaciente"  runat="server" OnClick="InsertarPaciente_Click" ><i class="fa fa-save" aria-hidden="true"></i> Guardar Paciente</asp:LinkButton>
+                                    <asp:LinkButton method="post" ID="InsertarPaciente" runat="server" OnClick="InsertarPaciente_Click"><i class="fa fa-save" aria-hidden="true"></i> Guardar Paciente</asp:LinkButton>
                                     <asp:LinkButton data-dismiss="modal" aria-label="Close" ID="Cancelar" runat="server"><i class="fa fa-times" aria-hidden="true"></i> Cancelar</asp:LinkButton>
-                                
+
                                 </div>
                             </div>
                         </div>

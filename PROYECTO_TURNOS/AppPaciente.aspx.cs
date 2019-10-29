@@ -85,7 +85,8 @@ namespace PG_CitasMedicas
             SqlCommand cmd = new SqlCommand();
 
             string buscar = TxtBuscar.Text;
-            cmd.CommandText = "SELECT ID_PACIENTE, DPI, NOMBRE, GENERO, DIRECCION, CAST(FECHA_NAC AS VARCHAR(12)) AS FECHA  FROM PACIENTES WHERE DPI LIKE '%" + buscar+"%' OR NOMBRE = '"+buscar+"' AND ESTADO = 1 ";
+            string buscar1 = Text1.Value;
+            cmd.CommandText = "SELECT ID_PACIENTE, DPI, NOMBRE, APELLIDO, (NOMBRE + ' ' + APELLIDO) AS PERSONA, GENERO, DIRECCION, CAST(FECHA_NAC AS VARCHAR(12)) AS FECHA  FROM PACIENTES WHERE DPI LIKE '%" + buscar1+"%' OR NOMBRE = '"+buscar1+ "' OR PERSONA = '" + buscar1 + "' AND ESTADO = 1 ";
             //cmd.Parameters.Add("@buscar", SqlDbType.Text).Value = buscar;
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conexionSQL;

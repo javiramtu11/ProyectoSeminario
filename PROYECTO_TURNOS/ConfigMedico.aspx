@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Configuracion.master" AutoEventWireup="true" CodeBehind="ConfigMedico.aspx.cs" Inherits="PROYECTO_TURNOS.ConfigMedico" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-        <h3 style="color: midnightblue" align="center"><i class="fa fa-cog" aria-hidden="true"></i>CONFIGURACIONES</h3>
+    <h3 style="color: midnightblue" align="center"><i class="fa fa-cog" aria-hidden="true"></i>CONFIGURACIONES</h3>
     <link href="assets/css/estiloh.css" rel="stylesheet" />
     <style>
         #menu {
@@ -82,17 +83,17 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div id="color" class="navbar-nav">
-                
+
                 <a id="color" class="nav-item nav-link active" href="ConfigMedico.aspx">Usuarios <span class="sr-only">(current)</span></a>
-                <a  class="nav-item nav-link active" href="ConfigClinica.aspx">Clinicas </a>
-                
+                <a class="nav-item nav-link active" href="ConfigClinica.aspx">Clinicas </a>
+
             </div>
         </div>
     </nav>
     <!-- END MENU -->
 
     <h4 style="margin-left: 25px">
-        <a id="color" data-toggle="modal" data-target="#exampleModal" href="#exampleModal"><i class="fa fa-user-md" aria-hidden="true"></i> AGREGAR MEDICO</a>
+        <a id="color" data-toggle="modal" data-target="#exampleModal" href="#exampleModal"><i class="fa fa-user-md" aria-hidden="true"></i>AGREGAR USUARIO</a>
     </h4>
 
     <script>
@@ -105,10 +106,10 @@
     <div class="col-lg-10">
         <div class="input-group">
             <div class="input-group no-border col-xl-12">
-                <input required  runat="server" data-toggle="tooltip" title="Ingrese el Nombre del Medico" id="txtbuscar" type="text" class="form-control" placeholder="Buscar...">
+                <input required runat="server" data-toggle="tooltip" title="Ingrese el Nombre del Medico" id="txtbuscar" type="text" class="form-control" placeholder="Buscar...">
             </div>
             <span class="input-group-btn align-items-center">
-                <asp:LinkButton Font-Size="X-Large" method="post"  ID="BtnBuscarMedico" runat="server" OnClick="BtnBuscarMedico_Click"><i class="fa fa-search" aria-hidden="true"></i> Buscar Medico</asp:LinkButton>
+                <asp:LinkButton Font-Size="X-Large" method="post" ID="BtnBuscarMedico" runat="server" OnClick="BtnBuscarMedico_Click"><i class="fa fa-search" aria-hidden="true"></i> Buscar Medico</asp:LinkButton>
                 <%--<button id="colorback" class="btn btn-default" type="button"><i class="fa fa-search" aria-hidden="true"></i>Buscar</button>--%>
             </span>
         </div>
@@ -141,11 +142,10 @@
                                     <fieldset>
                                         <label for="clinica">Clinica:</label>
                                         <select runat="server" id="clinica" name="clinica">
-                                           
                                         </select>
 
-                                       <label for="codigo">DPI:</label>
-                                       <input runat="server" type="text" id="codigo" name="codigo">
+                                        <label for="codigo">DPI:</label>
+                                        <input runat="server" type="text" id="codigo" name="codigo">
 
                                         <label for="nombre">Nombre:</label>
                                         <input runat="server" type="text" id="nombre" name="nombre">
@@ -153,7 +153,7 @@
                                         <label for="apellido">Apellido:</label>
                                         <input runat="server" type="text" id="apellido" name="nombre">
 
-                                         <label for="dire">Dirección:</label>
+                                        <label for="dire">Dirección:</label>
                                         <input runat="server" type="text" id="dire" name="dire">
 
                                         <label for="fechanac">Fecha de Nacimiento:</label>
@@ -168,7 +168,7 @@
                                         <label for="clave">Contraseña:</label>
                                         <input runat="server" type="password" id="clave" name="clave">
 
-                                         <label for="tipo">Tipo de usuario:</label>
+                                        <label for="tipo">Tipo de usuario:</label>
                                         <select runat="server" id="tipo" name="tipo">
                                             <option value="Administrador">Administrador</option>
                                             <option value="Doctor">Doctor</option>
@@ -179,7 +179,7 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    <asp:LinkButton Font-Size="X-Large" method="post" ID="InsertarMedico"  runat="server" OnClick="InsertarMedico_Click"><i class="fa fa-save" aria-hidden="true"></i> Guardar Medico</asp:LinkButton>
+                                    <asp:LinkButton Font-Size="X-Large" method="post" ID="InsertarMedico" runat="server" OnClick="InsertarMedico_Click"><i class="fa fa-save" aria-hidden="true"></i> Guardar Medico</asp:LinkButton>
                                     <asp:LinkButton Font-Size="X-Large" data-dismiss="modal" aria-label="Close" ID="Cancelar" runat="server"><i class="fa fa-times" aria-hidden="true"></i> Cancelar</asp:LinkButton>
                                 </div>
                             </div>
@@ -201,15 +201,16 @@
                 <div class="box-body table-responsive">
                     <div id="tamano" style="color: black;">
                         <asp:GridView
-                            DataKeyNames ="ID_MEDICO"
+                            DataKeyNames="ID_MEDICO"
                             ID="Grid"
                             AllowPaging="True"
                             CssClass="table"
                             class="table table-gray text-bold table-bordered table-hover"
                             runat="server"
-                            AutoGenerateColumns="false"
-               >
-                            <Columns>
+                            AutoGenerateColumns="False"
+                            AutoGenerateEditButton="True"
+                            DataSourceID="SqlDataSource2">
+                            <%-- <Columns>
                                 <asp:TemplateField HeaderText="#">
                                     <ItemTemplate>
                                         <asp:Label ID="LblCodigo" runat="server" Text='<% # Bind("ID_MEDICO") %>'></asp:Label>
@@ -291,15 +292,52 @@
                                 </asp:TemplateField>
 
                                 <asp:CommandField ShowDeleteButton="True" ShowEditButton="true" />
+                            </Columns>--%>
+                            <Columns>
+                                <asp:BoundField HeaderText="ID_MEDICO" DataField="ID_MEDICO" SortExpression="ID_MEDICO" InsertVisible="False" ReadOnly="True" />
+                                <asp:BoundField HeaderText="CLINICA" DataField="CLINICA" SortExpression="CLINICA" />
+                                <asp:BoundField HeaderText="DPI" DataField="DPI" SortExpression="DPI" />
+                                <asp:BoundField HeaderText="NOMBRE" DataField="NOMBRE" SortExpression="NOMBRE" />
+                                <asp:BoundField HeaderText="APELLIDO" DataField="APELLIDO" SortExpression="APELLIDO" />
+                                <asp:BoundField HeaderText="DIRECCION" DataField="DIRECCION" SortExpression="DIRECCION" />
+                                <asp:BoundField HeaderText="TELEFONO" DataField="TELEFONO" SortExpression="TELEFONO" />
+
+                                <asp:BoundField DataField="TIPO_USUARIO" HeaderText="TIPO_USUARIO" SortExpression="TIPO_USUARIO" />
+
+                                <asp:BoundField DataField="USERNAME" HeaderText="USERNAME" SortExpression="USERNAME" />
+
+                                <asp:BoundField DataField="CLAVE" HeaderText="CLAVE" SortExpression="CLAVE" />
+
                             </Columns>
                             <HeaderStyle CssClass="thead-dark" />
                             <RowStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="350px" />
                         </asp:GridView>
                     </div>
+                    <asp:SqlDataSource
+                        ID="SqlDataSource2"
+                        runat="server"
+                        ConnectionString="<%$ ConnectionStrings:HospitalAdonaiConnectionString %>"
+                        SelectCommand="SELECT d.ID_MEDICO, c.CLINICA, d.DPI, d.NOMBRE, d.APELLIDO, d.DIRECCION, d.TELEFONO, d.TIPO_USUARIO, d.USERNAME, d.CLAVE FROM CLINICAS AS c INNER JOIN MEDICO AS d ON c.ID_CLINICA = d.ID_CLINICA"
+                        UpdateCommand="UPDATE MEDICO SET  DPI = @DPI, NOMBRE = @NOMBRE, APELLIDO = @APELLIDO, DIRECCION = @DIRECCION, TELEFONO = @TELEFONO,  TIPO_USUARIO = @TIPO_USUARIO, USERNAME = @USERNAME, CLAVE = @CLAVE WHERE ID_MEDICO = @ID_MEDICO">
+                        
+                        <UpdateParameters>
+                            
+                            <asp:ControlParameter Name="DPI" />
+                            <asp:ControlParameter Name="NOMBRE" />
+                            <asp:ControlParameter Name="APELLIDO" />
+                            <asp:ControlParameter Name="DIRECCION" />
+                            <asp:ControlParameter Name="TELEFONO" />
+                            <asp:ControlParameter Name="TIPO_USUARIO" />
+                            <asp:ControlParameter Name="USERNAME" />
+                            <asp:ControlParameter Name="CLAVE" />
+                            
+                            <asp:ControlParameter Name="ID_MEDICO" ControlId="Grid" PropertyName="SelectedValue"/>
+                        </UpdateParameters>
+                    </asp:SqlDataSource>
                 </div>
             </div>
         </div>
     </div>
 
-    
+
 </asp:Content>

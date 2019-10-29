@@ -1,0 +1,11 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Aplicacion.Master" AutoEventWireup="true" CodeBehind="Graficas.master.cs" Inherits="PROYECTO_TURNOS.Graficas" %>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+
+        </asp:ContentPlaceHolder>
+    </div>
+
+</asp:Content>

@@ -74,6 +74,7 @@
     <Content Include="AgendaTurnos.aspx" />
     <Content Include="AgendaTurnosSuspendidos.aspx" />
     <Content Include="AppEstadistica.aspx" />
+    <Content Include="AppEstaPersonalizada.aspx" />
     <Content Include="AppPaciente.aspx" />
     <Content Include="AppPrincipal.aspx" />
     <Content Include="assets\css\estilocita.css" />
@@ -545,7 +546,6 @@
     <Content Include="js\snap.svg-min.js" />
     <Content Include="js\waypoints.min.js" />
     <Content Include="Login.aspx" />
-    <Content Include="Turnos.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -585,6 +585,13 @@
     </Compile>
     <Compile Include="AppEstadistica.aspx.designer.cs">
       <DependentUpon>AppEstadistica.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AppEstaPersonalizada.aspx.cs">
+      <DependentUpon>AppEstaPersonalizada.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AppEstaPersonalizada.aspx.designer.cs">
+      <DependentUpon>AppEstaPersonalizada.aspx</DependentUpon>
     </Compile>
     <Compile Include="AppPaciente.aspx.cs">
       <DependentUpon>AppPaciente.aspx</DependentUpon>
@@ -635,6 +642,13 @@
     <Compile Include="Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Graficas.master.cs">
+      <DependentUpon>Graficas.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Graficas.master.designer.cs">
+      <DependentUpon>Graficas.master</DependentUpon>
+    </Compile>
     <Compile Include="ImprimirDiagnostico.aspx.cs">
       <DependentUpon>ImprimirDiagnostico.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -660,13 +674,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="TextToVoiceDJ.cs" />
-    <Compile Include="Turnos.aspx.cs">
-      <DependentUpon>Turnos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Turnos.aspx.designer.cs">
-      <DependentUpon>Turnos.aspx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Aplicacion.Master" />
@@ -859,6 +866,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Configuracion.master" />
     <Content Include="Agenda.master" />
+    <Content Include="Graficas.master" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">

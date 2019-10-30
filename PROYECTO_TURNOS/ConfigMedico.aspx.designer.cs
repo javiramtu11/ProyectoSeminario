@@ -13,24 +13,6 @@ namespace PROYECTO_TURNOS {
     public partial class ConfigMedico {
         
         /// <summary>
-        /// Control txtbuscar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtbuscar;
-        
-        /// <summary>
-        /// Control BtnBuscarMedico.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton BtnBuscarMedico;
-        
-        /// <summary>
         /// Control clinica.
         /// </summary>
         /// <remarks>

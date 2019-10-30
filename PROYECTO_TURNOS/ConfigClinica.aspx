@@ -116,17 +116,17 @@
     </script>
 
     <br />
-    <div class="col-lg-10">
+    <%--<div class="col-lg-10">
         <div class="input-group">
             <div class="input-group no-border col-xl-12">
                 <input required runat="server" data-toggle="tooltip" title=" Nombre de la clinica" id="txtbuscar" type="text" class="form-control" placeholder="Buscar...">
             </div>
             <span class="input-group-btn align-items-center">
                 <asp:LinkButton Font-Size="X-Large" method="post" ID="BtnBuscarClinica" runat="server" OnClick="BtnBuscarClinica_Click"><i class="fa fa-search" aria-hidden="true"></i> Buscar Clinica</asp:LinkButton>
-                <%--<button id="colorback" class="btn btn-default" type="button"><i class="fa fa-search" aria-hidden="true"></i>Buscar</button>--%>
+                <%--<button id="colorback" class="btn btn-default" type="button"><i class="fa fa-search" aria-hidden="true"></i>Buscar</button>
             </span>
         </div>
-    </div>
+    </div> --%>
 
 
 
@@ -196,18 +196,16 @@
                             CssClass="table"
                             class="table table-gray text-bold table-bordered table-hover"
                             runat="server"
-                            AutoGenerateColumns="false"
-                            AutoGenerateEditButton="True"
-                            DataSourceID="SqlDataSource2">
-                            <%--<Columns>
-                                <asp:TemplateField HeaderText="#">
-                                    <ItemTemplate>
-                                        <asp:Label ID="LblCodigo" runat="server" Text='<% # Bind("ID_CLINICA") %>'></asp:Label>
-                                    </ItemTemplate>
-                                    <EditItemTemplate>
-                                        <asp:TextBox ID="TextCodigo" runat="server" Text='<% # Bind("ID_CLINICA") %>'></asp:TextBox>
-                                    </EditItemTemplate>
-                                </asp:TemplateField>
+                            OnRowDeleting="Grid_RowDeleting"
+                            OnPageIndexChanging="Grid_PageIndexChanging"
+                            OnRowCancelingEdit="rowCancelEdit"
+                            OnRowEditing="rowEditingEvent"
+                            OnRowUpdating="rowUpdatingEvent" 
+                            AutoGenerateColumns="false">
+                           
+                            <Columns>
+                                
+                                <asp:CommandField ShowDeleteButton="True" ShowEditButton="true" />
 
                                 <asp:TemplateField HeaderText="CLINICA">
                                     <ItemTemplate>
@@ -227,44 +225,22 @@
                                     </EditItemTemplate>
                                 </asp:TemplateField>
 
-                                <asp:CommandField ShowDeleteButton="True" ShowEditButton="true" />
-                            </Columns>--%>
-                            <Columns>
-                            <asp:BoundField HeaderText="CLINICA" DataField="CLINICA" />
-                            <asp:BoundField HeaderText="DESCRIPCION" DataField="DESCRIPCION" />
-                        </Columns>
+                            </Columns>
+                          
                             <HeaderStyle CssClass="thead-dark" />
                             <RowStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="350px" />
 
                         </asp:GridView>
                         
                     </div>
-                    <asp:SqlDataSource
-                        ID="SqlDataSource2"
-                        runat="server"
-                        DataSourceMode="DataSet"
-                        ConnectionString="<%$ ConnectionStrings:HospitalAdonaiConnectionString %>"
-                        SelectCommand="SELECT [ID_CLINICA], [CLINICA], [DESCRIPCION], [ESTADO] FROM [CLINICAS] WHERE ([ESTADO] = @ESTADO)"
-                        UpdateCommand="UPDATE CLINICAS SET CLINICA = @CLINICA, DESCRIPCION = @DESCRIPCION WHERE ID_CLINICA = @ID_CLINICA">
-                        <SelectParameters>
-                            <asp:Parameter DefaultValue="true" Name="estado" Type="Boolean" />
-                        </SelectParameters>
-                    </asp:SqlDataSource>
-                    <%--<asp:GridView
-                        ID="GridView1"
-                        runat="server"
-                        AutoGenerateColumns="False"
-                        DataKeyNames="ID_CLINICA"
-                        AutoGenerateEditButton="True"
-                        DataSourceID="SqlDataSource2">
-                        <Columns>
-                            <asp:BoundField HeaderText="Clinica" DataField="CLINICA" />
-                            <asp:BoundField HeaderText="Descripcion" DataField="DESCRIPCION" />
-                        </Columns>
-
-                    </asp:GridView>--%>
+                 
+                   
                 </div>
             </div>
         </div>
+    </div>
+
+    <div>
+
     </div>
 </asp:Content>

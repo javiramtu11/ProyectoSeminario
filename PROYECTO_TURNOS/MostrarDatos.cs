@@ -323,5 +323,25 @@ namespace PROYECTO_TURNOS
 
 
         }
+
+        public Boolean non_query(string sql)
+        {
+
+            SqlConnection cnn = new SqlConnection(CadenaConexion);
+            SqlCommand command = new SqlCommand(sql, cnn);
+            cnn.Open();
+            command.CommandTimeout = 0;
+            int RowsAffected = command.ExecuteNonQuery();
+            if (RowsAffected > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+
+        }
     }
 }

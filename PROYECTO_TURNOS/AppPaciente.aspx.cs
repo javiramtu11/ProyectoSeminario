@@ -66,7 +66,7 @@ namespace PG_CitasMedicas
         public void obtenerPaciente() {
             SqlConnection conexionSQL = new SqlConnection(con);
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT ID_PACIENTE, DPI, NOMBRE, GENERO, DIRECCION, CAST(FECHA_NAC AS VARCHAR(12)) AS FECHA  FROM PACIENTES WHERE ESTADO = 1";
+            cmd.CommandText = "SELECT ID_PACIENTE, DPI, NOMBRE, APELLIDO, GENERO, DIRECCION, CAST(FECHA_NAC AS VARCHAR(12)) AS FECHA, DEPARTAMENTO, MUNICIPIO  FROM PACIENTES WHERE ESTADO = 1 order by NOMBRE";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conexionSQL;
             conexionSQL.Open();
@@ -78,27 +78,27 @@ namespace PG_CitasMedicas
             conexionSQL.Close();
         }
 
-        public void buscarPaciente() {
+        //public void buscarPaciente() {
 
            
-            SqlConnection conexionSQL = new SqlConnection(con);
-            SqlCommand cmd = new SqlCommand();
+        //    SqlConnection conexionSQL = new SqlConnection(con);
+        //    SqlCommand cmd = new SqlCommand();
 
-            string buscar = TxtBuscar.Text;
-            string buscar1 = Text1.Value;
-            cmd.CommandText = "SELECT ID_PACIENTE, DPI, NOMBRE, APELLIDO, (NOMBRE + ' ' + APELLIDO) AS PERSONA, GENERO, DIRECCION, CAST(FECHA_NAC AS VARCHAR(12)) AS FECHA  FROM PACIENTES WHERE DPI LIKE '%" + buscar1+"%' OR NOMBRE = '"+buscar1+ "' OR PERSONA = '" + buscar1 + "' AND ESTADO = 1 ";
-            //cmd.Parameters.Add("@buscar", SqlDbType.Text).Value = buscar;
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = conexionSQL;
-            conexionSQL.Open();
+        //    string buscar = TxtBuscar.Text;
+        //    string buscar1 = Text1.Value;
+        //    cmd.CommandText = "SELECT ID_PACIENTE, DPI, NOMBRE, APELLIDO, (NOMBRE + ' ' + APELLIDO) AS PERSONA, GENERO, DIRECCION, CAST(FECHA_NAC AS VARCHAR(12)) AS FECHA  FROM PACIENTES WHERE DPI LIKE '%" + buscar1+"%' OR NOMBRE = '"+buscar1+ "' OR PERSONA = '" + buscar1 + "' AND ESTADO = 1 ";
+        //    //cmd.Parameters.Add("@buscar", SqlDbType.Text).Value = buscar;
+        //    cmd.CommandType = CommandType.Text;
+        //    cmd.Connection = conexionSQL;
+        //    conexionSQL.Open();
 
-            DataTable Datos = new DataTable();
-            Datos.Load(cmd.ExecuteReader());
-            Grid.DataSource = Datos;
-            Grid.DataBind();
-            conexionSQL.Close();
+        //    DataTable Datos = new DataTable();
+        //    Datos.Load(cmd.ExecuteReader());
+        //    Grid.DataSource = Datos;
+        //    Grid.DataBind();
+        //    conexionSQL.Close();
             
-        }
+        //}
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -125,7 +125,7 @@ namespace PG_CitasMedicas
                     Response.Redirect("Login.aspx");
                 }
 
-                obtenerPaciente();
+                //obtenerPaciente();
             }
         }
 
@@ -137,7 +137,59 @@ namespace PG_CitasMedicas
 
         protected void Lbtn_Buscar_Click(object sender, EventArgs e)
         {
-            buscarPaciente();
+            //buscarPaciente();
         }
+
+        protected void rowEditingEvent(object sender, GridViewEditEventArgs e)
+        {
+            Grid.EditIndex = e.NewEditIndex;
+            obtenerPaciente();
+        }
+
+        protected void Grid_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            Grid.PageIndex = e.NewPageIndex;
+            obtenerPaciente();
+        }
+
+        protected void rowUpdatingEvent(object sender, GridViewUpdateEventArgs e)
+        {
+            GridViewRow fila = Grid.Rows[e.RowIndex];
+            int codigo = Convert.ToInt32(Grid.DataKeys[e.RowIndex].Values[0]);
+
+            string dpi = (fila.FindControl("TextDPI") as TextBox).Text;
+            string nombre = (fila.FindControl("TextNOMBRE") as TextBox).Text;
+            string apellido = (fila.FindControl("TextAPELLIDO") as TextBox).Text;
+            string Genero = (fila.FindControl("TextGENERO") as TextBox).Text;
+            string direccion = (fila.FindControl("TextDIRECCION") as TextBox).Text;
+            string fechanac = (fila.FindControl("TextFECHANAC") as TextBox).Text;
+            string depto = (fila.FindControl("TextDEPARTAMENTO") as TextBox).Text;
+            string muni = (fila.FindControl("TextMUNICIPIO") as TextBox).Text;
+            
+            if (Grid.DataKeys[e.RowIndex].Value.ToString() == null)
+            {
+
+            }
+            else
+            {
+                string sql = "update PACIENTES set DPI = '" + dpi + "', NOMBRE = '" + nombre + "', APELLIDO = '" + apellido + "', GENERO = '" + Genero + "', DIRECCION = '" + direccion + "', FECHA_NAC = '" + fechanac + "', DEPARTAMENTO = '" + depto + "', MUNICIPIO = '" + muni + "' where ID_PACIENTE = " + Grid.DataKeys[e.RowIndex].Value.ToString();
+                MostrarDatos clas_consulta = new MostrarDatos();
+
+                if (clas_consulta.non_query(sql))
+                {
+                    obtenerPaciente();
+                    Response.Write("<script>alert('MODIFICACIÓN REALIZADA EXITOSAMENTE')</script>");
+                }
+                else
+                {
+                    Response.Write("<script>alert('NO SE HA PODIDO MODIFICAR')</script>");
+                }
+            }
+
+            Grid.EditIndex = -1;
+            obtenerPaciente();
+        }
+
+
     }
 }

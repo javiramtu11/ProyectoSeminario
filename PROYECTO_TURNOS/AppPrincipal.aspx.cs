@@ -245,12 +245,12 @@ namespace PG_CitasMedicas
             if (var2 != "Administrador" && var2 != "Secretaria")
             {
                 Response.Write("<script>alert('EL USUARIO NO TIENE PERMISOS PARA USAR ESTE FORMULARIO')</script>");
-                
+
                 if (var2 == "Doctor")
                 {
                     Response.Redirect("AgendaTurnos.aspx");
                 }
-
+                                    
             }
             else {
 

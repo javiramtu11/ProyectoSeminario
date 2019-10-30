@@ -130,36 +130,36 @@ namespace PROYECTO_TURNOS
 
         //}
 
-        public void buscarMedico()
-        {
-            //SqlConnection conexionSQL = new SqlConnection(con);
-            //SqlCommand cmd = new SqlCommand();
-            ////buscar medico
-            string buscar = txtbuscar.Value;
-            //cmd.CommandText = "SELECT d.ID_MEDICO, c.CLINICA, d.DPI, d.NOMBRE, d.APELLIDO, d.DIRECCION,  d.TELEFONO, d.TIPO_USUARIO, d.USERNAME, d.CLAVE FROM CLINICAS AS c " +
-            //"INNER JOIN MEDICO AS d ON (c.ID_CLINICA = d.ID_CLINICA ) WHERE c.ClINICA LIKE '%" + buscar + "%' OR d.NOMBRE = '"+buscar+ "'OR d.APELLIDO = '" + buscar + "'";
+        //public void buscarMedico()
+        //{
+        //    //SqlConnection conexionSQL = new SqlConnection(con);
+        //    //SqlCommand cmd = new SqlCommand();
+        //    ////buscar medico
+        //    string buscar = txtbuscar.Value;
+        //    //cmd.CommandText = "SELECT d.ID_MEDICO, c.CLINICA, d.DPI, d.NOMBRE, d.APELLIDO, d.DIRECCION,  d.TELEFONO, d.TIPO_USUARIO, d.USERNAME, d.CLAVE FROM CLINICAS AS c " +
+        //    //"INNER JOIN MEDICO AS d ON (c.ID_CLINICA = d.ID_CLINICA ) WHERE c.ClINICA LIKE '%" + buscar + "%' OR d.NOMBRE = '"+buscar+ "'OR d.APELLIDO = '" + buscar + "'";
 
-            //cmd.CommandType = CommandType.Text;
-            //cmd.Connection = conexionSQL;
-            //conexionSQL.Open();//mira este? ahh ya vi algo perame.........perame ya encontre algo
+        //    //cmd.CommandType = CommandType.Text;
+        //    //cmd.Connection = conexionSQL;
+        //    //conexionSQL.Open();//mira este? ahh ya vi algo perame.........perame ya encontre algo
 
-            //DataTable Datos = new DataTable();
-            //Datos.Load(cmd.ExecuteReader());
-            //Grid.DataSource = Datos;
-            //Grid.DataBind();
-            //conexionSQL.Close();
-
-
-            SqlDataSource2.SelectCommand = "SELECT d.ID_MEDICO, c.CLINICA, d.DPI, d.NOMBRE, d.APELLIDO, d.DIRECCION,  d.TELEFONO, d.TIPO_USUARIO, d.USERNAME, d.CLAVE FROM CLINICAS AS c " +
-            "INNER JOIN MEDICO AS d ON (c.ID_CLINICA = d.ID_CLINICA ) WHERE d.NOMBRE LIKE '" + buscar + "'OR d.APELLIDO LIKE '" + buscar + "'";
-            SqlDataSource2.UpdateCommand = "UPDATE MEDICO SET  DPI = @DPI, NOMBRE = @NOMBRE, APELLIDO = @APELLIDO, DIRECCION = @DIRECCION, TELEFONO = @TELEFONO,  TIPO_USUARIO = @TIPO_USUARIO, USERNAME = @USERNAME, CLAVE = @CLAVE WHERE NOMBRE LIKE '" + buscar + "'OR APELLIDO LIKE '" + buscar + "'";
+        //    //DataTable Datos = new DataTable();
+        //    //Datos.Load(cmd.ExecuteReader());
+        //    //Grid.DataSource = Datos;
+        //    //Grid.DataBind();
+        //    //conexionSQL.Close();
 
 
+        //    SqlDataSource2.SelectCommand = "SELECT d.ID_MEDICO, c.CLINICA, d.DPI, d.NOMBRE, d.APELLIDO, d.DIRECCION,  d.TELEFONO, d.TIPO_USUARIO, d.USERNAME, d.CLAVE FROM CLINICAS AS c " +
+        //    "INNER JOIN MEDICO AS d ON (c.ID_CLINICA = d.ID_CLINICA ) WHERE c.CLINICA LIKE '" + buscar + "' OR d.NOMBRE LIKE '" + buscar + "'OR d.APELLIDO LIKE '" + buscar + "'";
+        //    SqlDataSource2.UpdateCommand = "UPDATE MEDICO SET  DPI = @DPI, NOMBRE = @NOMBRE, APELLIDO = @APELLIDO, DIRECCION = @DIRECCION, TELEFONO = @TELEFONO,  TIPO_USUARIO = @TIPO_USUARIO, USERNAME = @USERNAME, CLAVE = @CLAVE WHERE NOMBRE LIKE '" + buscar + "'OR APELLIDO LIKE '" + buscar + "'";
 
 
 
 
-        }
+
+
+        //}
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -203,7 +203,7 @@ namespace PROYECTO_TURNOS
 
         protected void BtnBuscarMedico_Click(object sender, EventArgs e)
         {
-            buscarMedico();
+            //buscarMedico();
         }
     }
 }

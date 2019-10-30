@@ -60,24 +60,24 @@ namespace PROYECTO_TURNOS
             conexionSQL.Close();
         }
 
-        public void buscarClinica()
-        {
-            SqlConnection conexionSQL = new SqlConnection(con);
-            SqlCommand cmd = new SqlCommand();
+        //public void buscarClinica()
+        //{
+        //    SqlConnection conexionSQL = new SqlConnection(con);
+        //    SqlCommand cmd = new SqlCommand();
 
-            string buscar = txtbuscar.Value;
-            cmd.CommandText = "SELECT ID_CLINICA, CLINICA, DESCRIPCION FROM CLINICAS WHERE CLINICA LIKE '%" + buscar + "%' AND ESTADO = 1 ";
+        //    string buscar = txtbuscar.Value;
+        //    cmd.CommandText = "SELECT ID_CLINICA, CLINICA, DESCRIPCION FROM CLINICAS WHERE CLINICA LIKE '%" + buscar + "%' AND ESTADO = 1 ";
 
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = conexionSQL;
-            conexionSQL.Open();
+        //    cmd.CommandType = CommandType.Text;
+        //    cmd.Connection = conexionSQL;
+        //    conexionSQL.Open();
 
-            DataTable Datos = new DataTable();
-            Datos.Load(cmd.ExecuteReader());
-            Grid.DataSource = Datos;
-            Grid.DataBind();
-            conexionSQL.Close();
-        }
+        //    DataTable Datos = new DataTable();
+        //    Datos.Load(cmd.ExecuteReader());
+        //    Grid.DataSource = Datos;
+        //    Grid.DataBind();
+        //    conexionSQL.Close();
+        //}
 
 
 
@@ -109,7 +109,7 @@ namespace PROYECTO_TURNOS
 
                 if (!IsPostBack)
                 {
-                    //obtenerClinica();
+                    obtenerClinica();
                 }
 
             }
@@ -126,8 +126,84 @@ namespace PROYECTO_TURNOS
         protected void BtnBuscarClinica_Click(object sender, EventArgs e)
         {
            
-            buscarClinica();
+            //buscarClinica();
             
+        }
+
+        protected void rowCancelEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            Grid.EditIndex = -1;
+            obtenerClinica();
+        }
+
+        protected void rowEditingEvent(object sender, GridViewEditEventArgs e)
+        {
+            Grid.EditIndex = e.NewEditIndex;
+            obtenerClinica();
+        }
+
+        protected void Grid_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            Grid.PageIndex = e.NewPageIndex;
+            obtenerClinica();
+        }
+
+        protected void rowUpdatingEvent(object sender, GridViewUpdateEventArgs e)
+        {
+            GridViewRow fila = Grid.Rows[e.RowIndex];
+            int codigo = Convert.ToInt32(Grid.DataKeys[e.RowIndex].Values[0]);
+
+            string clinica = (fila.FindControl("TextClinica") as TextBox).Text;
+            string descripcion = (fila.FindControl("TextDescripcion") as TextBox).Text;
+            
+
+            if (Grid.DataKeys[e.RowIndex].Value.ToString() == null)
+            {
+
+            }
+            else
+            {
+                string sql = "update CLINICAS set CLINICA = '" + clinica + "', DESCRIPCION = '" + descripcion + "' where ID_CLINICA = " + Grid.DataKeys[e.RowIndex].Value.ToString();
+                MostrarDatos clas_consulta = new MostrarDatos();
+
+                if (clas_consulta.non_query(sql))
+                {
+                    obtenerClinica();
+                    Response.Write("<script>alert('MODIFICACIÓN REALIZADA EXITOSAMENTE')</script>");
+                }
+                else
+                {
+                    Response.Write("<script>alert('NO SE HA PODIDO MODIFICAR')</script>");
+                }
+            }
+
+            Grid.EditIndex = -1;
+            obtenerClinica();
+        }
+
+        protected void Grid_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            if (Grid.DataKeys[e.RowIndex].Value.ToString() == null)
+            {
+
+            }
+            else
+            {
+                string sql = "update CLINICAS set ESTADO ='2' where ID_CLINICA =" + Grid.DataKeys[e.RowIndex].Value.ToString();
+                MostrarDatos clas_consulta = new MostrarDatos();
+
+                if (clas_consulta.non_query(sql))
+                {
+                    obtenerClinica();
+                    Response.Write("<script>alert('ELIMINADO EXITOSAMENTE')</script>");
+                }
+                else
+                {
+                    Response.Write("<script>alert('NO SE HA PODIDO ELIMINAR')</script>");
+                }
+            }
+
+            obtenerClinica();
         }
     }
 }

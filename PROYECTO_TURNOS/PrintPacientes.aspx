@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PrintPacientesAtendidos.aspx.cs" Inherits="PROYECTO_TURNOS.PrintPacientesAtendidos" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PrintPacientes.aspx.cs" Inherits="PROYECTO_TURNOS.PrintPacientes" %>
 
 <%@ Register Assembly="CrystalDecisions.Web, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
 
@@ -58,22 +58,22 @@
                 <ul id="top-menu" class="nav navbar-nav navbar-right main-nav">
                     <li ><a  <i style="color:midnightblue" class="fa fa-book" aria-hidden="true"> Reportes</i> </a></li>                    
                     <li><a  href="AppPrincipal.aspx">Inicio</a></li>
-                    <li><a id="color" href="PrintPacientesAtendidos.aspx">Pacientes Atendidos</a></li>
-                    <li><a href="PrintPacientes.aspx">Pacientes</a></li>
+                    <li><a href="PrintPacientesAtendidos.aspx">Pacientes Atendidos</a></li>
+                    <li><a id="color" href="PrintPacientes.aspx">Pacientes</a></li>
                     <li><a href="PrintTop10.aspx">Top10 Pacientes Frecuentes</a></li>
                     <li><a href="PrintPersonal.aspx">Usuarios</a></li>
                 </ul>
             </div>
 
             <hr id="hr"/>
-            <h3 style="color: midnightblue" align="center">PACIENTES ATENDIDOS SEGÚN MÉDICO</h3>
+            <h3 style="color: midnightblue" align="center">REPORTE DE PACIENTES</h3>
             <hr id="hr" />
             <br />
             <br />
             <div align="center" style="margin-left: 12px;">
-                <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="True" GroupTreeImagesFolderUrl="" Height="1202px" ReportSourceID="CrystalReportSource1" ToolbarImagesFolderUrl="" ToolPanelView="None" ToolPanelWidth="200px" Width="903px" />
+                <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="True" GroupTreeImagesFolderUrl="" Height="962px" ReportSourceID="CrystalReportSource1" ToolbarImagesFolderUrl="" ToolPanelView="None" ToolPanelWidth="200px" Width="1344px" />
                 <CR:CrystalReportSource ID="CrystalReportSource1" runat="server">
-                    <Report FileName="RptPacientesAtendidos.rpt">
+                    <Report FileName="RptListarPacientes.rpt">
                     </Report>
                 </CR:CrystalReportSource>
             </div>

@@ -549,7 +549,11 @@
     <Content Include="js\snap.svg-min.js" />
     <Content Include="js\waypoints.min.js" />
     <Content Include="Login.aspx" />
+    <Content Include="PrintPacientes.aspx" />
     <Content Include="PrintPacientesAtendidos.aspx" />
+    <Content Include="PrintPersonal.aspx" />
+    <Content Include="PrintTop10.aspx" />
+    <Content Include="PrintTurno.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -670,6 +674,13 @@
     <Compile Include="MostrarDatos.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="PrintPacientes.aspx.cs">
+      <DependentUpon>PrintPacientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintPacientes.aspx.designer.cs">
+      <DependentUpon>PrintPacientes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PrintPacientesAtendidos.aspx.cs">
       <DependentUpon>PrintPacientesAtendidos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -677,7 +688,52 @@
     <Compile Include="PrintPacientesAtendidos.aspx.designer.cs">
       <DependentUpon>PrintPacientesAtendidos.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PrintPersonal.aspx.cs">
+      <DependentUpon>PrintPersonal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintPersonal.aspx.designer.cs">
+      <DependentUpon>PrintPersonal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintTop10.aspx.cs">
+      <DependentUpon>PrintTop10.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintTop10.aspx.designer.cs">
+      <DependentUpon>PrintTop10.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintTurno.aspx.cs">
+      <DependentUpon>PrintTurno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintTurno.aspx.designer.cs">
+      <DependentUpon>PrintTurno.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RptCantPacientesDepto.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptCantPacientesDepto.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RptCantPacientesFM.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptCantPacientesFM.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RptClinicas.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptClinicas.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RptListarPacientes.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptListarPacientes.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="RptPacientesAtendidos.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -688,6 +744,24 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RptPacientesAtendidosDoc.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RptPacientesFrecuentes.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptPacientesFrecuentes.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RptPersonal.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptPersonal.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RptTurno.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptTurno.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="TextToVoiceDJ.cs" />
@@ -894,6 +968,22 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="RptCantPacientesDepto.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptCantPacientesDepto.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RptCantPacientesFM.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptCantPacientesFM.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RptClinicas.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptClinicas.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RptListarPacientes.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptListarPacientes.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="RptPacientesAtendidos.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptPacientesAtendidos.cs</LastGenOutput>
@@ -901,6 +991,18 @@
     <EmbeddedResource Include="RptPacientesAtendidosDoc.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptPacientesAtendidosDoc.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RptPacientesFrecuentes.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptPacientesFrecuentes.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RptPersonal.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptPersonal.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RptTurno.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptTurno.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

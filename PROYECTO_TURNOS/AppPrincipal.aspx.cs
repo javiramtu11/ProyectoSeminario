@@ -96,16 +96,19 @@ namespace PG_CitasMedicas
                     {
                         idPaciente = int.Parse(item[0].ToString());
                         Session["PACIENTE"] = idPaciente;
+                        
                         x++;
                     }
                     if (x == 1)
                     {
                         nombremodal.Value = item[1].ToString();
+                        Session["NOMBREPACIENTE"] = item[1].ToString();
                         x++;
                     }
                     if (x == 2)
                     {
                         apellidomodal.Value = item[2].ToString();
+                        Session["APELLIDOPACIENTE"] = item[2].ToString();
                         x++;
                     }
                     if (x == 3)
@@ -122,6 +125,8 @@ namespace PG_CitasMedicas
                 }
                 conexionSQL.Close();
             }
+
+            Session["NOMBREAPELLIDOPACIENTE"] = Convert.ToString(Session["NOMBREPACIENTE"]) + " " + Convert.ToString(Session["APELLIDOPACIENTE"]);
         }
 
         public DataSet consultar(string strSQL)
@@ -144,7 +149,7 @@ namespace PG_CitasMedicas
         private void llenarSelect()
         {
 
-            doctor.DataSource = consultar("SELECT ID_MEDICO, (NOMBRE + ' ' + APELLIDO) AS DOCTOR FROM MEDICO");
+            doctor.DataSource = consultar("SELECT ID_MEDICO, (NOMBRE + ' ' + APELLIDO) AS DOCTOR FROM MEDICO WHERE TIPO_USUARIO = 'Doctor'");
             doctor.DataTextField = "DOCTOR";
             doctor.DataValueField = "ID_MEDICO";
             doctor.DataBind();
@@ -158,7 +163,7 @@ namespace PG_CitasMedicas
             SqlCommand cmd = new SqlCommand();
             int medico = 0;
             
-             medico = int.Parse(doctor.Value); 
+            medico = int.Parse(doctor.Value); 
             int paciente = idPaciente;
             string fecha = datecita.Value;
             string motivo = motivomodal.Value;
@@ -224,6 +229,13 @@ namespace PG_CitasMedicas
                 conexionSQL.Open();
                 cmd.ExecuteNonQuery();
                 Response.Write("<script>alert('Turno Ingresado con Exito')</script>");
+
+                Session["NUMEROTURNO"] = int.Parse(insertarNum.ToString());
+                Session["FECHATURNO"] = Convert.ToString(fecha);
+                Session["PACIENTETURNO"] = Convert.ToString(Session["NOMBREAPELLIDOPACIENTE"]);
+                Session["DOCTORTURNO"] = doctor.Items[doctor.SelectedIndex].Text;
+
+                Response.Redirect("PrintTurno.aspx");
             }
         }
 

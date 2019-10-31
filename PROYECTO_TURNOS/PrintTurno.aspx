@@ -1,8 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PrintPacientesAtendidos.aspx.cs" Inherits="PROYECTO_TURNOS.PrintPacientesAtendidos" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PrintTurno.aspx.cs" Inherits="PROYECTO_TURNOS.PrintTurno" %>
 
 <%@ Register Assembly="CrystalDecisions.Web, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
 
 <!DOCTYPE html>
+
 
 <!-- CSS
     ================================================== -->
@@ -30,7 +31,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
 </head>
 <body>
@@ -56,24 +57,19 @@
 
             <div style="font-size: 18px" id="navbar" class="navbar-collapse collapse">
                 <ul id="top-menu" class="nav navbar-nav navbar-right main-nav">
-                    <li ><a  <i style="color:midnightblue" class="fa fa-book" aria-hidden="true"> Reportes</i> </a></li>                    
-                    <li><a  href="AppPrincipal.aspx">Inicio</a></li>
-                    <li><a id="color" href="PrintPacientesAtendidos.aspx">Pacientes Atendidos</a></li>
-                    <li><a href="PrintPacientes.aspx">Pacientes</a></li>
-                    <li><a href="PrintTop10.aspx">Top10 Pacientes Frecuentes</a></li>
-                    <li><a href="PrintPersonal.aspx">Usuarios</a></li>
+                    <li><a href="AppPrincipal.aspx">Regresar a inicio</a></li>
                 </ul>
             </div>
 
-            <hr id="hr"/>
-            <h3 style="color: midnightblue" align="center">PACIENTES ATENDIDOS SEGÚN MÉDICO</h3>
+            <hr id="hr" />
+            <h3 style="color: midnightblue" align="center">IMPRIMIR TICKET</h3>
             <hr id="hr" />
             <br />
             <br />
             <div align="center" style="margin-left: 12px;">
-                <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="True" GroupTreeImagesFolderUrl="" Height="1202px" ReportSourceID="CrystalReportSource1" ToolbarImagesFolderUrl="" ToolPanelView="None" ToolPanelWidth="200px" Width="903px" />
+                <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="True" GroupTreeImagesFolderUrl="" Height="373px" ReportSourceID="CrystalReportSource1" ToolbarImagesFolderUrl="" ToolPanelView="None" ToolPanelWidth="200px" Width="619px" EnableDatabaseLogonPrompt="False" EnableParameterPrompt="False" />
                 <CR:CrystalReportSource ID="CrystalReportSource1" runat="server">
-                    <Report FileName="RptPacientesAtendidos.rpt">
+                    <Report FileName="RptTurno.rpt">
                     </Report>
                 </CR:CrystalReportSource>
             </div>

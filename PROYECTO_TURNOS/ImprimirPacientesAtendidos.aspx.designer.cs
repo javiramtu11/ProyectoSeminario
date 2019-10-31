@@ -7,10 +7,10 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace PG_CitasMedicas {
+namespace PROYECTO_TURNOS {
     
     
-    public partial class ImprimirDiagnostico {
+    public partial class ImprimirPacientesAtendidos {
         
         /// <summary>
         /// Control form1.
@@ -22,33 +22,6 @@ namespace PG_CitasMedicas {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Control Label1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-        
-        /// <summary>
-        /// Control TxtIdcita.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtIdcita;
-        
-        /// <summary>
-        /// Control VerDiagnostico.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton VerDiagnostico;
-        
-        /// <summary>
         /// Control CrystalReportViewer1.
         /// </summary>
         /// <remarks>
@@ -58,12 +31,12 @@ namespace PG_CitasMedicas {
         protected global::CrystalDecisions.Web.CrystalReportViewer CrystalReportViewer1;
         
         /// <summary>
-        /// Control CrystalReportSource1.
+        /// Control Pacientes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::CrystalDecisions.Web.CrystalReportSource CrystalReportSource1;
+        protected global::CrystalDecisions.Web.CrystalReportSource Pacientes;
     }
 }

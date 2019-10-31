@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PROYECTO_TURNOS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,10 @@ namespace PG_CitasMedicas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            RptPacientesAtendidosDoc rp = new RptPacientesAtendidosDoc();                       
+            CrystalReportViewer1.ReportSource = rp;
+            CrystalReportViewer1.RefreshReport();
+
             string var = Convert.ToString(Session["USUARIO"]);
             string var2 = Convert.ToString(Session["TIPO"]);
 
@@ -36,6 +41,11 @@ namespace PG_CitasMedicas
         }
 
         protected void VerDiagnostico_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void CrystalReportViewer1_Init(object sender, EventArgs e)
         {
 
         }

@@ -82,7 +82,7 @@
                         </li>
 
                          <li class="nav-item ">
-                            <a id="prueba" class="nav-link" href="ImprimirDiagnostico.aspx">
+                            <a id="prueba" class="nav-link" href="PrintPacientesAtendidos.aspx">
                                 <i class="fa fa-book" aria-hidden="true"></i>
                                 <p>Reportes</p>
                             </a>

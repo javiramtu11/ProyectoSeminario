@@ -20,6 +20,8 @@ namespace PROYECTO_TURNOS
             int Noturno = 0;
             string persona = null;
             string dt = null;
+            DateTime thisDay = DateTime.Today;
+            string fechaactual = Convert.ToString(thisDay.ToString("yyyy-MM-dd"));
 
             SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
             SqlCommand cmd = new SqlCommand();
@@ -29,7 +31,7 @@ namespace PROYECTO_TURNOS
                 "INNER JOIN TURNOS t ON p.ID_PACIENTE = t.ID_PACIENTE " +
                 "INNER JOIN MEDICO d ON d.ID_MEDICO = t.ID_MEDICO " +
                 "INNER JOIN CLINICAS c ON c.ID_CLINICA = d.ID_CLINICA " +
-                "WHERE c.ID_CLINICA = '1' AND t.ESTADO = 0 AND t.FECHA_INGRESO = '2019-10-1'";
+                "WHERE c.ID_CLINICA = '1' AND t.ESTADO = 0 AND t.FECHA_INGRESO = '" + fechaactual + "'";
 
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conexionSQL;
@@ -82,6 +84,9 @@ namespace PROYECTO_TURNOS
             int Noturno = 0;
             string persona = null;
             string dt = null;
+            DateTime thisDay = DateTime.Today;
+            string fechaactual = Convert.ToString(thisDay.ToString("yyyy-MM-dd"));
+
 
             SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
             SqlCommand cmd = new SqlCommand();
@@ -91,7 +96,7 @@ namespace PROYECTO_TURNOS
                 "INNER JOIN TURNOS t ON p.ID_PACIENTE = t.ID_PACIENTE " +
                 "INNER JOIN MEDICO d ON d.ID_MEDICO = t.ID_MEDICO " +
                 "INNER JOIN CLINICAS c ON c.ID_CLINICA = d.ID_CLINICA " +
-                "WHERE c.ID_CLINICA = '2' AND t.ESTADO = 0 AND t.FECHA_INGRESO = '2019-10-1'";
+                "WHERE c.ID_CLINICA = '2' AND t.ESTADO = 0 AND t.FECHA_INGRESO = '" + fechaactual + "'";
 
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conexionSQL;
@@ -143,6 +148,9 @@ namespace PROYECTO_TURNOS
             int Noturno = 0;
             string persona = null;
             string dt = null;
+            DateTime thisDay = DateTime.Today;
+            string fechaactual = Convert.ToString(thisDay.ToString("yyyy-MM-dd"));
+
 
             SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
             SqlCommand cmd = new SqlCommand();
@@ -151,7 +159,7 @@ namespace PROYECTO_TURNOS
                "INNER JOIN TURNOS t ON p.ID_PACIENTE = t.ID_PACIENTE " +
                "INNER JOIN MEDICO d ON d.ID_MEDICO = t.ID_MEDICO " +
                "INNER JOIN CLINICAS c ON c.ID_CLINICA = d.ID_CLINICA " +
-               "WHERE c.ID_CLINICA = '3' AND t.ESTADO = 0 AND t.FECHA_INGRESO = GETDATE()";
+               "WHERE c.ID_CLINICA = '3' AND t.ESTADO = 0 AND t.FECHA_INGRESO = '" + fechaactual + "'";
 
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conexionSQL;
@@ -205,6 +213,8 @@ namespace PROYECTO_TURNOS
             int Noturno = 0;
             string persona = null;
             string dt = null;
+            DateTime thisDay = DateTime.Today;
+            string fechaactual = Convert.ToString(thisDay.ToString("yyyy-MM-dd"));
 
             SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
             SqlCommand cmd = new SqlCommand();
@@ -213,7 +223,7 @@ namespace PROYECTO_TURNOS
                "INNER JOIN TURNOS t ON p.ID_PACIENTE = t.ID_PACIENTE " +
                "INNER JOIN MEDICO d ON d.ID_MEDICO = t.ID_MEDICO " +
                "INNER JOIN CLINICAS c ON c.ID_CLINICA = d.ID_CLINICA " +
-               "WHERE c.ID_CLINICA = '4' AND t.ESTADO = 0 AND t.FECHA_INGRESO = GETDATE()";
+               "WHERE c.ID_CLINICA = '4' AND t.ESTADO = 0 AND t.FECHA_INGRESO = '" + fechaactual + "'";
 
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conexionSQL;
@@ -267,6 +277,8 @@ namespace PROYECTO_TURNOS
             int Noturno = 0;
             string persona = null;
             string dt = null;
+            DateTime thisDay = DateTime.Today;
+            string fechaactual = Convert.ToString(thisDay.ToString("yyyy-MM-dd"));
 
             SqlConnection conexionSQL = new SqlConnection(CadenaConexion);
             SqlCommand cmd = new SqlCommand();
@@ -275,7 +287,7 @@ namespace PROYECTO_TURNOS
                "INNER JOIN TURNOS t ON p.ID_PACIENTE = t.ID_PACIENTE " +
                "INNER JOIN MEDICO d ON d.ID_MEDICO = t.ID_MEDICO " +
                "INNER JOIN CLINICAS c ON c.ID_CLINICA = d.ID_CLINICA " +
-               "WHERE c.ID_CLINICA = '5' AND t.ESTADO = 0 AND t.FECHA_INGRESO = GETDATE()";
+               "WHERE c.ID_CLINICA = '5' AND t.ESTADO = 0 AND t.FECHA_INGRESO = '" + fechaactual + "'";
 
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conexionSQL;

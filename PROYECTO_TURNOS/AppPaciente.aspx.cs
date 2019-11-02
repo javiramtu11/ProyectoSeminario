@@ -132,7 +132,6 @@ namespace PG_CitasMedicas
         protected void InsertarPaciente_Click(object sender, EventArgs e)
         {
             AddPaciente();
-            Response.Redirect("AppPaciente.aspx");
         }
 
         protected void Lbtn_Buscar_Click(object sender, EventArgs e)

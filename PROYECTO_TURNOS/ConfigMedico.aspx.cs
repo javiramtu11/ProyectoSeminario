@@ -198,7 +198,7 @@ namespace PROYECTO_TURNOS
         protected void InsertarMedico_Click(object sender, EventArgs e)
         {
             AddMedico();
-            Response.Redirect("ConfigMedico.aspx");
+            //Response.Redirect("ConfigMedico.aspx");
         }
 
         protected void BtnBuscarMedico_Click(object sender, EventArgs e)

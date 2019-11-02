@@ -25,7 +25,8 @@ namespace PROYECTO_TURNOS
 
             if (string.IsNullOrEmpty(cline) || string.IsNullOrEmpty(desc))
             {
-                
+                Response.Write("<script>alert('EXISTEN CAMPOS IMPORTANTES QUE ESTAN VACÍOS, VERIFIQUE PARA CONTINUAR')</script>");
+
             }
             else
             {
@@ -120,7 +121,7 @@ namespace PROYECTO_TURNOS
 
             
             AddCline();
-            Response.Redirect("ConfigClinica.aspx");
+            //Response.Redirect("ConfigClinica.aspx");
         }
 
         protected void BtnBuscarClinica_Click(object sender, EventArgs e)

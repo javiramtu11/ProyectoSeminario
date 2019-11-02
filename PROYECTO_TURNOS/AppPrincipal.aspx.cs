@@ -199,9 +199,9 @@ namespace PG_CitasMedicas
 
             int var = Convert.ToInt32(Session["PACIENTE"]);
 
-            if (medico == 0)
+            if (medico == 0 || var == 0)
             {
-                Response.Write("<script>alert('ERROR... Por Favor Seleccione un Medico')</script>");
+                Response.Write("<script>alert('ERROR PARA INSERTAR EXISTEN CAMPOS VACIOS ... POR FAVOR REVISE QUE HAYA SELECCIONADO A UN PACIENTE Y A UN MEDICO')</script>");
             }
             else
             {
@@ -295,7 +295,7 @@ namespace PG_CitasMedicas
         protected void BtnGenerarCita_Click(object sender, EventArgs e)
         {
             AddTurno();
-            Response.Redirect("AppPrincipal.aspx");
+            //Response.Redirect("AppPrincipal.aspx");
         }
     }
 }

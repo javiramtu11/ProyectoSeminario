@@ -146,3 +146,7 @@ D:\Usuarios\Douglasfm\source\repos\NewRepo\ProyectoSeminario\PROYECTO_TURNOS\bin
 D:\Usuarios\Douglasfm\source\repos\NewRepo\ProyectoSeminario\PROYECTO_TURNOS\bin\ShockwaveFlashObjects.dll
 D:\Usuarios\Douglasfm\source\repos\NewRepo\ProyectoSeminario\PROYECTO_TURNOS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\Usuarios\Douglasfm\source\repos\NewRepo\ProyectoSeminario\PROYECTO_TURNOS\obj\Debug\PROYECTO_TURNOS.csproj.CopyComplete
+C:\Users\xavi7\source\repos\PROYECTO_TURNOS\PROYECTO_TURNOS\bin\CrystalDecisions.Web.dll
+C:\Users\xavi7\source\repos\PROYECTO_TURNOS\PROYECTO_TURNOS\bin\CrystalDecisions.Windows.Forms.dll
+C:\Users\xavi7\source\repos\PROYECTO_TURNOS\PROYECTO_TURNOS\bin\FlashControlV71.dll
+C:\Users\xavi7\source\repos\PROYECTO_TURNOS\PROYECTO_TURNOS\bin\ShockwaveFlashObjects.dll

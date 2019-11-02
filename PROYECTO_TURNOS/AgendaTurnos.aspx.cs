@@ -77,6 +77,22 @@ namespace PROYECTO_TURNOS
 
         }
 
+        public void mensajeError(string vr)
+        {
+            if (vr == "Secretaria")
+            {
+
+                Response.Redirect("AppPrincipal.aspx");
+
+            }
+            if (vr == "Administrador")
+            {
+                Response.Redirect("ConfigMedico.aspx");
+            }
+
+
+        }
+
         public void obtenerTurnos()
         {
             DateTime thisDay = DateTime.Today;
@@ -109,9 +125,12 @@ namespace PROYECTO_TURNOS
             {
                 Response.Write("<script>alert('EL USUARIO NO TIENE PERMISOS PARA USAR ESTE FORMULARIO')</script>");
 
+
                 if (var2 == "Secretaria")
                 {
+                    
                     Response.Redirect("AppPrincipal.aspx");
+
                 }
                 if (var2 == "Administrador")
                 {

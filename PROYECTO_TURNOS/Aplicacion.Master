@@ -29,6 +29,12 @@
     <form runat="server">
         <div class="wrapper ">
 
+            <script type="text/javascript">
+                function validar() {
+                alert("hola");
+                }
+            </script>
+
 
             <div class="sidebar" data-color="teal" data-background-color="black" data-image="assets/img/sidebar-1.jpg">
 
@@ -67,7 +73,7 @@
                             </a>
                         </li>
 
-                        <li class="nav-item ">
+                        <li class="nav-item " onload="validar('param','test');">
                             <a id="prueba" class="nav-link" href="AgendaTurnos.aspx">
                                 <i class="fa fa-address-book-o" aria-hidden="true"></i>
                                 <p>Agenda de Turnos</p>

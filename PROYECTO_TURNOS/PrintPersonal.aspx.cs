@@ -24,7 +24,7 @@ namespace PROYECTO_TURNOS
             }
 
             RptPersonal rp = new RptPersonal();
-            string server = "CAP";
+            string server = @"JAVIRAMPC\BDDJAVIERAM";
             string BDD = "HospitalAdonai";
             
             rp.DataSourceConnections[0].SetConnection(server, BDD, string.Empty, string.Empty);

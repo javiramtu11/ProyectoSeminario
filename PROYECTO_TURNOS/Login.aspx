@@ -5,7 +5,7 @@
 <html class="bg-black" xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Inicio de Sesión Hospital Adonaí.</title>
+    <title>Inicio de Sesión CAP San Miguel Chicaj.</title>
     <link rel="icon" type="image/png" href="assets/img/windicon.png">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -52,7 +52,7 @@
             <p>
                 &copy; Copyright 
                                 <script> document.write(new Date().getFullYear())</script>
-                <a href="index.aspx">HOSPITAL ADONAÍ</a>
+                <a href="index.aspx">CAP SAN MIGUEL CHICAJ B.V.</a>
             </p>
         </div>
 

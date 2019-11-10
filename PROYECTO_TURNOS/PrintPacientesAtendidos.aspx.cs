@@ -30,7 +30,7 @@ namespace PROYECTO_TURNOS
             //rp.SetParameterValue("@prmNombreApellido", nombre);
             //rp.SetParameterValue("@prmDoctor", doctor);
 
-            string server = "CAP";
+            string server = @"JAVIRAMPC\BDDJAVIERAM";
             string BDD = "HospitalAdonai";
 
             rp.DataSourceConnections[0].SetConnection(server, BDD, string.Empty, string.Empty);

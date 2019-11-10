@@ -70,7 +70,6 @@ C:\Users\xavi7\source\repos\PROYECTO_TURNOS\PROYECTO_TURNOS\bin\CrystalDecisions
 C:\Users\xavi7\source\repos\PROYECTO_TURNOS\PROYECTO_TURNOS\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
 C:\Users\xavi7\source\repos\PROYECTO_TURNOS\PROYECTO_TURNOS\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
 C:\Users\xavi7\source\repos\PROYECTO_TURNOS\PROYECTO_TURNOS\bin\stdole.dll
-D:\Usuarios\Douglasfm\source\repos\NewRepo\ProyectoSeminario\PROYECTO_TURNOS\obj\Debug\PROYECTO_TURNOS.csprojAssemblyReference.cache
 D:\Usuarios\Douglasfm\source\repos\NewRepo\ProyectoSeminario\PROYECTO_TURNOS\obj\Debug\PROYECTO_TURNOS.csproj.CoreCompileInputs.cache
 D:\Usuarios\Douglasfm\source\repos\NewRepo\ProyectoSeminario\PROYECTO_TURNOS\obj\Debug\PROYECTO_TURNOS.dll
 D:\Usuarios\Douglasfm\source\repos\NewRepo\ProyectoSeminario\PROYECTO_TURNOS\obj\Debug\PROYECTO_TURNOS.pdb

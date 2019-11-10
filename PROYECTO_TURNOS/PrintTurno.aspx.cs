@@ -78,7 +78,7 @@ namespace PROYECTO_TURNOS
             // Cambio el path de la base de datos
             //
 
-            string server = "CAP";
+            string server = @"JAVIRAMPC\BDDJAVIERAM";
             string BDD = "HospitalAdonai";
 
             report.DataSourceConnections[0].SetConnection(server, BDD, string.Empty, string.Empty);

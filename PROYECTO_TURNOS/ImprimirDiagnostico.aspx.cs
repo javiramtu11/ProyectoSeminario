@@ -19,6 +19,11 @@ namespace PG_CitasMedicas
             string var = Convert.ToString(Session["USUARIO"]);
             string var2 = Convert.ToString(Session["TIPO"]);
 
+            if (String.IsNullOrEmpty(var))
+            {
+                Response.Redirect("Login.aspx");
+            }
+
             if (var2 != "Doctor" && var2 != "Administrador")
             {
                 Response.Write("<script>alert('EL USUARIO NO TIENE PERMISOS PARA USAR ESTE FORMULARIO')</script>");

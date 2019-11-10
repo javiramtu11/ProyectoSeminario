@@ -1,6 +1,7 @@
 ﻿using CrystalDecisions.Shared;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -32,6 +33,12 @@ namespace PROYECTO_TURNOS
 
         public void Form1_Load()
         {
+            string var = Convert.ToString(Session["USUARIO"]);
+
+            if (String.IsNullOrEmpty(var))
+            {
+                Response.Redirect("Login.aspx");
+            }
 
             //
             // Creo el parametro y asigno el nombre
@@ -71,6 +78,10 @@ namespace PROYECTO_TURNOS
             // Cambio el path de la base de datos
             //
 
+            string server = "CAP";
+            string BDD = "HospitalAdonai";
+
+            report.DataSourceConnections[0].SetConnection(server, BDD, string.Empty, string.Empty);
 
             string numero = Convert.ToString(Session["NUMEROTURNO"]);
             string fecha = Convert.ToString(Session["FECHATURNO"]);
@@ -87,6 +98,28 @@ namespace PROYECTO_TURNOS
             //
             CrystalReportViewer1.ReportSource = report;
 
+
+
+
+            //string NombreImpresora = "";//Donde guardare el nombre de la impresora por defecto
+
+            ////Busco la impresora por defecto
+            //for (int i = 0; i < PrinterSettings.InstalledPrinters.Count; i++)
+            //{
+            //    PrinterSettings a = new PrinterSettings();
+            //    a.PrinterName = PrinterSettings.InstalledPrinters[i].ToString();
+            //    if (a.IsDefaultPrinter)
+            //    {
+            //        NombreImpresora = PrinterSettings.InstalledPrinters[i].ToString();
+            //    }
+            //}
+
+            //CrystalReportViewer1.DataBind();
+            //CrystalReportViewer1.PrintMode = CrystalDecisions.Web.PrintMode.ActiveX;
+            //PrinterSettings impresora = new PrinterSettings();
+            //impresora.PrinterName = NombreImpresora;
+            report.PrintOptions.PrinterName = "Canon G2000 series Printer";
+            report.PrintToPrinter(1, false, 0, 0);
         }
     }
 }

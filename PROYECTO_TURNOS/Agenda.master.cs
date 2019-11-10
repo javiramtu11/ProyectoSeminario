@@ -11,7 +11,18 @@ namespace PROYECTO_TURNOS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string var = Convert.ToString(Session["USUARIO"]);
 
+
+            if (String.IsNullOrEmpty(var))
+            {
+                Response.Redirect("Login.aspx");
+            }
+
+            if (!Page.IsPostBack)
+            {
+
+            }
         }
     }
 }

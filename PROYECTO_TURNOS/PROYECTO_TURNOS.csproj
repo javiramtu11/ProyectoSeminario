@@ -505,6 +505,7 @@
     <Content Include="images\img_Receta.png" />
     <Content Include="images\logo.png" />
     <Content Include="images\membrete.jpg" />
+    <Content Include="images\MenEncabezado.jpg" />
     <Content Include="images\next_icon.png" />
     <Content Include="images\next_icon1.png" />
     <Content Include="images\patients-1.jpg" />

@@ -13,7 +13,7 @@ namespace PROYECTO_TURNOS
     {
         MostrarDatos md = new MostrarDatos();
         string con = MostrarDatos.CadenaConexion;
-        string CadenaConexion = "Data Source = DESKTOP-RTIU5G0; Initial Catalog = HospitalAdonai; Integrated Security = True";
+        string CadenaConexion = "Data Source = CAP; Initial Catalog = HospitalAdonai; Integrated Security = True";
 
         public void buscarUsuario() {
 

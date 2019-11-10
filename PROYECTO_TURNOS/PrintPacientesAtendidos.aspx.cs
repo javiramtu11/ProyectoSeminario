@@ -29,6 +29,11 @@ namespace PROYECTO_TURNOS
             //rp.SetParameterValue("@prmFecha", fechaactual);
             //rp.SetParameterValue("@prmNombreApellido", nombre);
             //rp.SetParameterValue("@prmDoctor", doctor);
+
+            string server = "CAP";
+            string BDD = "HospitalAdonai";
+
+            rp.DataSourceConnections[0].SetConnection(server, BDD, string.Empty, string.Empty);
             CrystalReportViewer1.ReportSource = rp;
             CrystalReportViewer1.RefreshReport();
         }

@@ -10,7 +10,7 @@ namespace PROYECTO_TURNOS
 {
     public class MostrarDatos : System.Web.UI.Page
     {
-        public const string CadenaConexion = "Data Source = DESKTOP-RTIU5G0; Initial Catalog = HospitalAdonai; Integrated Security = True";
+        public const string CadenaConexion = "Data Source = CAP; Initial Catalog = HospitalAdonai; Integrated Security = True";
         public string doc = null, doc2 = null, doc3 = null, doc4 = null, doc5 = null;
         public string paciente = null, paciente2 = null, paciente3 = null, paciente4 = null, paciente5 = null;
         public string turno = null, turno2 = null, turno3 = null, turno4 = null, turno5 = null;
@@ -352,8 +352,6 @@ namespace PROYECTO_TURNOS
             {
                 return false;
             }
-
-
         }
     }
 }

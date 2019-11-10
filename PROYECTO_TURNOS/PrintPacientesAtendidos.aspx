@@ -71,7 +71,7 @@
             <br />
             <br />
             <div align="center" style="margin-left: 12px;">
-                <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="True" GroupTreeImagesFolderUrl="" Height="1202px" ReportSourceID="CrystalReportSource1" ToolbarImagesFolderUrl="" ToolPanelView="None" ToolPanelWidth="200px" Width="903px" />
+                <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="True" GroupTreeImagesFolderUrl="" Height="1202px" ReportSourceID="CrystalReportSource1" ToolbarImagesFolderUrl="" ToolPanelView="None" ToolPanelWidth="200px" Width="903px" EnableParameterPrompt="False" />
                 <CR:CrystalReportSource ID="CrystalReportSource1" runat="server">
                     <Report FileName="RptPacientesAtendidos.rpt">
                     </Report>

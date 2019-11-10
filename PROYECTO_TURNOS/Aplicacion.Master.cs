@@ -15,13 +15,14 @@ namespace PG_CitasMedicas
         {
             string var = Convert.ToString(Session["USUARIO"]);
 
-            //if (String.IsNullOrEmpty(var))
-            //{
-            //    Response.Redirect("Inicio.aspx");
-            //}
+            if (String.IsNullOrEmpty(var))
+            {
+                Response.Redirect("Inicio.aspx");
+            }
 
             Label1.Text = var.ToUpper();
             userLog = var;
+
 
 
         }

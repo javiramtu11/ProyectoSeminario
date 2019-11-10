@@ -105,6 +105,18 @@ namespace PROYECTO_TURNOS
 
             string var2 = Convert.ToString(Session["TIPO"]);
 
+
+            if (String.IsNullOrEmpty(var))
+            {
+                Response.Redirect("Login.aspx");
+            }
+
+            if (!Page.IsPostBack)
+            {
+                buscarllenarDoc();
+                obtenerTurnos();
+            }
+
             if (var2 != "Doctor")
             {
                 Response.Write("<script>alert('EL USUARIO NO TIENE PERMISOS PARA USAR ESTE FORMULARIO')</script>");
@@ -120,16 +132,6 @@ namespace PROYECTO_TURNOS
 
             }
 
-            if (String.IsNullOrEmpty(var))
-            {
-                Response.Redirect("Login.aspx");
-            }
-
-            if (!Page.IsPostBack)
-            {
-                buscarllenarDoc();
-                obtenerTurnos();
-            }
 
         }
 

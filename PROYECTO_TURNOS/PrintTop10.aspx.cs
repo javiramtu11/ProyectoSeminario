@@ -23,7 +23,12 @@ namespace PROYECTO_TURNOS
 
             }
 
+
             RptPacientesFrecuentes rp = new RptPacientesFrecuentes();
+            string server = "CAP";
+            string BDD = "HospitalAdonai";
+
+            rp.DataSourceConnections[0].SetConnection(server, BDD, string.Empty, string.Empty);
             CrystalReportViewer1.ReportSource = rp;
             CrystalReportViewer1.RefreshReport();
         }
